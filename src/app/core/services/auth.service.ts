@@ -13,13 +13,13 @@ const { apiUrl } = environment;
 })
 export class AuthService {
 
-  constructor(private http:HttpClient,private tokenService: TokenService) { }
+  constructor(private http: HttpClient, private tokenService: TokenService) {
+  }
 
-  public login(loginDto:LoginRequestDto): Observable<LoginResponseDto>{
-    return this.http.post<LoginResponseDto>(`${apiUrl}/auth/login`, loginDto).pipe(
+  public login(loginRequest: LoginRequestDto): Observable<LoginResponseDto> {
+    return this.http.post<LoginResponseDto>(`${apiUrl}/auth/login`, loginRequest).pipe(
       tap((response) => {
-        this.tokenService.saveToken(response.jwt)
-      })
-    );
+        this.tokenService.saveToken(response.token);
+      }));
   }
 }
