@@ -24,7 +24,7 @@ export class LoginComponent {
 
   public logIn(){
     if(this.loginForm.valid){
-      console.log('el formulario es valido')
+
     }
   }
 }
