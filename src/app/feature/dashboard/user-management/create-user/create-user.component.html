@@ -1,12 +1,13 @@
+<!--/home/dashboard/user-management/create-user-->
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h2 class="card-title mb-4">Formulario de Inscripción</h2>
-          <p class="text-muted mb-4">Por favor, completa todos los campos para inscribirte.</p>
+          <h2 class="card-title mb-4">Formulario creacion de usuario</h2>
+          <p class="text-muted mb-4">Por favor, completa todos los campos</p>
 
-          <form >
+          <form [formGroup]="createUserForm">
             <!-- Username field -->
             <div class="mb-3">
               <label for="username" class="form-label">Nombre de Usuario</label>
@@ -20,12 +21,22 @@
 
             <!-- Full Name field -->
             <div class="mb-3">
-              <label for="fullName" class="form-label">Nombre Completo</label>
+              <label for="completeName" class="form-label">Nombre Completo</label>
               <input
                 type="text"
                 class="form-control"
-                id="fullName"
-                formControlName="fullName"
+                id="completeName"
+                formControlName="completeName"
+              >
+            </div>
+<!--            Password field-->
+            <div class="mb-3">
+              <label for="completeName" class="form-label">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
               >
             </div>
 
@@ -38,8 +49,10 @@
                     class="form-check-input"
                     type="radio"
                     id="roleStudent"
+                    name="grupoRol"
                     value="student"
                     formControlName="role"
+                    checked
                   >
                   <label class="form-check-label" for="roleStudent">
                     Estudiante
@@ -49,11 +62,12 @@
                   <input
                     class="form-check-input"
                     type="radio"
-                    id="roleTeacher"
+                    name="grupoRol"
+                    id="role"
                     value="teacher"
                     formControlName="role"
                   >
-                  <label class="form-check-label" for="roleTeacher">
+                  <label class="form-check-label" for="role">
                     Profesor
                   </label>
                 </div>
@@ -61,6 +75,7 @@
             </div>
 
             <!-- Courses selection -->
+
             <div class="mb-4">
               <label class="form-label">Cursos</label>
               <div formGroupName="courses">
