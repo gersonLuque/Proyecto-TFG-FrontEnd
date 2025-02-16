@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+/* Personaliza el color del mensaje de éxito */
+.p-toast .p-toast-message.p-toast-message-success {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+}
+
+/* Personaliza el color del mensaje de error */
+.p-toast .p-toast-message.p-toast-message-error {
+  background-color: #F44336; /* Rojo */
+  color: white;
+}
+
+/* Personaliza el color del mensaje de advertencia */
+.p-toast .p-toast-message.p-toast-message-warn {
+  background-color: #FF9800; /* Naranja */
+  color: white;
+}
+
+/* Personaliza el color del mensaje de información */
+.p-toast .p-toast-message.p-toast-message-info {
+  background-color: #56d97b; /* Azul */
+  color: black;
+}

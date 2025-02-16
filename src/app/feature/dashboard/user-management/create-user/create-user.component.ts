@@ -4,6 +4,10 @@ import {Course} from '../../../../core/dto/courseDto';
 import {CourseService} from '../../../../core/services/course.service';
 import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
 import {Observable, of} from 'rxjs';
+import {Toast, ToastModule} from 'primeng/toast';
+import {Button} from 'primeng/button';
+import {MessageService} from 'primeng/api';
+
 
 @Component({
   selector: 'app-create-user',
@@ -11,8 +15,9 @@ import {Observable, of} from 'rxjs';
     FormsModule,
     ReactiveFormsModule,
     AsyncPipe,
-    NgIf,
-    NgForOf
+    Toast,
+    ToastModule,
+    Button,
   ],
   templateUrl: './create-user.component.html',
   styleUrl: './create-user.component.css'
@@ -23,7 +28,7 @@ export class CreateUserComponent implements OnInit {
 
   public createUserForm: FormGroup;
 
-  constructor(private fb: FormBuilder, protected courseService: CourseService) {
+  constructor(private fb: FormBuilder, protected courseService: CourseService,private messageService: MessageService) {
     this.createUserForm = this.fb.group({
       username: [''],
       completeName: [''],
@@ -54,7 +59,9 @@ export class CreateUserComponent implements OnInit {
   }
 
   submit() {
-    this.courseService.createUser()
   }
 
+  show() {
+    this.messageService.add({severity:'info', summary: 'Exito', detail: 'Usuario creado correctamente'});
+  }
 }
