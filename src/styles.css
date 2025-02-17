@@ -1,7 +1,8 @@
 /* Personaliza el color del mensaje de éxito */
 .p-toast .p-toast-message.p-toast-message-success {
-  background-color: #4CAF50; /* Verde */
-  color: white;
+  background-color: #56d97b; /* Azul */
+  color: black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Personaliza el color del mensaje de error */
