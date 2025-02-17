@@ -17,4 +17,7 @@ export class UserService {
   createUser(user:createUserDto):Observable<UserResponsedDto> {
     return this.http.post<UserResponsedDto>(`${apiUrl}/users`,user);
   }
+  getAllUsers():Observable<UserResponsedDto[]>{
+    return this.http.get<UserResponsedDto[]>(`${apiUrl}/users`);
+  }
 }
