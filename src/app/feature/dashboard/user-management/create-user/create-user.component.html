@@ -48,12 +48,12 @@
                   <input
                     class="form-check-input"
                     type="radio"
-                    id="roleStudent"
-                    name="role"
-                    value="student"
-                    formControlName="role"
+                    id="rolStudent"
+                    name="rol"
+                    value="STUDENT"
+                    formControlName="rol"
                   >
-                  <label class="form-check-label" for="roleStudent">
+                  <label class="form-check-label" for="rolStudent">
                     Estudiante
                   </label>
                 </div>
@@ -61,12 +61,12 @@
                   <input
                     class="form-check-input"
                     type="radio"
-                    id="roleTeacher"
-                    name="role"
-                    value="teacher"
-                    formControlName="role"
+                    id="rolTeacher"
+                    name="rol"
+                    value="TEACHER"
+                    formControlName="rol"
                   >
-                  <label class="form-check-label" for="roleTeacher">
+                  <label class="form-check-label" for="rolTeacher">
                     Profesor
                   </label>
                 </div>
@@ -123,11 +123,11 @@
             <!--            </div>-->
 
             <!-- Submit button -->
-            <p-toast/>
+            <p-toast position="top-center"/>
             <button
               type="submit"
               class="btn btn-dark w-100"
-              (click)="show()"
+              (click)="submit()"
             >
               Enviar
             </button>
