@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {LoginRequestDto} from '../dto/LoginRequestDto';
+import {LoginRequestDto} from '../dto/loginRequestDto';
 import {Observable, tap} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment.development';
-import {LoginResponseDto} from '../dto/LoginResponseDto';
+import {LoginResponseDto} from '../dto/loginResponseDto';
 import {TokenService} from './token.service';
 import {Router} from '@angular/router';
 const { apiUrl } = environment;
