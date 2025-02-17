@@ -10,12 +10,9 @@ const { apiUrl } = environment
 })
 export class CourseService {
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) {}
 
   getCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(`${apiUrl}/courses`);
   }
-
 }
