@@ -3,7 +3,7 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Lista de usuarios</h1>
-    <button class="btn btn-dark">
+    <button [routerLink]="['create-user']" class="btn btn-dark">
       <i class="bi bi-plus-lg me-2"></i>
       Crear usuario
     </button>
@@ -13,7 +13,7 @@
     <!--    <div class="col-12 mb-3" *ngFor="let user of users">-->
     <div class="col-12 mb-3">
 
-      <!--      esto es una card-->
+      <!--      inicio de la card-->
 
       @for (user of (users$ | async); track user.userId) {
 
@@ -26,7 +26,7 @@
                 <span></span>
               </div>
               <div>
-                <button class="btn btn-outline-secondary me-2">
+                <button [routerLink]="['edit-user',user.userId]" class="btn btn-outline-secondary me-2" >
                   <i class="pi bi-pen me-2"></i>
                   Editar
                 </button>

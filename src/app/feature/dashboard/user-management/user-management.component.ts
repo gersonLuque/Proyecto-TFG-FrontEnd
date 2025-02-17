@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {UserService} from '@core/services/user.service';
 import {Observable} from 'rxjs';
 import {UserResponsedDto} from '@core/dto/userResponsedDto';
@@ -9,7 +9,8 @@ import {AsyncPipe} from '@angular/common';
   selector: 'app-user-management',
   imports: [
     RouterOutlet,
-    AsyncPipe
+    AsyncPipe,
+    RouterLink
   ],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.css'
@@ -17,7 +18,7 @@ import {AsyncPipe} from '@angular/common';
 export class UserManagementComponent implements OnInit{
   public users$:Observable<UserResponsedDto[]>;
 
-  constructor(private _userService:UserService) { }
+  constructor(private _userService:UserService,private router:Router) { }
 
   ngOnInit() {
     this.users$ = this._userService.getAllUsers();
