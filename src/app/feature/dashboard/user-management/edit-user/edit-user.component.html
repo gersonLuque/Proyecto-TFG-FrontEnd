@@ -1,4 +1,4 @@
-<!--/home/dashboard/user-management/create-user-->
+<!--/home/dashboard/user-management/edit-user/{userId}-->
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-6">
@@ -7,15 +7,17 @@
           <h2 class="card-title mb-4">Formulario creacion de usuario</h2>
           <p class="text-muted mb-4">Por favor, completa todos los campos</p>
 
-          <form [formGroup]="createUserForm">
+          <form [formGroup]="editUserForm">
             <!-- Username field -->
+            @let user = user$ | async;
             <div class="mb-3">
               <label for="username" class="form-label">Nombre de Usuario</label>
               <input
                 type="text"
                 class="form-control"
                 id="username"
-                formControlName="username"
+                [value]="user?.username"
+                disabled
               >
             </div>
 
@@ -27,21 +29,11 @@
                 class="form-control"
                 id="completeName"
                 formControlName="completeName"
+                [value]="user?.completeName"
               >
             </div>
-            <!--            Password field-->
-            <div class="mb-3">
-              <label for="password" class="form-label">Contraseña</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                formControlName="password"
-              >
-            </div>
-
             <!-- Role selection -->
-            <div class="mb-3" [formGroup]="createUserForm">  <!-- Asociar con el FormGroup en Angular -->
+            <div class="mb-3" >
               <label class="form-label">Rol</label>
               <div>
                 <div class="form-check">
@@ -51,7 +43,8 @@
                     id="rolStudent"
                     name="rol"
                     value="STUDENT"
-                    formControlName="rol"
+                    [checked]="user?.rol === 'STUDENT'"
+                    [disabled]="user?.rol !== 'STUDENT'"
                   >
                   <label class="form-check-label" for="rolStudent">
                     Estudiante
@@ -64,7 +57,8 @@
                     id="rolTeacher"
                     name="rol"
                     value="TEACHER"
-                    formControlName="rol"
+                    [checked]="user?.rol === 'TEACHER'"
+                    [disabled]="user?.rol !== 'TEACHER'"
                   >
                   <label class="form-check-label" for="rolTeacher">
                     Profesor
@@ -77,11 +71,13 @@
             <div class="mb-4">
               <label class="form-label">Cursos</label>
               <div formArrayName="courses">
-                @for (course of (courses$ | async); track course.courseId) {
+                @let courses = courses$ | async;
+                @for (course of courses; track course.courseId) {
                   <div class="form-check">
                     <input
-                      class="form-check-input"
+                      class="form-check-input cursor-pointer"
                       type="checkbox"
+                      [checked]="isCourseSelected(user, course.courseId)"
                       [value]="course.courseId"
                       (change)="toggleCourse(course)"
                     >
@@ -90,13 +86,10 @@
                 }
               </div>
             </div>
-
-            <!-- Submit button -->
-            <p-toast position="top-center"/>
             <button
               type="submit"
               class="btn btn-dark w-100"
-              (click)="submit()"
+              (click)="actualizar()"
             >
               Enviar
             </button>
