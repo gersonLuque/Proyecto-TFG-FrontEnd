@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {createUserDto} from '../dto/createUserDto';
 import {Course} from '../dto/courseDto';
 import {UserResponsedDto} from '../dto/userResponsedDto';
+import {UpdateUserDto} from '@core/dto/updateUserDto';
 const {apiUrl} = environment
 
 @Injectable({
@@ -19,5 +20,13 @@ export class UserService {
   }
   getAllUsers():Observable<UserResponsedDto[]>{
     return this.http.get<UserResponsedDto[]>(`${apiUrl}/users`);
+  }
+
+  getUserById(id:number):Observable<UserResponsedDto>{
+    return this.http.get<UserResponsedDto>(`${apiUrl}/users/${id}`);
+  }
+
+  updateUser(user:UpdateUserDto):Observable<UserResponsedDto>{
+    return this.http.put<UserResponsedDto>(`${apiUrl}/users`,user)
   }
 }
