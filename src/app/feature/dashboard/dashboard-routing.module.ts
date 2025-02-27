@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path : 'task-management/:id',
-    component : TaskManagementComponent
+    loadChildren : () => import('./task-management/task-management.module').then(m => m.TaskManagementModule)
   }
 ];
 

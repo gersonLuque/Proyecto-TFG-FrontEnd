@@ -21,7 +21,8 @@
             <button class="btn btn-light border">
               <i class="bi bi-pencil-square me-2"></i> Editar Curso
             </button>
-            <button [routerLink]=""  class="btn btn-light border">
+<!--            en un futuro se cambiara el 1 por el id del curso-->
+            <button [routerLink]="['task-management',1]"  class="btn btn-light border">
               <i class="bi bi-list-check me-2"></i> Ver Tareas
             </button>
           </div>
@@ -41,7 +42,7 @@
             <button class="btn btn-light border">
               <i class="bi bi-pencil-square me-2"></i> Editar Curso
             </button>
-            <button class="btn btn-light border">
+            <button [routerLink]="['task-management',2]" class="btn btn-light border">
               <i class="bi bi-list-check me-2"></i> Ver Tareas
             </button>
           </div>
