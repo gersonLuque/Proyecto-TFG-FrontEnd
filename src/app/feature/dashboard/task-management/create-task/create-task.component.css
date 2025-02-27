@@ -1,0 +1,6 @@
+/*::ng-deep .p-fileupload-upload-button {*/
+/*  display: none !important;*/
+/*}*/
+::ng-deep .p-fileupload{
+  background-color: #282f3a;
+}

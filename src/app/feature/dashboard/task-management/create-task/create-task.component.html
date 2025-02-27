@@ -1,2 +1,99 @@
-<p>create-task works!</p>
-<h1>{{id()}}</h1>
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="mb-4">Crear Nueva Tarea</h1>
+
+      <form [formGroup]="taskCreateForm" >
+        <!-- Campo Título (adicional) -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Título</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            formControlName="title"
+            placeholder="Título de la tarea">
+        </div>
+
+        <!-- Campo Descripción -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Descripción</label>
+          <textarea
+            class="form-control"
+            id="description"
+            rows="5"
+            formControlName="description"
+            placeholder="Describe la tarea..."></textarea>
+        </div>
+
+        <!-- Checkbox Visible -->
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="visible" formControlName="visible">
+          <label class="form-check-label" for="visible">Visible</label>
+        </div>
+
+        <!-- Área para arrastrar y soltar archivos -->
+        <!-- Campo para subir archivos (usando PrimeNG p-fileupload) -->
+        <!-- Campo para subir archivos (usando PrimeNG p-fileupload) -->
+
+
+
+        <!-- Lista de archivos seleccionados -->
+<!--          <div *ngIf="files.length > 0" class="mt-3">-->
+<!--            <h6>Archivos seleccionados:</h6>-->
+<!--            <ul class="list-group">-->
+<!--              <li *ngFor="let file of files; let i = index" class="list-group-item d-flex justify-content-between align-items-center">-->
+<!--                {{ file.name }} ({{ formatFileSize(file.size) }})-->
+<!--                <button type="button" class="btn btn-sm btn-danger" (click)="removeFile(i)">-->
+<!--                  <i class="bi bi-trash"></i> Eliminar-->
+<!--                </button>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <!-- Fecha de finalización -->
+<!--        <div class="mb-4">-->
+<!--          <label for="dueDate" class="form-label">Fecha y hora de finalización</label>-->
+<!--          <div class="input-group">-->
+<!--            <input-->
+<!--              type="text"-->
+<!--              class="form-control"-->
+<!--              id="dueDate"-->
+<!--              formControlName="dueDate"-->
+<!--              placeholder="mm/dd/yyyy hh:mm"-->
+<!--              bsDatepicker-->
+<!--            />-->
+<!--            <span class="input-group-text">-->
+<!--      <i class="bi bi-calendar"></i>-->
+<!--    </span>-->
+<!--          </div>-->
+<!--          <div class="input-group">-->
+<!--            <input-->
+<!--              type="time"-->
+<!--              class="form-control"-->
+<!--              formControlName="dueTime"-->
+<!--              placeholder="hh:mm"-->
+<!--            />-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+        <p-fileupload (onSelect)="onUpload($event)" (onClear)="onClear($event)" (onRemove)="onRemove($event)" [multiple]="true" maxFileSize="10000000" mode="advanced"
+                      chooseLabel="Seleccionar archivos"
+                      uploadLabel="Subir"
+                      [showUploadButton]="false"
+                      cancelLabel="Cancelar">
+          <ng-template #empty>
+            <div>Arrastra y suelta los archivos</div>
+          </ng-template>
+        </p-fileupload>
+
+<!--        Botón de envío-->
+        <button type="submit" class="btn btn-dark w-100 py-2 mt-4" (click)="mostrar()" >
+          Crear Tarea
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
