@@ -80,7 +80,7 @@
                 @for (course of (courses$ | async); track course.courseId) {
                   <div class="form-check">
                     <input
-                      class="form-check-input"
+                      class="form-check-input cursor-pointer"
                       type="checkbox"
                       [value]="course.courseId"
                       (change)="toggleCourse(course)"
