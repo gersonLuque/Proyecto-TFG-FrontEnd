@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import {HeaderComponent} from '../../shared/components/header/header.component';
-import {RouterOutlet} from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
+import {AddHeaderListComponent} from '../../shared/components/add-header-list/add-header-list.component';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    AddHeaderListComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'

@@ -8,6 +8,7 @@ import {Toast} from 'primeng/toast';
 import {ConfirmDialog} from 'primeng/confirmdialog';
 import {ConfirmService} from '@core/services/confirm.service';
 import {ToastService} from '@core/services/toast.service';
+import {AddHeaderListComponent} from '../../../shared/components/add-header-list/add-header-list.component';
 
 @Component({
   selector: 'app-user-management',
@@ -16,7 +17,8 @@ import {ToastService} from '@core/services/toast.service';
     AsyncPipe,
     RouterLink,
     Toast,
-    ConfirmDialog
+    ConfirmDialog,
+    AddHeaderListComponent
   ],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.css',
