@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {provideHttpClient} from '@angular/common/http';
 import {providePrimeNG} from 'primeng/config';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
@@ -17,6 +17,7 @@ export const appConfig: ApplicationConfig = {
       }
     }),
     MessageService,
+    ConfirmationService,
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes,withComponentInputBinding()),
     provideAnimationsAsync(),

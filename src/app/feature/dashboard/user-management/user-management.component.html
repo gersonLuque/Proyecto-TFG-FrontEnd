@@ -15,6 +15,8 @@
 
       <!--      inicio de la card-->
 
+      <p-toast />
+      <p-confirm-dialog />
       @for (user of (users$ | async); track user.userId) {
 
         <div class="card mb-2 out border-1">
@@ -30,7 +32,7 @@
                   <i class="pi bi-pen me-2"></i>
                   Editar
                 </button>
-                <button class="btn btn-danger">
+                <button class="btn btn-danger" (click)="showConfirmDelete(user)">
                   <i class="bi bi-trash me-2"></i>
                   Borrar
                 </button>

@@ -29,4 +29,8 @@ export class UserService {
   updateUser(user:UpdateUserDto):Observable<UserResponsedDto>{
     return this.http.put<UserResponsedDto>(`${apiUrl}/users`,user)
   }
+
+  deleteUser(id:number):Observable<void>{
+    return this.http.delete<void>(`${apiUrl}/users/${id}`);
+  }
 }
