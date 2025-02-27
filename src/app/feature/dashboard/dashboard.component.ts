@@ -7,7 +7,8 @@ import {AddHeaderListComponent} from '../../shared/components/add-header-list/ad
   selector: 'app-dashboard',
   imports: [
     RouterOutlet,
-    AddHeaderListComponent
+    AddHeaderListComponent,
+    RouterLink
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
