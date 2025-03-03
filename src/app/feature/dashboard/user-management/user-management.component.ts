@@ -42,8 +42,4 @@ export class UserManagementComponent implements OnInit{
   ngOnInit() {
     this.users$ = this._userService.getAllUsers();
   }
-
-  onClose() {
-    console.log("le di");
-  }
 }
