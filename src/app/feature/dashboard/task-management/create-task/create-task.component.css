@@ -11,3 +11,13 @@
   background: url('app/assets/icons/file.svg') no-repeat center;
   background-size: 80px;
 }
+
+.border-dashed {
+  border: 2px dashed rgb(40, 47, 58); /* Puedes cambiar el color y grosor */
+}
+.p-fileupload-content{
+  background-color: white !important;
+}
+.file-content {
+
+}

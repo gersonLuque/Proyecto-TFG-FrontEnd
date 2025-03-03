@@ -1,12 +1,13 @@
-import {Component, input, ViewChild} from '@angular/core';
+import {Component, input} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FileRemoveEvent, FileSelectEvent, FileUpload, FileUploadEvent} from 'primeng/fileupload';
+import {FileRemoveEvent, FileSelectEvent, FileUpload} from 'primeng/fileupload';
 import {TaskService} from '@core/services/task.service';
 import {lastValueFrom} from 'rxjs';
 import {ToastService} from '@core/services/toast.service';
 import {Router} from '@angular/router';
 import {ProgressSpinner} from 'primeng/progressspinner';
-import {Calendar} from 'primeng/calendar';
+import {DatePicker} from 'primeng/datepicker';
+
 
 
 @Component({
@@ -16,7 +17,7 @@ import {Calendar} from 'primeng/calendar';
     FormsModule,
     FileUpload,
     ProgressSpinner,
-    Calendar,
+    DatePicker,
   ],
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.css'
@@ -36,6 +37,7 @@ export class CreateTaskComponent {
       title: [''],
       description: [''],
       endDate: [null],
+      endTime:[null],
       visible: [false]
     })
   }
@@ -44,7 +46,13 @@ export class CreateTaskComponent {
     const formData = new FormData();
     formData.append('title', this.taskCreateForm.get('title')?.value);
     formData.append('description', this.taskCreateForm.get('description')?.value);
-    formData.append('endDate', this.taskCreateForm.get('endDate')?.value);
+    const dateString = this.taskCreateForm.get('endDate')?.value?.toISOString().substring(0,10);
+    formData.append('endDate', dateString);
+    const date = new Date(this.taskCreateForm.get('endTime')?.value);
+    const time = date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    formData.append('endTime',time)
+
     formData.append('visible', this.taskCreateForm.get('visible')?.value ? 'true' : 'false');
     formData.append('courseId',this.id().toString())
     formData.append('teacherId',this.id().toString())
@@ -55,6 +63,7 @@ export class CreateTaskComponent {
 
     try {
       this.isLoading = true;
+      console.log(formData.get('endDate'))
       await lastValueFrom(this.taskService.createTask(formData))
       this.toastService.showSuccess("La tarea se ha creado correctamente")
       await this.router.navigate([`home/dashboard/task-management/${this.id()}`])
