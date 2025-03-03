@@ -4,3 +4,10 @@
 ::ng-deep .p-fileupload{
   background-color: #282f3a;
 }
+
+.drop-area {
+  min-height: 200px; /* Ajusta la altura */
+  width: 100%; /* Que ocupe el ancho disponible */
+  background: url('app/assets/icons/file.svg') no-repeat center;
+  background-size: 80px;
+}
