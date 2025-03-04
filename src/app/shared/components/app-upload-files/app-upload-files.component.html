@@ -1,0 +1,13 @@
+<p-fileupload [styleClass]="'bg-white'" (onSelect)="onUpload($event)" (onClear)="onClear($event)"
+              (onRemove)="onRemove($event)"
+              [multiple]="true" maxFileSize="10000000" mode="advanced"
+              chooseLabel="Seleccionar archivos"
+              uploadLabel="Subir"
+              [showUploadButton]="false"
+              cancelLabel="Cancelar">
+  <ng-template #empty>
+    <div class="drop-area border-dashed rounded p-4 d-flex flex-column align-items-center justify-content-end">
+      <p class=" text-capitalize">Arrastra y suelta los archivos aquí</p>
+    </div>
+  </ng-template>
+</p-fileupload>

@@ -3,70 +3,11 @@
     <div class="card-body">
       <h1 class="mb-4">Crear Nueva Tarea</h1>
 
-      <form [formGroup]="taskCreateForm">
-        <!-- Campo Título (adicional) -->
-        <div class="mb-3">
-          <label for="title" class="form-label">Título</label>
-          <input
-            type="text"
-            class="form-control"
-            id="title"
-            formControlName="title"
-            placeholder="Título de la tarea">
-        </div>
-
-        <!-- Campo Descripción -->
-        <div class="mb-3">
-          <label for="description" class="form-label">Descripción</label>
-          <textarea
-            class="form-control"
-            id="description"
-            rows="5"
-            formControlName="description"
-            placeholder="Describe la tarea..."></textarea>
-        </div>
-
-        <!-- Checkbox Visible -->
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="visible" formControlName="visible">
-          <label class="form-check-label" for="visible">Visible</label>
-        </div>
-
-        <!--        fecha de entrega-->
-        <div class="mb-3 d-flex flex-sm-row flex-column gap-3">
-          <div class="d-flex flex-column flex-sm-row align-items-sm-center">
-            <label class="form-label">Fecha de entrega</label>
-            <p-date-picker formControlName="endDate" [iconDisplay]="'input'" [showIcon]="true"
-                           [style]="{'width':'150px','position': 'relative', 'z-index': '10', 'margin-left': '10px'}"
-                           inputId="endDate"
-                           dateFormat="dd-mm-yy"
-                           class="w-100"/>
-          </div>
-
-<!--          hora de entrega-->
-          <div class="d-flex flex-column flex-sm-row align-items-sm-center">
-            <label class="form-label ">Hora de entrega</label>
-            <p-date-picker formControlName="endTime" [style]="{'width':'150px','margin-left':'10px'}"
-                           inputId="endTime" [timeOnly]="true"
-                           class="w-100"/>
-          </div>
-        </div>
-
+      <form>
+<!--        datos de las tareas-->
+        <app-task-details [formData]="taskCreateForm"/>
 <!--        carga de ficheros-->
-
-        <p-fileupload [styleClass]="'bg-white'" (onSelect)="onUpload($event)" (onClear)="onClear($event)"
-                      (onRemove)="onRemove($event)"
-                      [multiple]="true" maxFileSize="10000000" mode="advanced"
-                      chooseLabel="Seleccionar archivos"
-                      uploadLabel="Subir"
-                      [showUploadButton]="false"
-                      cancelLabel="Cancelar">
-          <ng-template #empty>
-            <div class="drop-area border-dashed rounded p-4 d-flex flex-column align-items-center justify-content-end">
-              <p class=" text-capitalize">Arrastra y suelta los archivos aquí</p>
-            </div>
-          </ng-template>
-        </p-fileupload>
+        <app-app-upload-files (uploadedFilesChange)="handleUploadedFiles($event)" ></app-app-upload-files>
 
         <!--        Botón de envío-->
         <button type="submit" class="btn btn-dark w-100 py-2 mt-4" (click)="sendData()">
