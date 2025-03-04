@@ -22,7 +22,7 @@ import {DatePicker} from 'primeng/datepicker';
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.css'
 })
-export class CreateTaskComponent {
+export default class CreateTaskComponent {
 
   id = input.required<number>()
 
