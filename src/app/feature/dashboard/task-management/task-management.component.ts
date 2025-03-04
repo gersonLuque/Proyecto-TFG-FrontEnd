@@ -4,13 +4,15 @@ import {Observable} from 'rxjs';
 import {TaskResponseDto} from '@core/dto/taskResponseDto';
 import {AsyncPipe, SlicePipe} from '@angular/common';
 import {AddHeaderListComponent} from '../../../shared/components/add-header-list/add-header-list.component';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-task-management',
   imports: [
     AsyncPipe,
     SlicePipe,
-    AddHeaderListComponent
+    AddHeaderListComponent,
+    RouterLink
   ],
   templateUrl: './task-management.component.html',
   styleUrl: './task-management.component.css'

@@ -11,6 +11,7 @@ export default class EditTaskComponent {
   taskId = input.required<number>();
 
   constructor() {
+
   }
 
 }
