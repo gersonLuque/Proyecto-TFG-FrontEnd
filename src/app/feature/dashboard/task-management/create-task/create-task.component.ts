@@ -42,34 +42,39 @@ export class CreateTaskComponent {
     })
   }
 
-  async mostrar(){
-    const formData = new FormData();
-    formData.append('title', this.taskCreateForm.get('title')?.value);
-    formData.append('description', this.taskCreateForm.get('description')?.value);
-    const dateString = this.taskCreateForm.get('endDate')?.value?.toISOString().substring(0,10);
-    formData.append('endDate', dateString);
-    const date = new Date(this.taskCreateForm.get('endTime')?.value);
-    const time = date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-
-    formData.append('endTime',time)
-
-    formData.append('visible', this.taskCreateForm.get('visible')?.value ? 'true' : 'false');
-    formData.append('courseId',this.id().toString())
-    formData.append('teacherId',this.id().toString())
-
-    this.uploadedFiles.forEach(file =>{
-      formData.append('files', file);
-    })
-
+  async sendData(){
+    const formData = this.getDataFromForm();
     try {
       this.isLoading = true;
-      console.log(formData.get('endDate'))
       await lastValueFrom(this.taskService.createTask(formData))
       this.toastService.showSuccess("La tarea se ha creado correctamente")
       await this.router.navigate([`home/dashboard/task-management/${this.id()}`])
     }catch(err){
       this.toastService.showError("Hubo un error al crear la tarea")
     }
+  }
+
+  private getDataFromForm():FormData {
+    const formData = new FormData();
+    formData.append('title', this.taskCreateForm.get('title')?.value);
+    formData.append('description', this.taskCreateForm.get('description')?.value);
+
+    const dateString = this.taskCreateForm.get('endDate')?.value?.toISOString().substring(0, 10);
+    formData.append('endDate', dateString);
+
+    const date = new Date(this.taskCreateForm.get('endTime')?.value);
+    const time = date.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
+
+    formData.append('endTime', time)
+
+    formData.append('visible', this.taskCreateForm.get('visible')?.value ? 'true' : 'false');
+    formData.append('courseId', this.id().toString())
+    formData.append('teacherId', this.id().toString())
+
+    this.uploadedFiles.forEach(file => {
+      formData.append('files', file);
+    })
+    return formData;
   }
 
   onUpload(event: FileSelectEvent) {
@@ -88,6 +93,4 @@ export class CreateTaskComponent {
   onRemove($event: FileRemoveEvent) {
     this.uploadedFiles = this.uploadedFiles.filter(f => f.name !== $event.file.name)
   }
-
-  protected readonly String = String;
 }

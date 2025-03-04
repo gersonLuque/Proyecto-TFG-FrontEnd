@@ -16,13 +16,13 @@ import {AddHeaderListComponent} from '../../../shared/components/add-header-list
   styleUrl: './task-management.component.css'
 })
 export class TaskManagementComponent implements OnInit{
-  id = input.required<number>();
+  id = input.required<number>(); // cursoId
 
   tasks$:Observable<TaskResponseDto[]>
 
   constructor(private courseService:CourseService) { }
 
   ngOnInit(): void {
-    this.tasks$ = this.courseService.getTasksByCourseId(this.id());
+    this.tasks$ = this.courseService.getTasksByCourseId(this.id(),1); //  todo cambiar por usuario autenticado
   }
 }
