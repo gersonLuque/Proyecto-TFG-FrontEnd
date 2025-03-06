@@ -15,4 +15,8 @@ export class TaskService {
   createTask(formData:FormData):Observable<TaskResponseDto>{
     return this.http.post<TaskResponseDto>(`${apiUrl}/tasks`, formData);
   }
+
+  getTaskById(taskId:number):Observable<TaskResponseDto>{
+    return this.http.get<TaskResponseDto>(`${apiUrl}/tasks/${taskId}`)
+  }
 }

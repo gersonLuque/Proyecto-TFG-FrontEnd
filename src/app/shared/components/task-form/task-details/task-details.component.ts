@@ -13,6 +13,8 @@ import {DatePicker} from 'primeng/datepicker';
   styleUrl: './task-details.component.css'
 })
 export class TaskDetailsComponent {
-  @Input() formData!: FormGroup
-
+  @Input({required:true}) formData!: FormGroup
+  @Input() title:string = ''
+  @Input() description:string = ''
+  @Input() visible:boolean = false
 }

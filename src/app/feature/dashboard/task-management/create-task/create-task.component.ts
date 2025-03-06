@@ -1,12 +1,10 @@
 import {Component, input} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FileRemoveEvent, FileSelectEvent, FileUpload} from 'primeng/fileupload';
 import {TaskService} from '@core/services/task.service';
 import {lastValueFrom} from 'rxjs';
 import {ToastService} from '@core/services/toast.service';
 import {Router} from '@angular/router';
 import {ProgressSpinner} from 'primeng/progressspinner';
-import {DatePicker} from 'primeng/datepicker';
 import {AppUploadFilesComponent} from '../../../../shared/components/app-upload-files/app-upload-files.component';
 import {TaskDetailsComponent} from '../../../../shared/components/task-form/task-details/task-details.component';
 
@@ -32,15 +30,23 @@ export default class CreateTaskComponent {
   uploadedFiles: any[] = [];
   isLoading: Boolean = false;
 
-  constructor(private fb: FormBuilder, private taskService: TaskService, private toastService: ToastService, private router: Router) {
+  constructor(private fb: FormBuilder,
+              private taskService: TaskService,
+              private toastService: ToastService,
+              private router: Router) {
 
     this.taskCreateForm = this.fb.group({
       title: [''],
       description: [''],
-      endDate: [null],
-      endTime: [null],
+      endDate: [new Date()],
+      endTime: [this.time()],
       visible: [false]
     })
+  }
+  time(){
+    const defaultTime = new Date();
+    defaultTime.setHours(23, 59);
+    return defaultTime
   }
 
   async sendData() {
@@ -77,7 +83,8 @@ export default class CreateTaskComponent {
     })
     return formData;
   }
-  handleUploadedFiles(files:any[]) {
+
+  handleUploadedFiles(files: any[]) {
     this.uploadedFiles = files
   }
 }

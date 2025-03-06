@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="mb-4">Crear Nueva Tarea</h1>
+
+      @let task = taskDto$ | async;
+      <form>
+
+        <!--        datos de las tareas-->
+        <app-task-details [formData]="editTaskForm"
+                          [title]="task?.title"
+                          [description]="task?.description"
+                          [visible]="task?.visible"/>
+        <!--        carga de ficheros-->
+        <app-app-upload-files (uploadedFilesChange)="handleUploadedFiles($event)" ></app-app-upload-files>
+
+        <!--        Botón de envío-->
+        <button type="submit" class="btn btn-dark w-100 py-2 mt-4" (click)="sendData()">
+          Crear Tarea
+          @if (isLoading) {
+            <p-progress-spinner ariaLabel="loading" [style]="{ width: '30px', height: '25px' }"/>
+          }
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
