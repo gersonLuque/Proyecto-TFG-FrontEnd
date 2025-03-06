@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {CreateTaskComponent} from './create-task/create-task.component';
 import {TaskManagementComponent} from './task-management.component';
 
 const routes: Routes = [
@@ -10,7 +9,11 @@ const routes: Routes = [
   },
   {
     path: 'create-task',
-    component:CreateTaskComponent
+    loadComponent: () => import('./create-task/create-task.component')
+  },
+  {
+    path: 'edit-task/:taskId',
+    loadComponent: () => import('./edit-task/edit-task.component')
   }
 ];
 

@@ -1,0 +1,53 @@
+<div [formGroup]="formData">
+  <!-- Campo Título (adicional) -->
+  <div class="mb-3">
+    <label for="title" class="form-label">Título</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      formControlName="title"
+      [value]="title"
+      placeholder="Título de la tarea">
+  </div>
+
+  <!-- Campo Descripción -->
+  <div class="mb-3">
+    <label for="description" class="form-label">Descripción</label>
+    <textarea
+      class="form-control"
+      id="description"
+      rows="5"
+      formControlName="description"
+      [value]="description"
+      placeholder="Describe la tarea..."></textarea>
+  </div>
+
+  <!-- Checkbox Visible -->
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="visible" formControlName="visible" [checked]="visible">
+    <label class="form-check-label" for="visible">Visible</label>
+  </div>
+
+  <!-- Fecha y hora de entrega -->
+  <div class="mb-3 d-flex flex-sm-row flex-column gap-3">
+    <div class="d-flex flex-column flex-sm-row align-items-sm-center">
+      <label class="form-label">Fecha de entrega</label>
+      <p-date-picker formControlName="endDate" [showIcon]="true"
+                  [style]="{'width':'150px','position': 'relative', 'z-index': '10', 'margin-left': '10px'}"
+                  inputId="endDate"
+                  dateFormat="dd-mm-yy"
+                  class="w-100"></p-date-picker>
+    </div>
+
+    <!-- Hora de entrega -->
+    <div class="d-flex flex-column flex-sm-row align-items-sm-center">
+      <label class="form-label">Hora de entrega</label>
+      <p-date-picker formControlName="endTime" [style]="{'width':'150px','margin-left':'10px'}"
+                  inputId="endTime" [timeOnly]="true"
+                  class="w-100"></p-date-picker>
+    </div>
+  </div>
+</div>
+
+
