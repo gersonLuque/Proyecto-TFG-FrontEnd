@@ -6,9 +6,11 @@ export interface TaskResponseDto {
   title: string
   startDate: string
   endDate: string
+  endTime: string
   visible: boolean
   courseName: string
   nameTeacher: string
+  hasSolution:boolean
   fileTasks: Archive[]
 }
 
