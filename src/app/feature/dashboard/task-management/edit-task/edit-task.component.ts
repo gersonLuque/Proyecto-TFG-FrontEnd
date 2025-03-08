@@ -1,11 +1,12 @@
-import { Component, input, OnInit} from '@angular/core';
+import {Component, input, OnInit} from '@angular/core';
 import {AppUploadFilesComponent} from '../../../../shared/components/app-upload-files/app-upload-files.component';
 import {FormBuilder, FormGroup, FormsModule} from '@angular/forms';
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {TaskDetailsComponent} from '../../../../shared/components/task-form/task-details/task-details.component';
 import {TaskResponseDto} from '@core/dto/taskResponseDto';
 import {TaskService} from '@core/services/task.service';
-import {Observable, Subscription} from 'rxjs';
+import {lastValueFrom, Observable, Subscription} from 'rxjs';
+import {StorageService} from '@core/services/storage.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -25,11 +26,11 @@ export default class EditTaskComponent implements OnInit {
   editTaskForm: FormGroup
   taskDto$: Observable<TaskResponseDto>
   taskSub: Subscription
-  task:TaskResponseDto
+  task: TaskResponseDto
 
   uploadedFiles: any[] = [];
 
-  constructor(private fb: FormBuilder, private taskService: TaskService) {
+  constructor(private fb: FormBuilder, private taskService: TaskService, private storageService: StorageService) {
     this.editTaskForm = this.fb.group({
       title: [''],
       description: [''],
@@ -45,10 +46,16 @@ export default class EditTaskComponent implements OnInit {
       task => {
         this.task = task
         const endTime = new Date()
-        const [hour,min,seg] = task?.endTime.split(':').map(Number)
-        endTime.setHours(hour,min,seg);
-        this.editTaskForm.patchValue({endDate: new Date(task?.endDate),endTime: endTime})
+        const [hour, min, seg] = task?.endTime.split(':').map(Number)
+        endTime.setHours(hour, min, seg);
+        this.editTaskForm.patchValue({endDate: new Date(task?.endDate), endTime: endTime})
       })
+  }
+
+  async downloadFile(prefix: string, filename: string) {
+    const key = `${prefix}/${filename}`
+    console.log(key)
+    await lastValueFrom(this.storageService.getFile(key))
   }
 
   sendData() {
