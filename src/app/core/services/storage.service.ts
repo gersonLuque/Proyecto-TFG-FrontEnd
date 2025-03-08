@@ -11,8 +11,10 @@ export class StorageService {
 
   constructor(private http:HttpClient) { }
 
+  // es importante codificar la url para que soporte caracteres especiales
   getFile(key: string): Observable<Blob> {
-    return this.http.get(`${apiUrl}/storage/download?key=${key}`, {
+    const encodedKey = encodeURIComponent(key);
+    return this.http.get(`${apiUrl}/storage/download?key=${encodedKey}`, {
       responseType: 'blob'
     });
   }

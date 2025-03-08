@@ -7,6 +7,7 @@ import {TaskResponseDto} from '@core/dto/taskResponseDto';
 import {TaskService} from '@core/services/task.service';
 import {lastValueFrom, Observable, Subscription} from 'rxjs';
 import {StorageService} from '@core/services/storage.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-edit-task',
@@ -54,8 +55,8 @@ export default class EditTaskComponent implements OnInit {
 
   async downloadFile(prefix: string, filename: string) {
     const key = `${prefix}/${filename}`
-    console.log(key)
-    await lastValueFrom(this.storageService.getFile(key))
+    const blob =  await lastValueFrom(this.storageService.getFile(key))
+    saveAs(blob,filename)
   }
 
   sendData() {
