@@ -3,11 +3,12 @@ import {AppUploadFilesComponent} from '../../../../shared/components/app-upload-
 import {FormBuilder, FormGroup, FormsModule} from '@angular/forms';
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {TaskDetailsComponent} from '../../../../shared/components/task-form/task-details/task-details.component';
-import {TaskResponseDto} from '@core/dto/taskResponseDto';
+import {TaskDto} from '@core/dto/taskDto';
 import {TaskService} from '@core/services/task.service';
 import {lastValueFrom, Observable, Subscription} from 'rxjs';
 import {StorageService} from '@core/services/storage.service';
 import { saveAs } from 'file-saver';
+import {Panel} from 'primeng/panel';
 
 @Component({
   selector: 'app-edit-task',
@@ -15,7 +16,8 @@ import { saveAs } from 'file-saver';
     AppUploadFilesComponent,
     FormsModule,
     ProgressSpinner,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    Panel
   ],
   templateUrl: './edit-task.component.html',
   styleUrl: './edit-task.component.css'
@@ -25,9 +27,10 @@ export default class EditTaskComponent implements OnInit {
   taskId = input.required<number>();
   isLoading: boolean = false;
   editTaskForm: FormGroup
-  taskDto$: Observable<TaskResponseDto>
+  taskDto$: Observable<TaskDto>
   taskSub: Subscription
-  task: TaskResponseDto
+  task: TaskDto
+  isFilesReset:boolean = false
 
   uploadedFiles: any[] = [];
 
@@ -59,8 +62,9 @@ export default class EditTaskComponent implements OnInit {
     saveAs(blob,filename)
   }
 
-  sendData() {
+   async sendData() {
     console.log(this.editTaskForm.value)
+     
   }
 
   handleUploadedFiles(files: any[]) {

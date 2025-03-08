@@ -1,6 +1,6 @@
 import {Archive} from '@core/dto/archive';
 
-export interface TaskResponseDto {
+export interface TaskDto {
   taskId: number
   description: string
   title: string

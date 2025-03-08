@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {Course} from '../dto/courseDto';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment.development';
-import {TaskResponseDto} from '@core/dto/taskResponseDto';
+import {TaskDto} from '@core/dto/taskDto';
 const { apiUrl } = environment
 
 @Injectable({
@@ -17,7 +17,7 @@ export class CourseService {
     return this.http.get<Course[]>(`${apiUrl}/courses`);
   }
 
-  getTasksByCourseId(courseId: number, userId: number): Observable<TaskResponseDto[]> {
-    return this.http.get<TaskResponseDto[]>(`${apiUrl}/courses/${courseId}/tasks?userId=${userId}`);
+  getTasksByCourseId(courseId: number, userId: number): Observable<TaskDto[]> {
+    return this.http.get<TaskDto[]>(`${apiUrl}/courses/${courseId}/tasks?userId=${userId}`);
   }
 }
