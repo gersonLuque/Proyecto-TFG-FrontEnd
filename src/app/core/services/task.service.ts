@@ -20,7 +20,7 @@ export class TaskService {
     return this.http.get<TaskDto>(`${apiUrl}/tasks/${taskId}`)
   }
 
-  editTask(taskUpdated:TaskDto):Observable<TaskDto> {
+  editTask(taskUpdated:FormData):Observable<TaskDto> {
     return this.http.put<TaskDto>(`${apiUrl}/tasks`,taskUpdated)
   }
 }
