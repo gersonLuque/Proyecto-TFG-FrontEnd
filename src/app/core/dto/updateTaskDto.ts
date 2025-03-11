@@ -1,6 +1,6 @@
 import {Archive} from '@core/dto/archive';
 
-export interface TaskResponseDto {
+export interface UpdateTaskDto{
   taskId: number
   description: string
   title: string
@@ -8,10 +8,6 @@ export interface TaskResponseDto {
   endDate: string
   endTime: string
   visible: boolean
-  courseName: string
-  nameTeacher: string
-  hasSolution:boolean
+  filesHasChanged:boolean
   fileTasks: Archive[]
 }
-
-

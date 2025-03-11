@@ -1,7 +1,7 @@
 import {Component, input, OnInit} from '@angular/core';
 import {CourseService} from '@core/services/course.service';
 import {Observable} from 'rxjs';
-import {TaskResponseDto} from '@core/dto/taskResponseDto';
+import {TaskDto} from '@core/dto/taskDto';
 import {AsyncPipe, SlicePipe} from '@angular/common';
 import {AddHeaderListComponent} from '../../../shared/components/add-header-list/add-header-list.component';
 import {RouterLink} from '@angular/router';
@@ -20,7 +20,7 @@ import {RouterLink} from '@angular/router';
 export class TaskManagementComponent implements OnInit{
   id = input.required<number>(); // cursoId
 
-  tasks$:Observable<TaskResponseDto[]>
+  tasks$:Observable<TaskDto[]>
 
   constructor(private courseService:CourseService) { }
 
