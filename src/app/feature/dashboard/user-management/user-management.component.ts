@@ -27,7 +27,6 @@ export class UserManagementComponent implements OnInit{
   public users$:Observable<UserResponsedDto[]>;
 
   constructor(private _userService:UserService,
-              private router:Router,
               private confirmService:ConfirmService,
               private toastService:ToastService) { }
 

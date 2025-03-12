@@ -8,6 +8,7 @@
   <div class="row">
     <!--    inicio de la card-->
 
+    <p-confirm-dialog />
     @let tasksByCourseId = tasks$ | async;
     @for (task of tasksByCourseId; track task.taskId) {
       <div class="col-12 col-md-8 col-lg-6">
@@ -18,7 +19,7 @@
             <button class="btn btn-sm btn-outline-primary me-1" [routerLink]="['edit-task',task.taskId]">
               <i class="bi bi-pencil"></i> Editar
             </button>
-            <button class="btn btn-sm btn-danger">
+            <button (click)="showConfirmDelete(task)" class="btn btn-sm btn-danger">
               <i class="bi bi-trash"></i> Borrar
             </button>
           </div>
@@ -26,6 +27,7 @@
           <div class="card-body">
             <h2 class="card-title">{{task.title}}</h2>
 
+<!--            todo se puede cambiar con css -->
 <!--            si la descripcion es muy grande se omitira el resto con ... -->
             <p class="card-text text-muted">
               {{task.description.length > 100 ? (task.description | slice:0:100) + '...' : task.description}}
