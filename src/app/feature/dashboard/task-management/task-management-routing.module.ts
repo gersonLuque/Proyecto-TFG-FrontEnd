@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'edit-task/:taskId',
     loadComponent: () => import('./edit-task/edit-task.component')
+  },
+  {
+    path: 'create-solution/:taskId',
+    loadComponent: () => import('./create-solution/create-solution.component')
   }
 ];
 

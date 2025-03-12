@@ -1,10 +1,16 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --font-size: 16px;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
 
 /* Personaliza el color del mensaje de éxito */
 .p-toast .p-toast-message.p-toast-message-success {
-  background-color: #56d97b; /* Azul */
+  background-color: #56d97b;
   color: black;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

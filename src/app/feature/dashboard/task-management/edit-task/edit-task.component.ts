@@ -11,6 +11,7 @@ import {saveAs} from 'file-saver';
 import {Panel} from 'primeng/panel';
 import {ToastService} from '@core/services/toast.service';
 import {Router} from '@angular/router';
+import {FileListComponent} from '../../../../shared/components/file-list/file-list.component';
 
 
 @Component({
@@ -20,7 +21,8 @@ import {Router} from '@angular/router';
     FormsModule,
     ProgressSpinner,
     TaskDetailsComponent,
-    Panel
+    Panel,
+    FileListComponent
   ],
   templateUrl: './edit-task.component.html',
   styleUrl: './edit-task.component.css'
