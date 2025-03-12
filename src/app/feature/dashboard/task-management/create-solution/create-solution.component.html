@@ -14,28 +14,54 @@
   </div>
 
   <div class="mb-4">
-    <app-file-list [files]="task?.fileTasks" ></app-file-list>
+    <p-panel >
+      <!-- Contenedor principal con espacio para el botón superior -->
+      <div class="mb-3 d-flex justify-content-between align-items-center">
+        <!-- Botón nuevo en la esquina superior derecha -->
+        <h5 class="">Recursos de la tarea</h5>
+      </div>
+
+      <!-- Lista de archivos -->
+      <div class="col-auto">
+        <app-file-list [files]="task?.fileTasks"/>
+      </div>
+    </p-panel>
   </div>
 
   <div class="mb-4">
-    <h2 class="fw-bold fs-4 text-dark mb-3">Subir solución</h2>
-    <p class="ms-2 mb-2">Archivos de la solución</p>
+    @if (solution?.fileSolutions.length > 0 && !isFilesReset) {
 
-    <div class="border rounded p-3 bg-light ms-2">
-      <div class="d-flex justify-content-between align-items-center">
-        <button class="btn btn-outline-secondary">Choose Files</button>
-        <span class="text-muted">No file chosen</span>
-      </div>
-    </div>
+      <p-panel >
+        <!-- Contenedor principal con espacio para el botón superior -->
+        <div class="mb-3 d-flex justify-content-between align-items-center">
+          <!-- Botón nuevo en la esquina superior derecha -->
+          <h5 class="">Tus soluciones</h5>
+          <button (click)="resetFiles()" class="btn rounded-pill px-3 d-flex align-items-center gap-2 shadow-sm recarga text-white">
+            <i class="bi bi-arrow-clockwise"></i>
+            <span>Limpiar y volver a cargar</span>
+          </button>
+        </div>
+
+        <!-- Lista de archivos -->
+        <div class="col-auto">
+          <app-file-list [files]="solution?.fileSolutions"/>
+        </div>
+      </p-panel>
+
+    } @else {
+
+      <h2 class="fw-bold fs-4 text-dark mb-3">Subir solución</h2>
+      <app-app-upload-files (uploadedFilesChange)="handleUploadedFiles($event)" ></app-app-upload-files>
+    }
 
     <div class="form-check mt-3 ms-2">
-      <input class="form-check-input" type="checkbox" id="anonimo">
-      <label class="form-check-label fs-5" for="anonimo">
+      <input class="form-check-input"  type="checkbox" [(ngModel)]="isChecked" id="anonymous" [checked]="solution?.anonymous">
+      <label class="form-check-label" for="anonymous">
         Enviar de forma anónima
       </label>
     </div>
 
-    <button class="btn btn-dark w-100 py-3 mt-4 fw-semibold">Enviar Solución</button>
+    <button (click)="sendData()" class="btn btn-dark w-100 py-3 mt-4 fw-semibold">Enviar Solución</button>
   </div>
 </div>
 

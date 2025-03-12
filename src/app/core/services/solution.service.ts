@@ -12,7 +12,16 @@ export class SolutionService {
 
   constructor(private http:HttpClient) { }
 
+  getSolutionById(solutionId:number):Observable<SolutionDto>{
+    return this.http.get<SolutionDto>(`${apiUrl}/solutions/${solutionId}`);
+  }
   createSolution(solutionData:FormData):Observable<SolutionDto>{
     return this.http.post<SolutionDto>(`${apiUrl}/solutions`,solutionData)
+  }
+  getSolutionByTaskAndUser(taskId: number, userId: number):Observable<SolutionDto> {
+    return this.http.get<SolutionDto>(`${apiUrl}/tasks/${taskId}/solutions/${userId}`)
+  }
+  updateSolution(solution: FormData):Observable<SolutionDto> {
+    return this.http.put<SolutionDto>(`${apiUrl}/solutions`,solution)
   }
 }
