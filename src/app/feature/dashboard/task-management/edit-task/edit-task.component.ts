@@ -10,6 +10,7 @@ import {StorageService} from '@core/services/storage.service';
 import {saveAs} from 'file-saver';
 import {Panel} from 'primeng/panel';
 import {ToastService} from '@core/services/toast.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -27,6 +28,7 @@ import {ToastService} from '@core/services/toast.service';
 export default class EditTaskComponent implements OnInit, OnDestroy {
 
   taskId = input.required<number>();
+  id = input.required<number>(); // cursoId
   isLoading: boolean = false;
   editTaskForm: FormGroup
   taskDto$: Observable<TaskDto>
@@ -39,7 +41,8 @@ export default class EditTaskComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
               private taskService: TaskService,
               private storageService: StorageService,
-              private toastService:ToastService) {
+              private toastService: ToastService,
+              private router:Router) {
     this.editTaskForm = this.fb.group({
       title: [''],
       description: [''],
@@ -67,13 +70,14 @@ export default class EditTaskComponent implements OnInit, OnDestroy {
         console.log(this.editTaskForm.value)
       })
   }
+
   async sendData() {
-    if (this.task?.fileTasks.length === 0 && this.uploadedFiles.length > 0){
+    if (this.task?.fileTasks.length === 0 && this.uploadedFiles.length > 0) {
       this.filesHasChanged = true
     }
     const taskData = this.getTaskData();
-    if (this.filesHasChanged === true){
-      taskData.append('filesHasChanged',"true")
+    if (this.filesHasChanged === true) {
+      taskData.append('filesHasChanged', "true")
       this.uploadedFiles.forEach(file => {
         taskData.append('files', file);
       })
@@ -82,17 +86,20 @@ export default class EditTaskComponent implements OnInit, OnDestroy {
     try {
       await lastValueFrom(this.taskService.editTask(taskData))
       this.toastService.showSuccess('La tarea ha sido editada con éxito')
-    }catch (error){
+      await this.router.navigate([`home/dashboard/task-management/${this.id()}`])
+    } catch (error) {
       this.toastService.showError('Error al editar la tarea')
     }
+
   }
-  getTaskData():FormData{
+
+  getTaskData(): FormData {
     const formData = new FormData();
-    formData.append('taskId',this.taskId().toString())
+    formData.append('taskId', this.taskId().toString())
     formData.append('title', this.editTaskForm.get('title')?.value);
     formData.append('description', this.editTaskForm.get('description')?.value);
 
-    const dateString:Date = this.editTaskForm.get('endDate')?.value
+    const dateString: Date = this.editTaskForm.get('endDate')?.value
     const formattedDate = `${dateString.getFullYear()}-${(dateString.getMonth() + 1).toString().padStart(2, '0')}-${dateString.getDate().toString().padStart(2, '0')}`;
     formData.append('endDate', formattedDate);
 

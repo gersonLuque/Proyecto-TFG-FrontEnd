@@ -23,4 +23,8 @@ export class TaskService {
   editTask(taskUpdated:FormData):Observable<TaskDto> {
     return this.http.put<TaskDto>(`${apiUrl}/tasks`,taskUpdated)
   }
+
+  deleteTask(taskId:number):Observable<void>{
+    return this.http.delete<void>(`${apiUrl}/tasks/${taskId}`)
+  }
 }
