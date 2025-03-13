@@ -24,4 +24,8 @@ export class SolutionService {
   updateSolution(solution: FormData):Observable<SolutionDto> {
     return this.http.put<SolutionDto>(`${apiUrl}/solutions`,solution)
   }
+
+  getSolutionsByTaskId(taskId: number):Observable<SolutionDto[]> {
+    return this.http.get<SolutionDto[]>(`${apiUrl}/tasks/${taskId}/solutions`)
+  }
 }

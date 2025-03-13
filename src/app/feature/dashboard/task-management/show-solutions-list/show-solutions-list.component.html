@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Soluciones</h1>
+
+  @let solutions = solutions$ | async;
+  @for (solution of solutions; track solution.solutionId) {
+    <!-- Student Solution 1 -->
+    <div class="solution-item">
+      <div class="solution-header">
+        <h3>{{solution?.userBasicDto.completeName}}</h3>
+        <div class="star-checkbox">
+          <input type="checkbox" id="star1" name="star1">
+          <label for="star1"><i class="fas fa-star"></i></label>
+        </div>
+      </div>
+      <div class="solution-content">
+        <div class="row">
+          <!-- File 1 -->
+
+          @for (file of solution?.fileSolutions; track file.fileId) {
+            <div class="col-12 col-md-6 col-lg-4 cursor-pointer mb-2" [pTooltip]="file?.fileName" tooltipPosition="top" >
+              <div class="file-card">
+                <div class="file-name text-truncate">
+                  <i class="far fa-file-code me-2"></i>{{file?.fileName}}
+                </div>
+                <div class="file-actions">
+                  @if (file?.type === 'java') {
+                    <button [routerLink]="[file?.prefix,file?.fileId]" class="btn btn-primary btn-sm me-2">
+                      <i class="fas fa-code me-1"></i>Código
+                    </button>
+                  }
+                  <a href="#" class="btn rounded btn-sm">
+                    <i class="bi bi-download"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          }
+
+
+        </div>
+      </div>
+    </div>
+  }
+</div>
