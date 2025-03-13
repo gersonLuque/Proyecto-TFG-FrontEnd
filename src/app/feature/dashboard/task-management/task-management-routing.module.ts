@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'create-solution/:taskId',
     loadComponent: () => import('./create-solution/create-solution.component')
+  },
+  {
+    path: 'show-solutions/:taskId',
+    loadChildren: () => import('./show-solutions-list/show-solutions.module').then(m => m.ShowSolutionsModule)
   }
 ];
 

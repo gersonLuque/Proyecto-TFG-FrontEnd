@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TaskManagementRoutingModule } from './task-management-routing.module';
+import { ShowSolutionsRoutingModule } from './show-solutions-routing.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    TaskManagementRoutingModule
+    ShowSolutionsRoutingModule
   ]
 })
-export class TaskManagementModule { }
-
+export class ShowSolutionsModule { }

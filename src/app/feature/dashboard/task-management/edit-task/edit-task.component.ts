@@ -6,8 +6,6 @@ import {TaskDetailsComponent} from '../../../../shared/components/task-form/task
 import {TaskDto} from '@core/dto/taskDto';
 import {TaskService} from '@core/services/task.service';
 import {lastValueFrom, Observable, Subscription} from 'rxjs';
-import {StorageService} from '@core/services/storage.service';
-import {saveAs} from 'file-saver';
 import {Panel} from 'primeng/panel';
 import {ToastService} from '@core/services/toast.service';
 import {Router} from '@angular/router';
@@ -42,7 +40,6 @@ export default class EditTaskComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
               private taskService: TaskService,
-              private storageService: StorageService,
               private toastService: ToastService,
               private router:Router) {
     this.editTaskForm = this.fb.group({
@@ -112,12 +109,6 @@ export default class EditTaskComponent implements OnInit, OnDestroy {
 
     formData.append('visible', this.editTaskForm.get('visible')?.value ? 'true' : 'false')
     return formData;
-  }
-
-  async downloadFile(prefix: string, filename: string) {
-    const key = `${prefix}/${filename}`;
-    const blob = await lastValueFrom(this.storageService.getFile(key))
-    saveAs(blob, filename)
   }
 
   handleUploadedFiles(files: any[]) {

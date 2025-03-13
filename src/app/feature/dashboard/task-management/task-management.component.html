@@ -42,7 +42,7 @@
               <button [routerLink]="['create-solution',task.taskId]" class="btn btn-outline-dark me-2">
                 Gestionar solución
               </button>
-              <button class="btn btn-dark">
+              <button [routerLink]="['show-solutions',task.taskId]" class="btn btn-dark">
                 Ver soluciones
               </button>
             </div>
