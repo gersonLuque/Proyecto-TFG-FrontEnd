@@ -4,6 +4,7 @@ import {SolutionService} from '@core/services/solution.service';
 import {Observable} from 'rxjs';
 import {SolutionDto} from '@core/dto/solutionDto';
 import {AsyncPipe} from '@angular/common';
+import {HighlightJsDirective} from 'ngx-highlight-js';
 
 @Component({
   selector: 'app-source-code',
@@ -12,7 +13,8 @@ import {AsyncPipe} from '@angular/common';
     TabList,
     Tab,
     TabPanels,
-    TabPanel
+    TabPanel,
+    HighlightJsDirective
   ],
   templateUrl: './source-code.component.html',
   styleUrl: './source-code.component.css'

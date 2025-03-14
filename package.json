@@ -23,6 +23,7 @@
     "bootstrap": "^5.3.3",
     "file-saver": "^2.0.5",
     "jwt-decode": "^4.0.0",
+    "ngx-highlight-js": "^19.0.0",
     "primeng": "^19.0.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

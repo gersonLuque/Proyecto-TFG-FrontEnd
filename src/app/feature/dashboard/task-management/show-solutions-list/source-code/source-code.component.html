@@ -9,7 +9,84 @@
   <p-tabpanels>
 
     <p-tabpanel value="1">
-      
+
+      <div>
+
+      <textarea highlight-js lang="java">
+  import java.util.ArrayList;
+import java.util.Scanner;
+
+class Tarea {
+    private String descripcion;
+    private boolean completada;
+
+    public Tarea(String descripcion) {
+        this.descripcion = descripcion;
+        this.completada = false;
+    }
+
+    public void marcarCompletada() {
+        this.completada = true;
+    }
+
+    @Override
+    public String toString() {
+        return (completada ? "[✔] " : "[ ] ") + descripcion;
+    }
+}
+
+public class ListaTareas {
+    public static void main(String[] args) {
+        ArrayList<Tarea> tareas = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n1. Agregar tarea");
+            System.out.println("2. Mostrar tareas");
+            System.out.println("3. Completar tarea");
+            System.out.println("4. Salir");
+            System.out.print("Elige una opción: ");
+
+            int opcion = scanner.nextInt();
+            scanner.nextLine();  // Limpiar el buffer
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Escribe la tarea: ");
+                    String descripcion = scanner.nextLine();
+                    tareas.add(new Tarea(descripcion));
+                    break;
+                case 2:
+                    System.out.println("\nTareas:");
+                    for (int i = 0; i < tareas.size(); i++) {
+                        System.out.println((i + 1) + ". " + tareas.get(i));
+                    }
+                    break;
+                case 3:
+                    System.out.print("Número de tarea a completar: ");
+                    int numTarea = scanner.nextInt();
+                    if (numTarea > 0 && numTarea <= tareas.size()) {
+                        tareas.get(numTarea - 1).marcarCompletada();
+                    } else {
+                        System.out.println("Número inválido.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Saliendo...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Opción inválida.");
+            }
+        }
+    }
+}
+      </textarea>
+
+      </div>
+
+
     </p-tabpanel>
   </p-tabpanels>
 </p-tabs>
+
