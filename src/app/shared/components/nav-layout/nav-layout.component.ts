@@ -12,5 +12,6 @@ import {RouterOutlet} from '@angular/router';
   styleUrl: './nav-layout.component.css'
 })
 export class NavLayoutComponent {
+  
 
 }
