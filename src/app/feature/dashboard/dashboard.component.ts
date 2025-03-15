@@ -8,7 +8,8 @@ import {AddHeaderListComponent} from '../../shared/components/add-header-list/ad
   imports: [
     RouterOutlet,
     AddHeaderListComponent,
-    RouterLink
+    RouterLink,
+    HeaderComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
