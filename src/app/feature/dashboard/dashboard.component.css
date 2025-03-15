@@ -5,7 +5,7 @@ body {
 }
 
 app-add-header-list {
-  color: #ffd60a;
+  color: black;
  
 }
 
@@ -15,7 +15,7 @@ app-add-header-list {
 
 .dashboard-header {
   background-color: #001d3d;
-  color: #ffd60a;
+  color: black;
   padding: 1rem;
   border-radius: 8px;
   text-align: center;

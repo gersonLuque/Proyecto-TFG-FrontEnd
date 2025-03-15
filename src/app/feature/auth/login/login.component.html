@@ -1,16 +1,23 @@
-<!--/auth/login-->
 <div class="login-container">
+  <!-- Sección Izquierda -->
+  <div class="left-content">
+      <div class="illustration-container">
+          <img src="assets/imagenes/log.jpg" class="illustration">
+      </div>
+  </div>
+
+  <!-- Sección Derecha -->
   <div class="login-box">
-    <img src="assets/icons/logo.png"alt="Logo" class="logo" />
-    <h1>Iniciar Sesión</h1>
-    <form [formGroup]="loginForm">
-      <div class="form-group">
-        <input formControlName="username" type="email" id="usuario" placeholder="Ingresa tu correo" required />
-      </div>
-      <div class="form-group">
-        <input formControlName="password" type="password" id="password" placeholder="Ingresa tu contraseña" required />
-      </div>
-      <button type="submit" class="btn-login" (click)="logIn()">Ingresar</button>
-    </form>
+      <img src="assets/icons/logo.png" alt="Logo" class="logo" />
+      <h1>Iniciar Sesión</h1>
+      <form [formGroup]="loginForm">
+          <div class="form-group">
+              <input formControlName="username" type="email" id="usuario" placeholder="Ingresa tu correo" required />
+          </div>
+          <div class="form-group">
+              <input formControlName="password" type="password" id="password" placeholder="Ingresa tu contraseña" required />
+          </div>
+          <app-login-button type="submit" class="btn-login" (click)="logIn()"></app-login-button>
+      </form>
   </div>
 </div>
