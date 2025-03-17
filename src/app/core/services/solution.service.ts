@@ -15,11 +15,16 @@ export class SolutionService {
   getSolutionById(solutionId:number):Observable<SolutionDto>{
     return this.http.get<SolutionDto>(`${apiUrl}/solutions/${solutionId}`);
   }
-  createSolution(solutionData:FormData):Observable<SolutionDto>{
-    return this.http.post<SolutionDto>(`${apiUrl}/solutions`,solutionData)
+
+  getSolutionWithContent(solutionId:number):Observable<SolutionDto>{
+    return this.http.get<SolutionDto>(`${apiUrl}/solutions/${solutionId}/content`);
   }
+
   getSolutionByTaskAndUser(taskId: number, userId: number):Observable<SolutionDto> {
     return this.http.get<SolutionDto>(`${apiUrl}/tasks/${taskId}/solutions/${userId}`)
+  }
+  createSolution(solutionData:FormData):Observable<SolutionDto>{
+    return this.http.post<SolutionDto>(`${apiUrl}/solutions`,solutionData)
   }
   updateSolution(solution: FormData):Observable<SolutionDto> {
     return this.http.put<SolutionDto>(`${apiUrl}/solutions`,solution)
