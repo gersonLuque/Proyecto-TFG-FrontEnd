@@ -1,0 +1,36 @@
+.code-container {
+  background-color:rgb(26, 27, 38) !important;
+}
+.custom-tabs {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.p-tablist-nav-button {
+  background-color: yellow;
+}
+
+.sticky-tabs {
+  position: sticky;
+  top: 0;
+  padding: 10px;
+
+}
+
+.sticky-tabs p-tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(26, 27, 38);
+  transition: background-color 0.3s ease;
+
+}
+
+.sticky-tabs p-tab:hover {
+  background-color:rgb(26, 27, 38);
+}
+
+.panels {
+  background-color:rgb(26, 27, 38);
+  border: none;
+}
