@@ -2,8 +2,12 @@
   --primary-color: #3498db;
   --secondary-color: #2ecc71;
   --font-size: 16px;
-  --p-tabs-nav-button-background:rgba(26, 27, 38) !important;
+  --blue-dark: rgba(26, 27, 38);
+
+  --p-tabs-nav-button-background:var(--blue-dark) !important;
   --p-tabs-nav-button-shadow : none !important;
+  --p-tabs-tablist-background : var(--blue-dark)!important;
+  --p-tabs-tablist-border-color : var(--blue-dark) !important;
 }
 
 body {
@@ -69,6 +73,29 @@ body {
 /* Estilo para el botón de rechazar */
 .p-button-secondary {
   color: #333 ;
+}
+
+
+/* Estilizar el scrollbar */
+::-webkit-scrollbar {
+  width: 10px; /* Ancho de la barra */
+}
+
+/* Estilizar el "track" (fondo de la barra) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color del fondo */
+  border-radius: 10px;
+}
+
+/* Estilizar el "thumb" (la parte que se mueve) */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color del thumb */
+  border-radius: 10px;
+}
+
+/* Cambiar color al pasar el mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 
