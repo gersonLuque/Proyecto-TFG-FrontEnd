@@ -2,6 +2,8 @@
   --primary-color: #3498db;
   --secondary-color: #2ecc71;
   --font-size: 16px;
+  --p-tabs-nav-button-background:rgba(26, 27, 38) !important;
+  --p-tabs-nav-button-shadow : none !important;
 }
 
 .cursor-pointer {
