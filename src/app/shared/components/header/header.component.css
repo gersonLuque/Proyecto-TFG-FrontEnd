@@ -1,0 +1,78 @@
+/* header.component.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.header-header {
+  position: relative;
+  width: 100vw;
+  height: 30vh;
+  background-image: url('/assets/imagenes/nav.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.header-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  width: 100%;
+  color: #fff;
+  padding-left: 1rem;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.header-subtitle {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .header-header {
+    height: 70vh;
+    padding: 1rem;
+  }
+
+  .header-content {
+    text-align: left;
+    padding-left: 1rem;
+  }
+}

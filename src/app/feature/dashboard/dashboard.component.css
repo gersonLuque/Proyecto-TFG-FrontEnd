@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #001f3f, #003566); /* Gradiente azul oscuro */
+}
+
+app-add-header-list {
+  color: black;
+ 
+}
+
+.dashboard-container {
+  padding: 2rem;
+}
+
+.dashboard-header {
+  background-color: #001d3d;
+  color: black;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  background-color: white;
+  color: black;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(33.333% - 1rem);
+  text-align: center;
+}
+

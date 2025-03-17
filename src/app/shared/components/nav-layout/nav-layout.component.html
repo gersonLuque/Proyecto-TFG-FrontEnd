@@ -1,3 +1,31 @@
-<app-header></app-header>
-<h1>nav-works</h1>
-<router-outlet></router-outlet>
+<body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a class="logo">
+          <div class="logo-box">
+            <div class="logo-content">
+              <span>CODE</span>
+              <span>PASS</span>
+              <span class="underscores">-       -       -</span>
+            </div>
+          </div>
+        </a>
+        <div class="nav-menu">
+          <div class="nav-item">
+            <a [routerLink]="['/home/dashboard']">Inicio</a>
+          </div>
+          <div class="nav-item">
+            <span class="divider">|</span>
+            <a [routerLink]="['/home/dashboard/user-management']">Gestión de Usuarios</a>
+          </div>
+          <div class="nav-item">
+            <span class="divider">|</span>
+            <button class="nav-link">Ajustes</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  
+  </body>
+  
+  <router-outlet></router-outlet>

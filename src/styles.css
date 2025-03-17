@@ -6,6 +6,10 @@
   --p-tabs-nav-button-shadow : none !important;
 }
 
+body {
+  background: black;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

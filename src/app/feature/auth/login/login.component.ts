@@ -4,10 +4,12 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {LoginRequestDto} from '../../../core/dto/loginRequestDto';
 import {lastValueFrom} from 'rxjs';
 import {AuthService} from '../../../core/services/auth.service';
+import { LoginButtonComponent } from 'app/shared/components/buttons/login/login-button/login-button.component';
+
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, LoginButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -28,5 +30,5 @@ export class LoginComponent {
       const dtoLogin:LoginRequestDto = { ...this.loginForm.value}
       await lastValueFrom(this.authService.login(dtoLogin))
     }
-  }
+  } 
 }

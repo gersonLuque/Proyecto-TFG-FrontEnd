@@ -1,21 +1,23 @@
-<!--/auth/login-->
-<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-  <div class="card w-50">
-    <div class="card-body">
-      <h5 class="card-title text-center mb-4">Iniciar sesión</h5>
+<div class="login-container">
+  <!-- Sección Izquierda -->
+  <div class="left-content">
+      <div class="illustration-container">
+          <img src="assets/imagenes/log.jpg" class="illustration">
+      </div>
+  </div>
+
+  <!-- Sección Derecha -->
+  <div class="login-box">
+      <img src="assets/icons/logo.png" alt="Logo" class="logo" />
+      <h1>Iniciar Sesión</h1>
       <form [formGroup]="loginForm">
-        <div class="mb-3">
-          <label for="usuario" class="form-label">Usuario</label>
-          <input formControlName="username" type="text" class="form-control" id="usuario"
-                 placeholder="Ingrese su usuario" required>
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Contraseña</label>
-          <input formControlName="password" type="password" class="form-control" id="password"
-                 placeholder="Ingrese su contraseña" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100" (click)="logIn()">Iniciar sesión</button>
+          <div class="form-group">
+              <input formControlName="username" type="email" id="usuario" placeholder="Ingresa tu correo" required />
+          </div>
+          <div class="form-group">
+              <input formControlName="password" type="password" id="password" placeholder="Ingresa tu contraseña" required />
+          </div>
+          <app-login-button type="submit" class="btn-login" (click)="logIn()"></app-login-button>
       </form>
-    </div>
   </div>
 </div>
