@@ -21,13 +21,17 @@
         @for (files of solution?.fileSolutions; track files.fileId) {
           @let content = formatCode(files?.content);
           <p-tabpanel [value]="files.fileId">
-            <div class="ms-3 ">
-          <textarea highlight-js lang="java">
+            <div class="ms-3">
+          <textarea highlight-js [lang]="files?.type">
             {{content}}
           </textarea>
             </div>
           </p-tabpanel>
         }
+          <div class="sticky-name d-flex justify-content-center align-items-center">
+              <span class="fs-5">Gerson Luque</span>
+              <app-star [sizeStar]="'44px'"></app-star>
+          </div>
       </p-tabpanels>
     </p-tabs>
   </div>
