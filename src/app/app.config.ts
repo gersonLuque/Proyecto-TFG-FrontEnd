@@ -7,9 +7,11 @@ import {provideHttpClient} from '@angular/common/http';
 import {providePrimeNG} from 'primeng/config';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import Aura from '@primeng/themes/aura';
+import {HIGHLIGHTJS_CONFIG, HighlightJsConfig, provideSFConfig} from 'ngx-highlight-js';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideSFConfig({ lang: 'html' }),
     provideAnimationsAsync(),
     providePrimeNG({
       theme:{

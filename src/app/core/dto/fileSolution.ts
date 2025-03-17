@@ -4,5 +4,6 @@ export interface FileSolution {
   prefix: string
   type: string
   solutionId: number
+  content: string
   kbytes: number
 }

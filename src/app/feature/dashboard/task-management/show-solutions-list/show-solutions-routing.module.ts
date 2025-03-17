@@ -8,7 +8,7 @@ const routes: Routes = [
     component: ShowSolutionsListComponent
   },
   {
-    path: ':prefix/:fileId',
+    path: ':solutionId',
     loadComponent: () => import('./source-code/source-code.component')
   }
 ];
