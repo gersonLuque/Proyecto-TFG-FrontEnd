@@ -4,6 +4,12 @@
   --font-size: 16px;
   --p-tabs-nav-button-background:rgba(26, 27, 38) !important;
   --p-tabs-nav-button-shadow : none !important;
+
+  /* input login variables*/
+  -p-inputtext-color: #333; /* Color de texto dentro del input */
+  --p-inputtext-border-color: #ccc; /* Color del borde del input */
+  --p-inputtext-focus-border-color: #555; /* Color del borde al enfocar el input */
+  --p-inputtext-placeholder-color: #999;
 }
 
 body {
