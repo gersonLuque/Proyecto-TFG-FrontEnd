@@ -6,19 +6,21 @@ import {SolutionDto} from '@core/dto/solutionDto';
 import {AsyncPipe} from '@angular/common';
 import {HighlightJsDirective} from 'ngx-highlight-js';
 import {ProgressSpinner} from 'primeng/progressspinner';
+import {StarComponent} from "../../../../../shared/components/star/star.component";
 
 @Component({
   selector: 'app-source-code',
-  imports: [
-    Tabs,
-    TabList,
-    Tab,
-    TabPanels,
-    TabPanel,
-    HighlightJsDirective,
-    AsyncPipe,
-    ProgressSpinner
-  ],
+    imports: [
+        Tabs,
+        TabList,
+        Tab,
+        TabPanels,
+        TabPanel,
+        HighlightJsDirective,
+        AsyncPipe,
+        ProgressSpinner,
+        StarComponent
+    ],
   templateUrl: './source-code.component.html',
   styleUrl: './source-code.component.css'
 })
