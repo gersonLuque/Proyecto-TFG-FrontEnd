@@ -11,7 +11,7 @@
 } @else {
 
   <div class="code-container">
-    <p-tabs [value]="selectedTab" scrollable class="custom-tabs">
+    <p-tabs [value]="selectedTab" scrollable>
       <p-tablist class="sticky-tabs">
         @for (files of solution?.fileSolutions; track files.fileId) {
           <p-tab [value]="files.fileId">{{ files?.fileName }}</p-tab>
@@ -29,7 +29,7 @@
           </p-tabpanel>
         }
           <div class="sticky-name d-flex justify-content-center align-items-center">
-              <span class="fs-5">Gerson Luque</span>
+              <span class="fs-5">{{solution?.userBasicDto?.completeName}}</span>
               <app-star [sizeStar]="'44px'"></app-star>
           </div>
       </p-tabpanels>
