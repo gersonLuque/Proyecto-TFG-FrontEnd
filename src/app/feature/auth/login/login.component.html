@@ -12,10 +12,10 @@
       <h1>Iniciar Sesión</h1>
       <form [formGroup]="loginForm">
           <div class="form-group">
-              <input formControlName="username" type="email" id="usuario" placeholder="Ingresa tu correo" required />
+            <app-input-login id="usuario" placeholder="Ingresa tu correo" label="Usuario"></app-input-login>
           </div>
           <div class="form-group">
-              <input formControlName="password" type="password" id="password" placeholder="Ingresa tu contraseña" required />
+            <app-input-login type="password" id="contraseña" placeholder="Ingresa tu correo" label="Contraseña"></app-input-login>
           </div>
           <app-login-button type="submit" class="btn-login" (click)="logIn()"></app-login-button>
       </form>

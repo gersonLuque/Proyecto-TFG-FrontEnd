@@ -8,6 +8,12 @@
   --p-tabs-nav-button-shadow : none !important;
   --p-tabs-tablist-background : var(--blue-dark)!important;
   --p-tabs-tablist-border-color : var(--blue-dark) !important;
+  
+  /* input login variables*/
+  --p-inputtext-color: #333; /* Color de texto dentro del input */
+  --p-inputtext-border-color: #ccc; /* Color del borde del input */
+  --p-inputtext-focus-border-color: #555; /* Color del borde al enfocar el input */
+  --p-inputtext-placeholder-color: #999;
 }
 
 body {
