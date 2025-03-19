@@ -1,0 +1,37 @@
+p-floatlabel {
+  display: block;
+  width: 100%;
+}
+
+p-floatlabel input {
+  width: 100%;
+  box-sizing: border-box;
+  color: #333 !important; 
+  background-color: #fff !important;
+  border: 1px solid #ccc !important;
+  outline: none !important;
+}
+
+p-floatlabel input:hover {
+  border-color: #bbb !important;
+}
+
+
+p-floatlabel input:focus {
+  border-color: #666 !important;
+
+}
+
+
+p-floatlabel input::placeholder {
+  color: #aaa !important;
+  opacity: 1;
+}
+
+
+p-floatlabel label {
+  color: #aaa !important;
+  transition: all 0.2s ease;
+  font-weight: normal;
+}
+
