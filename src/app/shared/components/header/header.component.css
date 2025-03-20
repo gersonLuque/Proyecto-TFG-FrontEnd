@@ -1,17 +1,13 @@
 .header-header {
-  position: absolute;
-  top: 72px;
-  width: 100vw;
-  left: 0;
-  height: 25vh;
+  position: relative; /* Cambiado de absolute a relative */
+  width: 100%;
   background-image: url('/assets/imagenes/nav.png');
-  background-size: cover;
   background-position: center;
+  background-size: cover; /* Añadido para mejor manejo de la imagen */
   display: flex;
   align-items: center;
-  padding: 0;
-  margin: 0;
 }
+
 
 /* Contraste*/
 .header-header::before {
@@ -52,14 +48,14 @@
   margin-bottom: 2rem;
 }
 
-@media (max-width: 768px) {
-  .header-header {
-    height: 70vh;
-    padding: 1rem;
-  }
+/*@media (max-width: 768px) {*/
+/*  .header-header {*/
+/*    height: 70vh;*/
+/*    padding: 1rem;*/
+/*  }*/
 
-  .header-content {
-    text-align: left;
-    padding-left: 1rem;
-  }
-}
+/*  .header-content {*/
+/*    text-align: left;*/
+/*    padding-left: 1rem;*/
+/*  }*/
+/*}*/

@@ -12,12 +12,16 @@
       <h1>Iniciar Sesión</h1>
       <form [formGroup]="loginForm">
           <div class="form-group">
-            <app-input-login id="usuario" placeholder="Ingresa tu correo" label="Usuario"></app-input-login>
+            <app-input-login [form]="loginForm" [id]="'username'" label="Usuario"></app-input-login>
           </div>
-          <div class="form-group">
-            <app-input-login type="password" id="contraseña" placeholder="Ingresa tu correo" label="Contraseña"></app-input-login>
-          </div>
-          <app-login-button type="submit" class="btn-login" (click)="logIn()"></app-login-button>
+        <div class="form-group">
+          <p-floatlabel variant="on">
+            <p-password [toggleMask]="true" formControlName="password" [id]="'password'" inputId="password" />
+            <label >On Label</label>
+          </p-floatlabel>
+        </div>
+
+        <app-login-button type="submit" class="btn-login" (click)="logIn()"></app-login-button>
       </form>
   </div>
 </div>

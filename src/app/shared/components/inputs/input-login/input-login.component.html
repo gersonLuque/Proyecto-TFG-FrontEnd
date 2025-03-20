@@ -1,4 +1,8 @@
+<div [formGroup]="form">
 <p-floatlabel variant="on">
-    <input pInputText [type]="type" id="on_label" [(ngModel)]="value3" autocomplete="off" />
+    <input pInputText [formControlName]="id"
+           type="text" [id]="id" autocomplete="off" />
+
     <label [for]="id">{{ label }}</label>
 </p-floatlabel>
+</div>

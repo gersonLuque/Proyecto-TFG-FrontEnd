@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginRequestDto } from '../../../core/dto/loginRequestDto';
+import { LoginRequestDto } from '@core/dto/loginRequestDto';
 import { lastValueFrom } from 'rxjs';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '@core/services/auth.service';
 import { LoginButtonComponent } from 'app/shared/components/buttons/login/login-button/login-button.component';
 import { InputLoginComponent } from 'app/shared/components/inputs/input-login/input-login.component';
+import {FloatLabel} from 'primeng/floatlabel';
+import {Password} from 'primeng/password';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, LoginButtonComponent, InputLoginComponent],
+  imports: [ReactiveFormsModule, LoginButtonComponent, InputLoginComponent, FloatLabel, Password],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
