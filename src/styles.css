@@ -15,9 +15,19 @@
   --p-inputtext-border-color: #ccc; /* Color del borde del input */
   --p-inputtext-focus-border-color: #555; /* Color del borde al enfocar el input */
   --p-inputtext-placeholder-color: #999;
-}
 
-body {
+  /* input password variables*/
+  --p-password-overlay-border-color: #ccc !important;
+  /* Color del texto */
+  --p-password-overlay-color: #333 !important;
+  /* Color del ícono del ojito */
+  --p-password-icon-color: #888 !important;
+  /* Fondo del overlay (si usás feedback=true) */
+  --p-password-overlay-background: #fff !important;
+
+  /* pop up variables*/
+  --p-menu-background-color: black !important;
+  --p-menuitem-color: white !important;
 }
 
 .cursor-pointer {

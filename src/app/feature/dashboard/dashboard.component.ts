@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {HeaderComponent} from '../../shared/components/header/header.component';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {AddHeaderListComponent} from '../../shared/components/add-header-list/add-header-list.component';
+import { PopUpComponent } from 'app/shared/components/pop-up/pop-up/pop-up.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,8 @@ import {AddHeaderListComponent} from '../../shared/components/add-header-list/ad
     RouterOutlet,
     AddHeaderListComponent,
     RouterLink,
-    HeaderComponent
+    HeaderComponent,
+    PopUpComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'

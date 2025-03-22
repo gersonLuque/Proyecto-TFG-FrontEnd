@@ -1,77 +1,68 @@
-<!--/home/dashboard-->
-
+<!-- /home/dashboard -->
+<div class="color">
   <!-- Encabezado con título y botón de crear -->
-<app-header></app-header>
-<div class="container">
-  <app-add-header-list
-    titleList="Lista de cursos"
-    btnAddText="Crear curso">
-  </app-add-header-list>
+  <app-header></app-header>
+  <div class="container">
+    <app-add-header-list
+      titleList="Lista de cursos"
+      btnAddText="Crear curso">
+    </app-add-header-list>
 
-  <!-- Contenedor de tarjetas de cursos -->
-  <div class="row">
-    <div class="col-md-6 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="course-title fs-4">Acceso a datos</span>
-            <button class="btn btn-danger">
-              <i class="bi bi-trash me-2"></i>
-              Borrar curso</button>
-          </div>
-          <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-light border">
-              <i class="bi bi-pencil-square me-2"></i> Editar Curso
-            </button>
-<!--         todo   en un futuro se cambiara el 1 por el id del curso-->
-            <button [routerLink]="['task-management',1]"  class="btn btn-light border">
-              <i class="bi bi-list-check me-2"></i> Ver Tareas
-            </button>
+    <!-- Contenedor de tarjetas de cursos -->
+    <div class="row">
+      <!-- Tarjeta 1 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="course-title fs-4">Acceso a datos</span>
+              <app-pop-up></app-pop-up> <!-- Pop-up en la primera tarjeta -->
+            </div>
+            <div class="d-flex gap-2 mt-3">
+              <button [routerLink]="['task-management',1]" class="btn btn-light border">
+                <i class="bi bi-list-check me-2"></i> Ver Tareas
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="course-title fs-4">Acceso a datos</span>
-            <button class="btn btn-danger">
-              <i class="bi bi-trash me-2"></i>
-              Borrar curso</button>
-          </div>
-          <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-light border">
-              <i class="bi bi-pencil-square me-2"></i> Editar Curso
-            </button>
-            <button [routerLink]="['task-management',2]" class="btn btn-light border">
-              <i class="bi bi-list-check me-2"></i> Ver Tareas
-            </button>
+
+      <!-- Tarjeta 2 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="course-title fs-4">Acceso a datos</span>
+              <app-pop-up></app-pop-up> <!-- Pop-up en la segunda tarjeta -->
+            </div>
+            <div class="d-flex gap-2 mt-3">
+              <button [routerLink]="['task-management',2]" class="btn btn-light border">
+                <i class="bi bi-list-check me-2"></i> Ver Tareas
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="course-title fs-4">Acceso a datos</span>
-            <button class="btn btn-danger">
-              <i class="bi bi-trash me-2"></i>
-              Borrar curso</button>
-          </div>
-          <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-light border">
-              <i class="bi bi-pencil-square me-2"></i> Editar Curso
-            </button>
-            <button class="btn btn-light border">
-              <i class="bi bi-list-check me-2"></i> Ver Tareas
-            </button>
+
+      <!-- Tarjeta 3 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="course-title fs-4">Acceso a datos</span>
+              <app-pop-up></app-pop-up> <!-- Pop-up en la tercera tarjeta -->
+            </div>
+            <div class="d-flex gap-2 mt-3">
+              <button class="btn btn-light border">
+                <i class="bi bi-list-check me-2"></i> Ver Tareas
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <!-- Fin de contenido de tarjetas de cursos -->
 <router-outlet></router-outlet> <!-- Aquí se cargará el contenido dinámico -->

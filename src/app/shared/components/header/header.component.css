@@ -6,8 +6,16 @@
   background-size: cover; /* Añadido para mejor manejo de la imagen */
   display: flex;
   align-items: center;
+  padding-top: 60px;
 }
 
+
+.separator {
+  width: 100%;              /* Hace que la línea ocupe todo el ancho disponible */
+  height: 4px;              /* Aumenta el grosor de la línea */
+  background-color: black;  /* Color negro para la línea */
+  margin-top: 0px;         /* Ajusta la distancia entre el contenido y la línea (puedes ajustarlo según lo necesites) */
+}
 
 /* Contraste*/
 .header-header::before {
