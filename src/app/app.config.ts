@@ -3,11 +3,12 @@ import {provideRouter, withComponentInputBinding} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {providePrimeNG} from 'primeng/config';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import Aura from '@primeng/themes/aura';
 import {HIGHLIGHTJS_CONFIG, HighlightJsConfig, provideSFConfig} from 'ngx-highlight-js';
+import {tokenInterceptor} from '@core/interceptors/token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,6 +28,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes,withComponentInputBinding()),
     provideAnimationsAsync(),
     provideAnimationsAsync(),
-    provideHttpClient()
+    provideHttpClient(withInterceptors([tokenInterceptor])),
     ]
 };
