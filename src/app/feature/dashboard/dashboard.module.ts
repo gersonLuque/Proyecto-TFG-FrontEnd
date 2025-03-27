@@ -4,14 +4,16 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { HeaderComponent } from 'app/shared/components/header/header.component';
-
+import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    HeaderComponent
+    HeaderComponent,
+    DashboardComponent
   ]
 })
 export class DashboardModule { }

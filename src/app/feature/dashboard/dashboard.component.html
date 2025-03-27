@@ -10,50 +10,18 @@
 
     <!-- Contenedor de tarjetas de cursos -->
     <div class="row">
-      <!-- Tarjeta 1 -->
-      <div class="col-md-6 mb-4">
+      <!-- Iterar sobre los cursos -->
+      <div *ngFor="let course of courses" class="col-md-6 mb-4">
         <div class="card shadow-sm">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <span class="course-title fs-4">Acceso a datos</span>
-              <app-pop-up></app-pop-up> <!-- Pop-up en la primera tarjeta -->
+              <!-- Mostrar el nombre del curso -->
+              <span class="course-title fs-4">{{ course.name }}</span>
+              <app-pop-up></app-pop-up> <!-- Pop-up para cada tarjeta -->
             </div>
             <div class="d-flex gap-2 mt-3">
-              <button [routerLink]="['task-management',1]" class="btn btn-light border">
-                <i class="bi bi-list-check me-2"></i> Ver Tareas
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tarjeta 2 -->
-      <div class="col-md-6 mb-4">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <span class="course-title fs-4">Acceso a datos</span>
-              <app-pop-up></app-pop-up> <!-- Pop-up en la segunda tarjeta -->
-            </div>
-            <div class="d-flex gap-2 mt-3">
-              <button [routerLink]="['task-management',2]" class="btn btn-light border">
-                <i class="bi bi-list-check me-2"></i> Ver Tareas
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tarjeta 3 -->
-      <div class="col-md-6 mb-4">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <span class="course-title fs-4">Acceso a datos</span>
-              <app-pop-up></app-pop-up> <!-- Pop-up en la tercera tarjeta -->
-            </div>
-            <div class="d-flex gap-2 mt-3">
-              <button class="btn btn-light border">
+              <!-- Botón para ver tareas del curso -->
+              <button [routerLink]="['task-management', course.courseId]" class="btn btn-light border">
                 <i class="bi bi-list-check me-2"></i> Ver Tareas
               </button>
             </div>
@@ -64,5 +32,4 @@
   </div>
 </div>
 
-<!-- Fin de contenido de tarjetas de cursos -->
-<router-outlet></router-outlet> <!-- Aquí se cargará el contenido dinámico -->
+<router-outlet></router-outlet>
