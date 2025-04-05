@@ -8,11 +8,13 @@ import {UserJwtDto} from '../dto/userJwtDto';
 export class TokenService {
 
   constructor() { }
+
+
   public saveToken(token: string) {
     localStorage.setItem('token', token);
   }
 
-  public getUserFromToken(token:string) : UserJwtDto{
+  public getUserFromToken(token:string) : UserJwtDto {
     return jwtDecode<UserJwtDto>(localStorage.getItem('token'));
   }
 }
