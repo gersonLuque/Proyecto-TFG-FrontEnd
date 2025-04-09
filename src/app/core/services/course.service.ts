@@ -17,6 +17,10 @@ export class CourseService {
     return this.http.get<Course[]>(`${apiUrl}/courses`);
   }
 
+  getCoursesByUserId(id: number): Observable<Course[]> {
+    return this.http.get<Course[]>(`${apiUrl}/courses/user/${id}`);
+  }
+
   getTasksByCourseId(courseId: number, userId: number): Observable<TaskDto[]> {
     return this.http.get<TaskDto[]>(`${apiUrl}/courses/${courseId}/tasks?userId=${userId}`);
   }
