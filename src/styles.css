@@ -16,19 +16,30 @@
   --p-inputtext-focus-border-color: #555; /* Color del borde al enfocar el input */
   --p-inputtext-placeholder-color: #999;
 
-  /* input password variables*/
-  --p-password-overlay-border-color: #ccc !important;
-  /* Color del texto */
-  --p-password-overlay-color: #333 !important;
-  /* Color del ícono del ojito */
-  --p-password-icon-color: #888 !important;
-  /* Fondo del overlay (si usás feedback=true) */
-  --p-password-overlay-background: #fff !important;
 
   /* pop up variables*/
   --p-menu-background-color: black !important;
   --p-menuitem-color: white !important;
+
+
+  /*estilos login*/
+  --primary-color-login :rgba(255, 255, 255);
+  --p-floatlabel-invalid-color : none !important;
+
 }
+.p-float-label {
+  background-color: var(--primary-color);
+}
+
+
+  /* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 
 .cursor-pointer {
   cursor: pointer;

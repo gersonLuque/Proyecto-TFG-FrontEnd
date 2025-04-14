@@ -1,4 +1,12 @@
-<div [formGroup]="form" class="input-container">
-  <label [for]="id">{{ label }}</label>
-  <input pInputText type="password" [formControlName]="id" [id]="id" class="input-field">
+<div [formGroup]="form" >
+  <p-floatlabel class="custom-la"  variant="on">
+    <p-password
+      variant="filled"
+      [inputStyle]="{ 'width': '335px' }"
+      [feedback]="showFeedBack"
+      [id]="id"
+      [formControlName]="id"
+      [toggleMask]="true"/>
+    <label [for]="id">Contraseña</label>
+  </p-floatlabel>
 </div>

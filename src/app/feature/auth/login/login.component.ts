@@ -13,7 +13,7 @@ import { InputContraComponent } from 'app/shared/components/inputs/input-login/i
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, LoginButtonComponent, InputLoginComponent, FloatLabel,  PasswordModule, InputContraComponent],
+  imports: [ReactiveFormsModule, LoginButtonComponent, InputLoginComponent,  PasswordModule, InputContraComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
