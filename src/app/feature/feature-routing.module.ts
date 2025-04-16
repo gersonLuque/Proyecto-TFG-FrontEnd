@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {NavLayoutComponent} from '../shared/components/nav-layout/nav-layout.component';
+import {isLoginGuard} from '@core/guards/is-login.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: NavLayoutComponent,
+    canMatch: [isLoginGuard],
     children: [
       {
         path: 'dashboard',

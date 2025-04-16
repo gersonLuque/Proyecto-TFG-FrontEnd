@@ -1,7 +1,7 @@
 import {Component, input, OnDestroy, OnInit} from '@angular/core';
 import {TaskDto} from '@core/dto/taskDto';
 import {TaskService} from '@core/services/task.service';
-import {lastValueFrom, Observable, Subscription} from 'rxjs';
+import {lastValueFrom, Observable, Subscription, switchMap} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import {FileListComponent} from '../../../../shared/components/file-list/file-list.component';
 import {AppUploadFilesComponent} from '../../../../shared/components/app-upload-files/app-upload-files.component';
@@ -10,6 +10,8 @@ import {SolutionService} from '@core/services/solution.service';
 import {ToastService} from '@core/services/toast.service';
 import {SolutionDto} from '@core/dto/solutionDto';
 import {Panel} from 'primeng/panel';
+import {AuthService} from '@core/services/auth.service';
+import {UserJwtDto} from '@core/dto/userJwtDto';
 
 
 @Component({
@@ -35,9 +37,12 @@ export default class CreateSolutionComponent implements OnInit , OnDestroy {
   isChecked: boolean = false;
   protected isFilesReset: boolean = false;
   protected filesHasChanged:boolean
-  private solutionSub: Subscription;
+  private sub: Subscription;
 
-  constructor(private taskService: TaskService, private solutionService: SolutionService, private toastService: ToastService) {
+  currentUser:UserJwtDto;
+
+  constructor(private taskService: TaskService, private solutionService: SolutionService,
+              private toastService: ToastService,private authService: AuthService) {
 
   }
 
@@ -51,7 +56,7 @@ export default class CreateSolutionComponent implements OnInit , OnDestroy {
       try {
         await lastValueFrom(this.solutionService.updateSolution(this.formUpdate()))
         this.toastService.showSuccess('Solución actualizada con éxito')
-        this.solution = await lastValueFrom(this.solutionService.getSolutionByTaskAndUser(this.taskId(),1))
+        this.solution = await lastValueFrom(this.solutionService.getSolutionByTaskAndUser(this.taskId(),this.currentUser.userId))
         this.isFilesReset = false
         this.filesHasChanged = false
       }catch (error){
@@ -61,7 +66,7 @@ export default class CreateSolutionComponent implements OnInit , OnDestroy {
       try {
         await lastValueFrom(this.solutionService.createSolution(this.formCreate()))
         this.toastService.showSuccess(`Solución creada con éxito`)
-        this.solution = await lastValueFrom(this.solutionService.getSolutionByTaskAndUser(this.taskId(),1))
+        this.solution = await lastValueFrom(this.solutionService.getSolutionByTaskAndUser(this.taskId(),this.currentUser.userId))
         this.isFilesReset = false
         this.filesHasChanged = false
       } catch (error) {
@@ -74,7 +79,7 @@ export default class CreateSolutionComponent implements OnInit , OnDestroy {
   formCreate(): FormData {
     const solutionData = new FormData();
     solutionData.append('taskId', this.taskId().toString())
-    solutionData.append('userId', String(1)) // todo cambiar por el usuario autenticado
+    solutionData.append('userId', String(this.currentUser.userId)) // todo cambiar por el usuario autenticado
     solutionData.append('anonymous', String(this.isChecked))
 
     if (this.uploadedFiles.length > 0) {
@@ -102,20 +107,18 @@ export default class CreateSolutionComponent implements OnInit , OnDestroy {
 
   ngOnInit() {
     this.task$ = this.taskService.getTaskById(this.taskId());
-    //todo cambiar hardcode por usuario autenticado
-    this.solutionSub = this.solutionService.getSolutionByTaskAndUser(this.taskId(), 1).subscribe(
-      solution => {
-        if (solution){
-          this.solution = solution
-          this.isChecked = solution?.anonymous
-          console.log(solution?.anonymous)
-        }
-      }
-    )
+    this.sub = this.authService.user$.pipe(
+      switchMap(user => {
+        this.currentUser = user
+        return this.solutionService.getSolutionByTaskAndUser(this.taskId(), user.userId)
+      })
+    ).subscribe(solution => {
+      this.solution = solution;
+    });
   }
 
   ngOnDestroy() {
-    this.solutionSub.unsubscribe()
+    this.sub.unsubscribe()
   }
 
   handleUploadedFiles(files: any[]) {

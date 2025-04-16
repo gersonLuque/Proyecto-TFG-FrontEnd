@@ -1,3 +1,4 @@
+<!--/home/dashboard-->
 <app-header></app-header>
 <div class="fondo">
   <div class="container">
@@ -31,5 +32,71 @@
       }
     </div>
   </div>
-  <router-outlet></router-outlet>
 </div>
+@if (editCourse) {
+  <!--
+  <div class="card flex justify-content-center">
+    <form [formGroup]="">
+      <p-dialog header="Actualizar contraseña" [modal]="true" [(visible)]="editCourse" [style]="{ width: '30rem' }">
+
+        <div class="grid mb-3">
+          <div class="col-4">
+            <label for="currentPassword" class="font-semibold block">Contraseña actual</label>
+          </div>
+          <div class="col-8">
+            <input formControlName="currentPassword"  pInputText id="currentPassword" class="w-full" type="password" autocomplete="off"/>
+          </div>
+        </div>
+
+        <div class="grid mb-4">
+          <div class="col-4">
+            <label for="newPassword" class="font-semibold block">Nueva contraseña</label>
+          </div>
+          <div class="col-8">
+            <input formControlName="newPassword" pInputText id="newPassword" class="w-full" type="password" autocomplete="off"/>
+          </div>
+        </div>
+
+        <div class="flex justify-content-end gap-2">
+          <p-button label="Cancel" styleClass="p-button-secondary" (click)="editCourse = false"></p-button>
+          <p-button label="Save" ></p-button>
+        </div>
+      </p-dialog>
+    </form>
+  </div>
+  -->
+} @else if (createCourse){
+<!--
+  <div class="card flex justify-content-center">
+    <form [formGroup]="">
+      <p-dialog header="Crear curso" [modal]="true" [(visible)]="createCourse" [style]="{ width: '30rem' }">
+
+        <div class="grid mb-3">
+          <div class="col-4">
+            <label for="currentPassword" class="font-semibold block">Nombre del curso</label>
+          </div>
+          <div class="col-8">
+            <input formControlName="currentPassword"  pInputText id="currentPassword" class="w-full" type="password" autocomplete="off"/>
+          </div>
+        </div>
+
+        <div class="grid mb-4">
+          <div class="col-4">
+            <label for="newPassword" class="font-semibold block">Descripción</label>
+          </div>
+          <div class="col-8">
+            <input formControlName="newPassword" pInputText id="newPassword" class="w-full" type="password" autocomplete="off"/>
+          </div>
+        </div>
+
+        <div class="flex justify-content-end gap-2">
+          <p-button label="Cancel" styleClass="p-button-secondary" (click)="createCourse = false"></p-button>
+          <p-button label="Save" ></p-button>
+        </div>
+      </p-dialog>
+    </form>
+  </div>
+  -->
+}
+<!-- Fin de contenido de tarjetas de cursos -->
+<router-outlet></router-outlet> <!-- Aquí se cargará el contenido dinámico -->

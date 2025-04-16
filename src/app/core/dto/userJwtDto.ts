@@ -1,7 +1,8 @@
 export interface UserJwtDto {
-  id: number;
-  username: string;
-  roles: string;
+  userId: number;
+  sub: string;
+  rol: string;
+  completeName: string;
   iat: number;
   exp: number;
 }

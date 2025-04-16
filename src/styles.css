@@ -2,13 +2,15 @@
   --primary-color: #3498db;
   --secondary-color: #2ecc71;
   --font-size: 16px;
-  --blue-dark: rgba(26, 27, 38);
+  --blue-dark: rgb(6, 22, 33);
+  --primary-color-nav: #ffffff;
+  --primary-color-nav-hover: #5cd28f;
 
   /* estilos para la navegacion en tabs en source-code*/
-  --p-tabs-nav-button-background:var(--blue-dark) !important;
-  --p-tabs-nav-button-shadow : none !important;
-  --p-tabs-tablist-background : var(--blue-dark)!important;
-  --p-tabs-tablist-border-color : var(--blue-dark) !important;
+  --p-tabs-nav-button-background: var(--blue-dark) !important;
+  --p-tabs-nav-button-shadow: none !important;
+  --p-tabs-tablist-background: var(--blue-dark) !important;
+  --p-tabs-tablist-border-color: var(--blue-dark) !important;
 
   /* input login variables*/
   --p-inputtext-color: #333; /* Color de texto dentro del input */
@@ -16,6 +18,16 @@
   --p-inputtext-focus-border-color: #555; /* Color del borde al enfocar el input */
   --p-inputtext-placeholder-color: #999;
 
+  --p-menubar-item-focus-background: var(--blue-dark) !important;
+  --p-menubar-item-active-background: var(--primary-color-nav-hover) !important;
+  --p-menubar-item-color: var(--primary-color-nav) !important;
+  --p-menubar-submenu-background: var(--blue-dark) !important;
+  --p-menubar-submenu-border-color : var(--blue-dark) !important;
+  --p-menubar-item-focus-color : var(--primary-color-nav-hover) !important;
+  --p-menubar-item-active-color :white !important;
+}
+  body {
+  }
 
   /* pop up variables*/
   --p-menu-background-color: black !important;
@@ -40,94 +52,109 @@
 }
 
 .fondo{
-
   background-color: whitesmoke;
   min-height: 100vh;
   width: 100%;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
+  .cursor-pointer {
+    cursor: pointer;
+  }
 
-/* Personaliza el color del mensaje de éxito */
-.p-toast .p-toast-message.p-toast-message-success {
-  background-color: #56d97b;
-  color: black;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+  /* Personaliza el color del mensaje de éxito */
 
-/* Personaliza el color del mensaje de error */
-.p-toast .p-toast-message.p-toast-message-error {
-  background-color: #F44336; /* Rojo */
-  color: white;
-}
+  .p-toast .p-toast-message.p-toast-message-success {
+    background-color: #56d97b;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-/* Personaliza el color del mensaje de advertencia */
-.p-toast .p-toast-message.p-toast-message-warn {
-  background-color: #FF9800; /* Naranja */
-  color: white;
-}
+  /* Personaliza el color del mensaje de error */
 
-/* Personaliza el color del mensaje de información */
-.p-toast .p-toast-message.p-toast-message-info {
-  background-color: #56d97b; /* Azul */
-  color: black;
-}
+  .p-toast .p-toast-message.p-toast-message-error {
+    background-color: #F44336; /* Rojo */
+    color: white;
+  }
 
+  /* Personaliza el color del mensaje de advertencia */
 
-/* Estilo para el contenedor principal del diálogo */
-.p-dialog {
-  background-color: #ffffff!important;  /* Fondo del diálogo */
-  color: black;
-}
+  .p-toast .p-toast-message.p-toast-message-warn {
+    background-color: #FF9800; /* Naranja */
+    color: white;
+  }
 
-/* Estilo para el encabezado */
-.p-dialog-title {
-  color: #c73a3a;  /* Color del título */
-  font-weight: bold !important;  /* Estilo de fuente */
-}
+  /* Personaliza el color del mensaje de información */
 
-/* Cambiar el estilo del mensaje */
-.p-confirmdialog-message {
-  color: #333 ;            /* Cambia el color del texto */
-}
-/* Cambiar color del icono */
-.p-confirmdialog-icon {
-  color: black !important;  /* Color del icono (azul en este caso) */
-}
-
-/* Estilo para el fondo del mensaje */
-.p-confirmdialog-message.ng-star-inserted {
-  background-color: #f9f9f9;
-}
-
-/* Estilo para el botón de rechazar */
-.p-button-secondary {
-  color: #333 ;
-}
+  .p-toast .p-toast-message.p-toast-message-info {
+    background-color: #56d97b; /* Azul */
+    color: black;
+  }
 
 
-/* Estilizar el scrollbar */
-::-webkit-scrollbar {
-  width: 10px; /* Ancho de la barra */
-}
+  /* Estilo para el contenedor principal del diálogo */
 
-/* Estilizar el "track" (fondo de la barra) */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Color del fondo */
-  border-radius: 10px;
-}
+  .p-dialog {
+    background-color: #ffffff !important; /* Fondo del diálogo */
+    color: black;
+  }
 
-/* Estilizar el "thumb" (la parte que se mueve) */
-::-webkit-scrollbar-thumb {
-  background: #888; /* Color del thumb */
-  border-radius: 10px;
-}
+  /* Estilo para el encabezado */
 
-/* Cambiar color al pasar el mouse */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  .p-dialog-title {
+    color: #c73a3a; /* Color del título */
+    font-weight: bold !important; /* Estilo de fuente */
+  }
+
+  /* Cambiar el estilo del mensaje */
+
+  .p-confirmdialog-message {
+    color: #333; /* Cambia el color del texto */
+  }
+
+  /* Cambiar color del icono */
+
+  .p-confirmdialog-icon {
+    color: black !important; /* Color del icono (azul en este caso) */
+  }
+
+  /* Estilo para el fondo del mensaje */
+
+  .p-confirmdialog-message.ng-star-inserted {
+    background-color: #f9f9f9;
+  }
+
+  /* Estilo para el botón de rechazar */
+
+  .p-button-secondary {
+    color: #333;
+  }
+
+
+  /* Estilizar el scrollbar */
+
+  ::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra */
+  }
+
+  /* Estilizar el "track" (fondo de la barra) */
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color del fondo */
+    border-radius: 10px;
+  }
+
+  /* Estilizar el "thumb" (la parte que se mueve) */
+
+  ::-webkit-scrollbar-thumb {
+    background: #888; /* Color del thumb */
+    border-radius: 10px;
+  }
+
+  /* Cambiar color al pasar el mouse */
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 
 
