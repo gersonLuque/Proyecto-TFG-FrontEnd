@@ -10,6 +10,7 @@ import {ConfirmService} from '@core/services/confirm.service';
 import {ToastService} from '@core/services/toast.service';
 import {TaskService} from '@core/services/task.service';
 import {ConfirmDialog} from 'primeng/confirmdialog';
+import { PopUpComponent } from "../../../shared/components/pop-up/pop-up/pop-up.component";
 
 @Component({
   selector: 'app-task-management',
@@ -18,8 +19,9 @@ import {ConfirmDialog} from 'primeng/confirmdialog';
     SlicePipe,
     AddHeaderListComponent,
     RouterLink,
-    ConfirmDialog
-  ],
+    ConfirmDialog,
+    PopUpComponent
+],
   templateUrl: './task-management.component.html',
   styleUrl: './task-management.component.css'
 })

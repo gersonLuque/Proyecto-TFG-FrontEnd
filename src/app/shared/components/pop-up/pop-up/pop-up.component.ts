@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
@@ -9,7 +9,8 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './pop-up.component.html',
   styleUrls: ['./pop-up.component.css'],
   standalone: true,
-  imports: [MenuModule, ToastModule, ButtonModule]
+  imports: [MenuModule, ToastModule, ButtonModule],
+  encapsulation: ViewEncapsulation.None
 })
 export class PopUpComponent {
   items: MenuItem[] = [];

@@ -6,35 +6,26 @@ html, body {
   background-color: whitesmoke;
 }
 
-/* Fondo de la página */
+/* Fondo principal */
 .fondo {
   background-color: whitesmoke;
   min-height: 100vh;
   padding: 20px 10px;
 }
 
-/* Contenedor principal más ancho */
+/* Contenedor principal */
 .container-fluid {
   max-width: 98%;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 20px;
-}
-
-/* Separador visual */
-.soft-separator {
-  height: 1px;
-  background-color: #dee2e6;
-  margin: 4px auto 30px auto;
+  padding: 20px 15px 0 15px;
 }
 
 /* Header */
 app-add-header-list {
   display: block;
-  margin-bottom: 0; /* Controlado con el separador */
+  margin-bottom: 0;
 }
 
-/* Espacio entre tarjetas */
+/* Grid spacing */
 .row.g-4 {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 1.5rem;
@@ -47,21 +38,30 @@ app-add-header-list {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Más suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
-/* Hover efecto para la tarjeta */
+/* Hover */
 .card:hover {
-  transform: scale(1.03);  /* Alargar un poco más */
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); /* Mejorar el sombreado */
+  transform: scale(1.01);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* Título de tarea */
+/* Pop-up en esquina superior derecha */
+.pop-up-position {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+/* Título de la tarjeta */
 .card-title {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  padding-right: 80px; /* Espacio para los botones */
+  padding-right: 80px;
 }
 
 /* Descripción */
@@ -74,13 +74,7 @@ app-add-header-list {
   -webkit-box-orient: vertical;
 }
 
-/* Botones de acción */
-.btn-sm {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
-}
-
-/* Responsive para pantallas pequeñas */
+/* Responsive pequeño */
 @media (max-width: 575.98px) {
   .container-fluid {
     padding-left: 10px;
@@ -98,26 +92,10 @@ app-add-header-list {
   }
 }
 
-/* Ajuste para pantallas medianas */
+/* Responsive medio */
 @media (min-width: 768px) and (max-width: 991.98px) {
   .col-md-6 {
     flex: 0 0 50%;
     max-width: 50%;
-  }
-}
-
-/* Ajuste para pantallas grandes */
-@media (min-width: 992px) {
-  .col-lg-4 {
-    flex: 0 0 33.333333%;
-    max-width: 33.333333%;
-  }
-}
-
-/* Ajuste para pantallas extra grandes */
-@media (min-width: 1200px) {
-  .col-xl-3 {
-    flex: 0 0 25%;
-    max-width: 25%;
   }
 }

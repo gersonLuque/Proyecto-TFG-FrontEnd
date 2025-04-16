@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
+import { FooterComponent } from '../footer/footer/footer.component';
 import {RouterLink} from '@angular/router';
 import {AuthService} from '@core/services/auth.service';
 import {firstValueFrom, lastValueFrom, Observable} from 'rxjs';
@@ -18,6 +19,7 @@ import {ToastService} from '@core/services/toast.service';
   imports: [
     RouterOutlet,
     RouterLink,
+    FooterComponent
     AsyncPipe,
     Menubar,
     Dialog,

@@ -1,23 +1,26 @@
 <!--/home/dashboard/task-management/1/create-task-->
-<div class="container mt-4">
-  <div class="card">
-    <div class="card-body">
-      <h1 class="mb-4">Crear Nueva Tarea</h1>
+<div class="main-wrapper d-flex flex-column min-vh-100">
+  <div class="container py-5 flex-grow-1 d-flex justify-content-center align-items-start">
+    <div class="card shadow rounded w-100" style="max-width: 800px;">
+      <div class="card-body">
+        <h1 class="mb-4">Crear Nueva Tarea</h1>
 
-      <form>
-<!--        datos de las tareas-->
-        <app-task-details [formData]="taskCreateForm"/>
-<!--        carga de ficheros-->
-        <app-app-upload-files (uploadedFilesChange)="handleUploadedFiles($event)" ></app-app-upload-files>
+        <form>
+          <!-- Datos de la tarea -->
+          <app-task-details [formData]="taskCreateForm"></app-task-details>
 
-        <!--        Botón de envío-->
-        <button type="submit" class="btn btn-dark w-100 py-2 mt-4" (click)="sendData()">
-          Crear Tarea
-          @if (isLoading) {
-            <p-progress-spinner ariaLabel="loading" [style]="{ width: '30px', height: '25px' }"/>
-          }
-        </button>
-      </form>
+          <!-- Carga de ficheros -->
+          <app-app-upload-files (uploadedFilesChange)="handleUploadedFiles($event)"></app-app-upload-files>
+
+          <!-- Botón de envío -->
+          <button type="submit" class="btn btn-dark w-100 py-2 mt-4" (click)="sendData()">
+            Crear Tarea
+            @if (isLoading) {
+              <p-progress-spinner ariaLabel="loading" [style]="{ width: '30px', height: '25px' }" />
+            }
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

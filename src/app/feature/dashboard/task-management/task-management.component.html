@@ -8,9 +8,6 @@
       routing="create-task">
     </app-add-header-list>
 
-    <!-- Separador sutil debajo del header -->
-    <div class="soft-separator"></div>
-
     <!-- Inicio de las tarjetas -->
     <div class="row g-4">
       <p-confirm-dialog />
@@ -20,16 +17,9 @@
         <div class="col-12 col-md-6">
           <div class="card mb-0 position-relative">
 
-            <!-- Botones de editar y borrar -->
-            <div class="position-absolute top-0 end-0 p-2">
-              <button class="btn btn-sm btn-outline-primary me-1" [routerLink]="['edit-task', task.taskId]">
-                <i class="bi bi-pencil"></i> Editar
-              </button>
-              <button (click)="showConfirmDelete(task)" class="btn btn-sm btn-danger">
-                <i class="bi bi-trash"></i> Borrar
-              </button>
-            </div>
-
+            <!-- Aplicamos la clase pop-up-position al componente app-pop-up -->
+            <app-pop-up class="pop-up-position"></app-pop-up>
+            
             <!-- Contenido de la tarjeta -->
             <div class="card-body">
               <h2 class="card-title">{{ task.title }}</h2>

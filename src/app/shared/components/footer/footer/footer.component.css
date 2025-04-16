@@ -1,44 +1,67 @@
+/* Hacer que el contenido principal ocupe toda la altura de la página */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenedor principal para que el footer se quede al final */
+.main-content {
+  flex: 1;
+}
+
+/* Footer sigue igual */
 .footer {
-    background-color: #000;
-    color: #fff;
-    padding: 20px 24px;
-    text-align: center;
-    margin-top: 40px;
-  }
-  
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 14px;
+  border-top: 1px solid #333;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* por si se reduce el espacio en móvil */
+}
+
+.footer-logo {
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ccc;
+}
+
+.footer-divider {
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
   .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 8px;
+    text-align: center;
   }
-  
-  .footer-logo {
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-  
-  .footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    font-size: 14px;
-  }
-  
-  .footer-link {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-link:hover {
-    color: #ccc;
-  }
-  
-  .footer-divider {
-    color: #555;
-  }
-  
+}
