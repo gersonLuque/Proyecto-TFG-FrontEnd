@@ -1,34 +1,35 @@
-<!-- /home/dashboard -->
-<div class="color">
-  <!-- Encabezado con título y botón de crear -->
-  <app-header></app-header>
-  <app-add-header-list
-    titleList="Lista de cursos"
-    btnAddText="Crear curso">
-  </app-add-header-list>
+<app-header></app-header>
+<div class="fondo">
+  <div class="container">
+
+    <app-add-header-list
+      titleList="Lista de cursos"
+      btnAddText="Crear curso">
+    </app-add-header-list>
+
+    <div class="soft-separator"></div>
 
     <!-- Contenedor de tarjetas de cursos -->
     <div class="row">
-      
       @let coursesByUserId = courses$ | async;
-      @for (course of coursesByUserId; track course.courseId) {
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <!-- Mostrar el nombre del curso -->
-              <span class="course-title fs-4">{{ course.name }}</span>
-              <app-pop-up></app-pop-up> <!-- Pop-up para cada tarjeta -->
-            </div>
-            <div class="d-flex gap-2 mt-3">
-              <!-- Botón para ver tareas del curso -->
-              <button [routerLink]="['task-management', course.courseId]" class="btn btn-light border">
-                <i class="bi bi-list-check me-2"></i> Ver Tareas
-              </button>
+      @for (course of coursesByUserId; track course.courseId) {
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="course-title fs-4">{{ course.name }}</span>
+                <app-pop-up></app-pop-up> 
+              </div>
+              <div class="d-flex gap-2 mt-3">
+                <button [routerLink]="['task-management', course.courseId]" class="btn btn-light border">
+                  <i class="bi bi-list-check me-2"></i> Ver Tareas
+                </button>
+              </div>
             </div>
           </div>
         </div>
       }
     </div>
-
-
-<router-outlet></router-outlet>
+  </div>
+  <router-outlet></router-outlet>
+</div>
