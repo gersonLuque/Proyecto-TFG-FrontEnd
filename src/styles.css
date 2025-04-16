@@ -17,16 +17,62 @@
   --p-inputtext-placeholder-color: #999;
 
 
-  /* pop up variables*/
-  --p-menu-background-color: black !important;
-  --p-menuitem-color: white !important;
-
+    --p-menu-background: #000; /* negro */
+    --p-menu-color: #fff; /* texto blanco para que se vea */
+  
+  
 
   /*estilos login*/
   --primary-color-login :rgba(255, 255, 255);
   --p-floatlabel-invalid-color : none !important;
 
 }
+
+
+/* En styles.css (archivo global) */
+app-pop-up .p-component,
+app-pop-up .p-menu,
+app-pop-up .p-overlay,
+app-pop-up .p-dialog,
+app-pop-up .p-overlaypanel,
+app-pop-up .p-tooltip,
+app-pop-up .p-tieredmenu,
+app-pop-up .p-contextmenu {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+  border: 1px solid #000 !important;
+  outline-color: #000 !important;
+  box-shadow: 0 0 0 1px #000 !important;
+}
+
+/* Asegúrate de que todos los elementos internos también tengan bordes negros */
+app-pop-up .p-menuitem,
+app-pop-up .p-menuitem-link,
+app-pop-up .p-menu-list,
+app-pop-up .p-submenu-list,
+app-pop-up .p-menu-separator,
+app-pop-up .p-overlaypanel-content,
+app-pop-up .p-dialog-content {
+  border-color: #000 !important;
+}
+
+/* Para el triángulo o flecha que a veces aparece en los popups */
+app-pop-up .p-overlaypanel:after,
+app-pop-up .p-overlaypanel:before,
+app-pop-up .p-tooltip-arrow,
+app-pop-up .p-menu:after,
+app-pop-up .p-menu:before {
+  border-color: #000 !important;
+  background-color: #000 !important;
+}
+
+
+/* Clase base de PrimeNG */
+app-pop-up .p-component {
+  background-color: #000 !important;
+}
+
 .p-float-label {
   background-color: var(--primary-color);
 }

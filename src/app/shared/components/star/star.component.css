@@ -1,8 +1,10 @@
+/* Estrella */
 .star {
   --star-color: rgb(250, 190, 21);
   position: relative;
   transition: transform 0.3s ease;
   cursor: pointer;
+  font-size: 0.9rem; /* Tamaño reducido de la estrella */
 }
 
 .star .checkbox {
@@ -103,7 +105,7 @@
     opacity: 0;
   }
   25% {
-    transform: scale(1.2);
+    transform: scale(1.1); /* Escala más pequeña */
     opacity: 1;
   }
   50% {
@@ -129,11 +131,11 @@
     opacity: 1;
   }
   40% {
-    transform: translate(-20px, -25px) scale(0.6);
+    transform: translate(-15px, -20px) scale(0.5);
     opacity: 0.6;
   }
   100% {
-    transform: translate(-40px, 40px) scale(0);
+    transform: translate(-30px, 30px) scale(0);
     opacity: 0;
   }
 }
@@ -144,11 +146,11 @@
     opacity: 1;
   }
   40% {
-    transform: translate(20px, -25px) scale(0.6);
+    transform: translate(15px, -20px) scale(0.5);
     opacity: 0.6;
   }
   100% {
-    transform: translate(40px, 40px) scale(0);
+    transform: translate(30px, 30px) scale(0);
     opacity: 0;
   }
 }
@@ -159,11 +161,11 @@
     opacity: 1;
   }
   40% {
-    transform: translate(-30px, -20px) scale(0.6);
+    transform: translate(-20px, -15px) scale(0.5);
     opacity: 0.6;
   }
   100% {
-    transform: translate(-50px, 45px) scale(0);
+    transform: translate(-40px, 40px) scale(0);
     opacity: 0;
   }
 }
@@ -174,11 +176,11 @@
     opacity: 1;
   }
   40% {
-    transform: translate(30px, -20px) scale(0.6);
+    transform: translate(20px, -15px) scale(0.5);
     opacity: 0.6;
   }
   100% {
-    transform: translate(50px, 45px) scale(0);
+    transform: translate(40px, 40px) scale(0);
     opacity: 0;
   }
 }
@@ -189,11 +191,11 @@
     opacity: 1;
   }
   45% {
-    transform: translate(0, -30px) scale(0.6);
+    transform: translate(0, -25px) scale(0.5);
     opacity: 0.6;
   }
   100% {
-    transform: translate(0, 40px) scale(0);
+    transform: translate(0, 35px) scale(0);
     opacity: 0;
   }
 }
@@ -204,11 +206,11 @@
     opacity: 1;
   }
   35% {
-    transform: translate(-35px, -15px) scale(0.6);
+    transform: translate(-30px, -10px) scale(0.5);
     opacity: 0.6;
   }
   100% {
-    transform: translate(-60px, 50px) scale(0);
+    transform: translate(-50px, 45px) scale(0);
     opacity: 0;
   }
 }
@@ -219,11 +221,11 @@
     opacity: 1;
   }
   35% {
-    transform: translate(35px, -15px) scale(0.6);
+    transform: translate(30px, -10px) scale(0.5);
     opacity: 0.6;
   }
   100% {
-    transform: translate(60px, 50px) scale(0);
+    transform: translate(50px, 45px) scale(0);
     opacity: 0;
   }
 }
@@ -234,11 +236,11 @@
     opacity: 1;
   }
   45% {
-    transform: translate(0, -35px) scale(0.6);
+    transform: translate(0, -30px) scale(0.5);
     opacity: 0.6;
   }
   100% {
-    transform: translate(0, 45px) scale(0);
+    transform: translate(0, 40px) scale(0);
     opacity: 0;
   }
 }

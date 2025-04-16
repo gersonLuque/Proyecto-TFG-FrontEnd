@@ -1,22 +1,32 @@
-/* Estilos generales */
+/* Asegura que el fondo ocupe toda la pantalla */
 html, body {
-  height: 100%;
+  height: 100%; /* Asegura que el body ocupe toda la altura de la pantalla */
+  margin: 0; /* Elimina el margen por defecto */
   background-color: whitesmoke;
 }
 
-/* Contenedor principal con sombra notable */
+/* Fondo de la página */
 .container {
   max-width: 800px;
   margin: 2rem auto;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); /* Sombra mucho más intensa */
   transition: box-shadow 0.3s ease;
+  min-height: 100vh; /* Asegura que la caja tenga al menos la altura de la pantalla */
+  display: flex;
+  flex-direction: column; /* Alinea el contenido verticalmente */
+  justify-content: flex-start; /* Asegura que el contenido se alinee desde arriba */
+  overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es más grande que la pantalla */
+  padding: 20px;
 }
 
+/* Cuando pasas el ratón sobre el contenedor, aumenta la sombra aún más */
 .container:hover {
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3), 0 12px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4), 0 16px 30px rgba(0, 0, 0, 0.3); /* Sombra aún más destacada */
 }
+
+
 
 /* Estilos de texto */
 h1 {

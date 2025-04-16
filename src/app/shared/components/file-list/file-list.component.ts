@@ -19,4 +19,30 @@ export class FileListComponent {
     const blob = await lastValueFrom(this.storageService.getFile(key))
     saveAs(blob, filename)
   }
+
+  getFileIcon(fileName: string): string {
+    const extension = fileName.split('.').pop()?.toLowerCase();
+    
+    switch (extension) {
+      case 'java':
+        return 'assets/icons/java.png';
+      case 'py':
+        return 'assets/icons/py.png';
+      case 'sql':
+        return 'assets/icons/mysql.png';
+      case 'pdf':
+        return 'assets/icons/pdf.svg';
+      case 'txt':
+        return 'assets/icons/txt.png';
+      case 'json':
+        return 'assets/icons/json.png';
+      case 'xml':
+        return 'assets/icons/xml.png'; 
+      default:
+        return 'assets/icons/archivo.png'; // Ruta del ícono por defecto
+    }
+  }
+  
+
+
 }

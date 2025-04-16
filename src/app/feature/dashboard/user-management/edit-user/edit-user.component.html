@@ -1,104 +1,107 @@
 <!--/home/dashboard/user-management/edit-user/{userId}-->
-<div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title mb-4">Formulario creacion de usuario</h2>
-          <p class="text-muted mb-4">Por favor, completa todos los campos</p>
+<div class="main-wrapper d-flex flex-column min-vh-100">
+  <div class="container py-5 flex-grow-1 d-flex justify-content-center align-items-start">
+    <div class="card shadow rounded w-100" style="max-width: 600px;">
+      <div class="card-body">
+        <h2 class="card-title mb-4">Formulario creación de usuario</h2>
+        <p class="text-muted mb-4">Por favor, completa todos los campos</p>
 
-          <form [formGroup]="editUserForm">
-            <!-- Username field -->
-            @let user = user$ | async;
-            <div class="mb-3">
-              <label for="username" class="form-label">Nombre de Usuario</label>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                [value]="user?.username"
-                disabled
-              >
-            </div>
+        <form [formGroup]="editUserForm">
+          @let user = user$ | async;
 
-            <!-- Full Name field -->
-            <div class="mb-3">
-              <label for="completeName" class="form-label">Nombre Completo</label>
-              <input
-                type="text"
-                class="form-control"
-                id="completeName"
-                formControlName="completeName"
-                [value]="user?.completeName"
-              >
-            </div>
-            <!-- Role selection -->
-            <div class="mb-3" >
-              <label class="form-label">Rol</label>
-              <div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    id="rolStudent"
-                    name="rol"
-                    value="STUDENT"
-                    [checked]="user?.rol === 'STUDENT'"
-                    [disabled]="user?.rol !== 'STUDENT'"
-                  >
-                  <label class="form-check-label" for="rolStudent">
-                    Estudiante
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    id="rolTeacher"
-                    name="rol"
-                    value="TEACHER"
-                    [checked]="user?.rol === 'TEACHER'"
-                    [disabled]="user?.rol !== 'TEACHER'"
-                  >
-                  <label class="form-check-label" for="rolTeacher">
-                    Profesor
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-4">
-              <label class="form-label">Cursos</label>
-              <div formArrayName="courses">
-                @let courses = courses$ | async;
-                @for (course of courses; track course.courseId) {
-                  <div class="form-check">
-                    <input
-                      class="form-check-input cursor-pointer"
-                      type="checkbox"
-                      [checked]="isCourseSelected(user, course.courseId)"
-                      [value]="course.courseId"
-                      (change)="toggleCourse(course)"
-                    >
-                    <label class="form-check-label">{{ course.name }}</label>
-                  </div>
-                }
-              </div>
-            </div>
-            <button
-              type="submit"
-              class="btn btn-dark w-100"
-              (click)="actualizar()"
+          <!-- Username field -->
+          <div class="mb-3">
+            <label for="username" class="form-label">Nombre de Usuario</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              [value]="user?.username"
+              disabled
             >
-              Enviar
-            </button>
+          </div>
 
-            <!-- Terms and conditions -->
-            <p class="text-muted small mt-3">
-              Al enviar este formulario, aceptas nuestros términos y condiciones.
-            </p>
-          </form>
-        </div>
+          <!-- Full Name field -->
+          <div class="mb-3">
+            <label for="completeName" class="form-label">Nombre Completo</label>
+            <input
+              type="text"
+              class="form-control"
+              id="completeName"
+              formControlName="completeName"
+              [value]="user?.completeName"
+            >
+          </div>
+
+          <!-- Role selection -->
+          <div class="mb-3">
+            <label class="form-label">Rol</label>
+            <div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="rolStudent"
+                  name="rol"
+                  value="STUDENT"
+                  [checked]="user?.rol === 'STUDENT'"
+                  [disabled]="user?.rol !== 'STUDENT'"
+                >
+                <label class="form-check-label" for="rolStudent">
+                  Estudiante
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="rolTeacher"
+                  name="rol"
+                  value="TEACHER"
+                  [checked]="user?.rol === 'TEACHER'"
+                  [disabled]="user?.rol !== 'TEACHER'"
+                >
+                <label class="form-check-label" for="rolTeacher">
+                  Profesor
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Courses -->
+          <div class="mb-4">
+            <label class="form-label">Cursos</label>
+            <div formArrayName="courses">
+              @let courses = courses$ | async;
+              @for (course of courses; track course.courseId) {
+                <div class="form-check">
+                  <input
+                    class="form-check-input cursor-pointer"
+                    type="checkbox"
+                    [checked]="isCourseSelected(user, course.courseId)"
+                    [value]="course.courseId"
+                    (change)="toggleCourse(course)"
+                  >
+                  <label class="form-check-label">{{ course.name }}</label>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="btn btn-dark w-100"
+            (click)="actualizar()"
+          >
+            Enviar
+          </button>
+
+          <!-- Terms -->
+          <p class="text-muted small mt-3">
+            Al enviar este formulario, aceptas nuestros términos y condiciones.
+          </p>
+        </form>
       </div>
     </div>
   </div>
