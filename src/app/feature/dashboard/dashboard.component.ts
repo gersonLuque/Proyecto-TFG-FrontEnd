@@ -9,31 +9,38 @@ import {AsyncPipe} from '@angular/common';
 import {Button} from "primeng/button";
 import {Dialog} from "primeng/dialog";
 import {ReactiveFormsModule} from "@angular/forms";
+import { CommonModule } from '@angular/common';
+import { PopUpComponent } from 'app/shared/components/pop-up/pop-up/pop-up.component';
+import { CourseService } from '@core/services/course.service';
+import { Course } from '@core/dto/courseDto';
 
 @Component({
-  selector: 'app-dashboard',
+    selector: 'app-dashboard',
     imports: [
+        CommonModule,
         RouterOutlet,
         AddHeaderListComponent,
         RouterLink,
         HeaderComponent,
         Button,
         Dialog,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        PopUpComponent
     ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-
   currentUser$:Observable<UserJwtDto>;
   editCourse: boolean;
   createCourse: boolean;
-
-  constructor(private authService: AuthService) {
+  courses$: Observable<Course[]>;
+  
+  constructor(private authService: AuthService,private courseService: CourseService) {
   }
 
   ngOnInit() {
     this.currentUser$ = this.authService.user$;
+    this.courses$ = this.courseService.getCoursesByUserId(1); 
   }
 }

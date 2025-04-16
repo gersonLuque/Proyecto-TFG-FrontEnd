@@ -1,0 +1,12 @@
+<div [formGroup]="form" >
+  <p-floatlabel class="custom-la"  variant="on">
+    <p-password
+      variant="filled"
+      [inputStyle]="{ 'width': '335px' }"
+      [feedback]="showFeedBack"
+      [id]="id"
+      [formControlName]="id"
+      [toggleMask]="true"/>
+    <label [for]="id">Contraseña</label>
+  </p-floatlabel>
+</div>

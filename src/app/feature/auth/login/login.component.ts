@@ -8,11 +8,12 @@ import { InputLoginComponent } from 'app/shared/components/inputs/input-login/in
 import {FloatLabel} from 'primeng/floatlabel';
 import {Password} from 'primeng/password';
 import { PasswordModule } from 'primeng/password';
+import { InputContraComponent } from 'app/shared/components/inputs/input-login/input-contra/input-contra/input-contra.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, LoginButtonComponent, InputLoginComponent, FloatLabel, Password],
+  imports: [ReactiveFormsModule, LoginButtonComponent, InputLoginComponent,  PasswordModule, InputContraComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

@@ -6,8 +6,16 @@
   background-size: cover; /* Añadido para mejor manejo de la imagen */
   display: flex;
   align-items: center;
+  padding-top: 60px;
 }
 
+
+.separator {
+  width: 100%;             
+  height: 4px;            
+  background-color: black;  
+  margin-top: 0px;         
+}
 
 /* Contraste*/
 .header-header::before {
@@ -29,6 +37,7 @@
   width: 100%;
   color: #fff;
   padding-left: 1rem;
+  padding-bottom: 30px;
 }
 
 /*Disposición de las palabras TITULO*/

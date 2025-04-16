@@ -9,16 +9,13 @@
   <!-- Sección Derecha -->
   <div class="login-box">
       <img src="assets/icons/logo.png" alt="Logo" class="logo" />
-      <h1>Iniciar Sesión</h1>
+      <h1 class="text-capitalize">Iniciar Sesión</h1>
       <form [formGroup]="loginForm">
           <div class="form-group">
             <app-input-login [form]="loginForm" [id]="'username'" label="Usuario"></app-input-login>
           </div>
         <div class="form-group">
-          <p-floatlabel variant="on">
-            <p-password [toggleMask]="true" formControlName="password" [id]="'password'" inputId="password" />
-            <label >On Label</label>
-          </p-floatlabel>
+            <app-input-contra [form]="loginForm" id="password" ></app-input-contra>
         </div>
         <app-login-button type="submit" class="btn-login" (click)="logIn()"></app-login-button>
       </form>
