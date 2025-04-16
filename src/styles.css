@@ -39,7 +39,12 @@
   box-sizing: border-box;
 }
 
+.fondo{
 
+  background-color: whitesmoke;
+  min-height: 100vh;
+  width: 100%;
+}
 
 .cursor-pointer {
   cursor: pointer;

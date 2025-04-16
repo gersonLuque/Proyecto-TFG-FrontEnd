@@ -1,55 +1,63 @@
-<!--home/dashboard/task-management/{courseId}-->
-<div class="container mt-4">
-  <app-add-header-list
-    titleList="Tareas del curso"
-    btnAddText="Crear tarea"
-    routing="create-task">
-  </app-add-header-list>
-  <div class="row">
-    <!--    inicio de la card-->
+<div class="fondo">
+  <div class="container-fluid px-4">
+    
+    <!-- Encabezado con botón -->
+    <app-add-header-list
+      titleList="Tareas del curso"
+      btnAddText="Crear tarea"
+      routing="create-task">
+    </app-add-header-list>
 
-    <p-confirm-dialog />
-    @let tasksByCourseId = tasks$ | async;
-    @for (task of tasksByCourseId; track task.taskId) {
-      <div class="col-12 col-md-8 col-lg-6">
-        <div class="card mb-4 position-relative">
+    <!-- Separador sutil debajo del header -->
+    <div class="soft-separator"></div>
 
-          <!-- Botones de editar y borrar en la esquina superior derecha -->
-          <div class="position-absolute top-0 end-0 p-2">
-            <button class="btn btn-sm btn-outline-primary me-1" [routerLink]="['edit-task',task.taskId]">
-              <i class="bi bi-pencil"></i> Editar
-            </button>
-            <button (click)="showConfirmDelete(task)" class="btn btn-sm btn-danger">
-              <i class="bi bi-trash"></i> Borrar
-            </button>
-          </div>
+    <!-- Inicio de las tarjetas -->
+    <div class="row g-4">
+      <p-confirm-dialog />
 
-          <div class="card-body">
-            <h2 class="card-title">{{task.title}}</h2>
+      @let tasksByCourseId = tasks$ | async;
+      @for (task of tasksByCourseId; track task.taskId) {
+        <div class="col-12 col-md-6">
+          <div class="card mb-0 position-relative">
 
-<!--            todo se puede cambiar con css -->
-<!--            si la descripcion es muy grande se omitira el resto con ... -->
-            <p class="card-text text-muted">
-              {{task.description.length > 100 ? (task.description | slice:0:100) + '...' : task.description}}
-            </p>
-
-            <div class="d-flex align-items-center mb-3">
-              <i class="bi bi-calendar me-2"></i>
-              <span>Fecha de entrega: {{task.endDate}}</span>
-            </div>
-
-            <div class="d-flex justify-content-end mt-3">
-              <button [routerLink]="['create-solution',task.taskId]" class="btn btn-outline-dark me-2">
-                Gestionar solución
+            <!-- Botones de editar y borrar -->
+            <div class="position-absolute top-0 end-0 p-2">
+              <button class="btn btn-sm btn-outline-primary me-1" [routerLink]="['edit-task', task.taskId]">
+                <i class="bi bi-pencil"></i> Editar
               </button>
-              <button [routerLink]="['show-solutions',task.taskId]" class="btn btn-dark">
-                Ver soluciones
+              <button (click)="showConfirmDelete(task)" class="btn btn-sm btn-danger">
+                <i class="bi bi-trash"></i> Borrar
               </button>
             </div>
+
+            <!-- Contenido de la tarjeta -->
+            <div class="card-body">
+              <h2 class="card-title">{{ task.title }}</h2>
+
+              <p class="card-text text-muted">
+                {{ task.description.length > 100 ? (task.description | slice:0:100) + '...' : task.description }}
+              </p>
+
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-calendar me-2"></i>
+                <span>Fecha de entrega: {{ task.endDate }}</span>
+              </div>
+
+              <div class="d-flex justify-content-end mt-3">
+                <button [routerLink]="['create-solution', task.taskId]" class="btn btn-outline-dark me-2">
+                  Gestionar solución
+                </button>
+                <button [routerLink]="['show-solutions', task.taskId]" class="btn btn-dark">
+                  Ver soluciones
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
-      </div>
-    }
-    <!--    fin de la card-->
+      }
+    </div>
+    <!-- Fin de las tarjetas -->
+
   </div>
 </div>

@@ -1,25 +1,63 @@
+/* Fondo general */
+html, body {
+  height: 100%;
+  background-color: whitesmoke;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 15px;
+}
+
+/* Título principal */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #333;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Tarjeta de solución */
 .solution-item {
   margin-bottom: 30px;
-  border: 1px solid #dee2e6;
-  border-radius: 5px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25), 0 8px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  border: none;
 }
 
+/* Cabecera de solución */
 .solution-header {
   background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 5px 5px 0 0;
+  padding: 15px 20px;
   border-bottom: 1px solid #dee2e6;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.solution-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Contenido de solución */
 .solution-content {
-  padding: 15px;
+  padding: 20px;
 }
 
+/* Checkbox de estrella */
 .star-checkbox {
-  position: absolute;
-  top: 15px;
-  right: 15px;
+  position: relative;
 }
 
 .star-checkbox input[type="checkbox"] {
@@ -30,40 +68,146 @@
   cursor: pointer;
   font-size: 1.5rem;
   color: #ccc;
+  transition: color 0.2s ease;
 }
 
 .star-checkbox input[type="checkbox"]:checked + label {
   color: #ffc107;
 }
 
+.star-checkbox label:hover {
+  color: #ffdb70;
+}
+
+/* Tarjeta de archivo */
 .file-card {
   border: 1px solid #dee2e6;
-  border-radius: 5px;
-  padding: 7px 15px;
+  border-radius: 8px;
+  padding: 12px 15px;
   margin-bottom: 15px;
   height: 100%;
   display: flex;
   align-items: center;
+  background-color: white;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
+.file-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: #ced4da;
+}
+
+/* Nombre de archivo */
 .file-name {
   font-weight: 500;
   margin-right: auto;
   display: flex;
   align-items: center;
+  color: #495057;
 }
 
+.file-name i {
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+/* Acciones de archivo */
 .file-actions {
   display: flex;
   align-items: center;
   white-space: nowrap;
-
 }
 
+/* Botones */
+.btn {
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Texto truncado */
 .text-truncate {
-  max-width:260px;
+  max-width: 260px;
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Cursor pointer */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .solution-header {
+    padding: 12px 15px;
+  }
+  
+  .solution-content {
+    padding: 15px;
+  }
+  
+  .file-card {
+    padding: 10px 12px;
+  }
+  
+  .text-truncate {
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .file-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .file-actions .btn {
+    margin-bottom: 5px;
+    margin-right: 0 !important;
+  }
+  
+  .text-truncate {
+    max-width: 150px;
+  }
+}
+
+/* Tooltip personalizado para PrimeNG */
+:host ::ng-deep .p-tooltip {
+  max-width: 250px;
+}
+
+:host ::ng-deep .p-tooltip .p-tooltip-text {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.875rem;
 }
