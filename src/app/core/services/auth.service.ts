@@ -7,6 +7,7 @@ import {LoginResponseDto} from '../dto/loginResponseDto';
 import {TokenService} from './token.service';
 import {Router} from '@angular/router';
 import {UserJwtDto} from '@core/dto/userJwtDto';
+import {ChangePassword} from '@core/dto/change-password';
 const { apiUrl } = environment;
 
 
@@ -43,5 +44,9 @@ export class AuthService {
     localStorage.removeItem('token');
     this.user.next(null);
     this.router.navigate(['auth/login']);
+  }
+
+  public changePassword(changePasswordDto:ChangePassword):Observable<void> {
+    return this.http.post<void>(`${apiUrl}/auth/change-password`,changePasswordDto);
   }
 }
