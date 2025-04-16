@@ -1,13 +1,12 @@
 .nav {
   width: 100%;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--blue-dark);
+  color: var(--primary-color-nav);
   padding: 0;
   margin: 0;
 }
 
 .nav-container {
-  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -30,7 +29,7 @@
 .logo-content {
   position: absolute;
   inset: 0;
-  border: 2px solid #fff;
+  border: 2px solid var(--primary-color-nav);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -40,7 +39,7 @@
   font-weight: bold;
   line-height: 1;
   padding: 4px;
-  color: #fff;
+  color: var(--primary-color-nav);
 }
 
 .underscores {
@@ -51,17 +50,19 @@
 .nav-menu {
   display: flex;
   align-items: center;
+  margin-right: 15px;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  color: #fff;
+  color: var(--primary-color-nav);
   position: relative;
+  margin-right: 8px;
 }
 
 .nav-link {
-  color: #fff;
+  color: var(--primary-color-nav);
   text-decoration: none;
   padding: 8px 4px;
   font-size: 14px;
@@ -76,7 +77,7 @@
   position: absolute;
   height: 2px;
   bottom: -2px;
-  background-color: #fff;
+  background-color: var(--primary-color-nav-hover);
   transition: width 0.3s ease, left 0.3s ease, right 0.3s ease;
 }
 
@@ -98,7 +99,7 @@
 }
 
 .nav-link:hover {
-  color: #ccc;
+  color:var(--primary-color-nav-hover);
 }
 
 .nav-link.active {
@@ -107,5 +108,9 @@
 
 .divider {
   margin: 0 8px;
-  color: #555;
+  color: var(--primary-color-nav);
+}
+.name-user{
+  font-size: 16px;
+  margin-right: 100px;
 }
