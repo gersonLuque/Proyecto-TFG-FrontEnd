@@ -1,6 +1,6 @@
 <div class="fondo">
   <div class="container-fluid px-4">
-    
+
     <!-- Encabezado con botón -->
     <app-add-header-list
       titleList="Tareas del curso"
@@ -12,14 +12,17 @@
     <div class="row g-4">
       <p-confirm-dialog />
 
+      @let currentUser = user$ | async;
       @let tasksByCourseId = tasks$ | async;
       @for (task of tasksByCourseId; track task.taskId) {
         <div class="col-12 col-md-6">
           <div class="card mb-0 position-relative">
 
             <!-- Aplicamos la clase pop-up-position al componente app-pop-up -->
-            <app-pop-up class="pop-up-position"></app-pop-up>
-            
+            @if (currentUser?.rol === 'TEACHER'){
+              <app-pop-up [items]="menuItems[task.taskId]" class="pop-up-position"></app-pop-up>
+            }
+
             <!-- Contenido de la tarjeta -->
             <div class="card-body">
               <h2 class="card-title">{{ task.title }}</h2>

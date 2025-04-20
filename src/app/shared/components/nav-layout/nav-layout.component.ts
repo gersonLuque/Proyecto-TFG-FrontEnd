@@ -19,7 +19,7 @@ import {ToastService} from '@core/services/toast.service';
   imports: [
     RouterOutlet,
     RouterLink,
-    FooterComponent
+    FooterComponent,
     AsyncPipe,
     Menubar,
     Dialog,
