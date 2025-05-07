@@ -1,22 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '../footer/footer/footer.component';
-import {RouterLink} from '@angular/router';
-import {AuthService} from '@core/services/auth.service';
-import {firstValueFrom, lastValueFrom, Observable} from 'rxjs';
-import {UserJwtDto} from '@core/dto/userJwtDto';
-import {AsyncPipe} from '@angular/common';
-import {MenuItem} from 'primeng/api';
-import {Menubar} from 'primeng/menubar';
-import {Dialog} from 'primeng/dialog';
-import {Button} from 'primeng/button';
-import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {ChangePassword} from '@core/dto/change-password';
-import {ToastService} from '@core/services/toast.service';
+import { RouterLink } from '@angular/router';
+import { AuthService } from '@core/services/auth.service';
+import { firstValueFrom, Observable } from 'rxjs';
+import { UserJwtDto } from '@core/dto/userJwtDto';
+import { AsyncPipe } from '@angular/common';
+import { MenuItem } from 'primeng/api';
+import { Menubar } from 'primeng/menubar';
+import { Dialog } from 'primeng/dialog';
+import { Button } from 'primeng/button';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ChangePassword } from '@core/dto/change-password';
+import { ToastService } from '@core/services/toast.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-layout',
   imports: [
+    CommonModule,
     RouterOutlet,
     RouterLink,
     FooterComponent,
@@ -27,16 +29,20 @@ import {ToastService} from '@core/services/toast.service';
     ReactiveFormsModule
   ],
   templateUrl: './nav-layout.component.html',
-  styleUrl: './nav-layout.component.css'
+  styleUrls: ['./nav-layout.component.css'] // Asegúrate de que sea 'styleUrls' y no 'styleUrl'
 })
 export class NavLayoutComponent implements OnInit {
 
   items: MenuItem[];
-  currentUser$: Observable<UserJwtDto>
-  visible:boolean;
+  currentUser$: Observable<UserJwtDto>;
+  visible: boolean;
   changePasswordForm: FormGroup;
 
-  constructor(private authService: AuthService,private fb: FormBuilder,private toastService: ToastService) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private toastService: ToastService
+  ) {
     this.currentUser$ = this.authService.user$;
   }
 
@@ -54,7 +60,7 @@ export class NavLayoutComponent implements OnInit {
               this.changePasswordForm = this.fb.group({
                 currentPassword: [''],
                 newPassword: [''],
-              })
+              });
             }
           },
           {
@@ -66,19 +72,19 @@ export class NavLayoutComponent implements OnInit {
           }
         ]
       }
-    ]
+    ];
   }
 
   public async changePassword() {
     const changePasswordDto: ChangePassword = this.changePasswordForm.value;
     await firstValueFrom(this.authService.changePassword(changePasswordDto))
-    .then(() => {
-      this.toastService.showSuccess('Contraseña cambiada correctamente');
-      this.visible = false;
-    })
-    .catch(error => {
-      const errorMessage = (typeof error?.error === 'string') ? error.error : '';
-      this.toastService.showError(`Error : ${errorMessage}`);
-    });
+      .then(() => {
+        this.toastService.showSuccess('Contraseña cambiada correctamente');
+        this.visible = false;
+      })
+      .catch(error => {
+        const errorMessage = (typeof error?.error === 'string') ? error.error : '';
+        this.toastService.showError(`Error : ${errorMessage}`);
+      });
   }
 }

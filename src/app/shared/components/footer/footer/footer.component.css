@@ -9,6 +9,8 @@ html, body {
 /* Contenedor principal para que el footer se quede al final */
 .main-content {
   flex: 1;
+  padding-bottom: 20px; /* Espaciado adicional entre el contenido y el footer */
+  background-color: whitesmoke;
 }
 
 /* Footer sigue igual */
@@ -19,6 +21,7 @@ html, body {
   padding: 12px 24px;
   font-size: 14px;
   border-top: 1px solid #333;
+  margin-top: 20px; /* Espaciado adicional por encima del footer */
 }
 
 .footer-container {

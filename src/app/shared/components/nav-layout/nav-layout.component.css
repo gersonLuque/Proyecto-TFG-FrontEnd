@@ -1,9 +1,21 @@
+.f{
+
+  background-color: whitesmoke;
+}
+
 .nav {
   width: 100%;
   background-color: var(--blue-dark);
   color: var(--primary-color-nav);
   padding: 0;
   margin: 0;
+}
+
+.user-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  margin-left: 5px;
 }
 
 .nav-container {
@@ -99,7 +111,7 @@
 }
 
 .nav-link:hover {
-  color:var(--primary-color-nav-hover);
+  color: var(--primary-color-nav-hover);
 }
 
 .nav-link.active {
@@ -110,7 +122,104 @@
   margin: 0 8px;
   color: var(--primary-color-nav);
 }
-.name-user{
+
+.name-user {
   font-size: 16px;
   margin-right: 100px;
+}
+
+/* Modal */
+:host ::ng-deep .p-dialog {
+  border-radius: 1rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  animation: fadeInUp 0.4s ease-out;
+  background-color: #ffffff;
+}
+
+/* Header */
+:host ::ng-deep .p-dialog .p-dialog-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000; /* Negro elegante */
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 1rem;
+}
+
+/* Inputs */
+:host ::ng-deep input.p-inputtext {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+:host ::ng-deep input.p-inputtext:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Labels */
+:host ::ng-deep label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+/* Botones */
+:host ::ng-deep .p-button {
+  padding: 0.65rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+  margin-left: 1rem;
+}
+
+:host ::ng-deep .p-button:first-child {
+  margin-left: 0;
+}
+
+/* Botón "Guardar" en negro */
+:host ::ng-deep .p-button-save {
+  padding-left: 20px;
+  background-color: #000 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+:host ::ng-deep .p-button-save:hover {
+  background-color: #1a1a1a !important; /* evitar verde */
+  color: #fff !important;
+  border: none !important;
+}
+
+/* Botón "Cancelar" en gris claro */
+:host ::ng-deep .p-button-cancel {
+  background-color: #f1f5f9;
+  color: #333;
+  border: none;
+  margin-right: 1rem; /* Este es el cambio clave */
+}
+
+:host ::ng-deep .p-button-cancel:hover {
+  color: #333;
+  background-color: #e2e8f0;
+  border-color: #e2e8f0;
+}
+
+/* Animación suave */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

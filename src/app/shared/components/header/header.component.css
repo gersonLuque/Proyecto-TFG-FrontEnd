@@ -6,7 +6,8 @@
   background-size: cover; /* Añadido para mejor manejo de la imagen */
   display: flex;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 35px;
+  background-color: whitesmoke;
 }
 
 
