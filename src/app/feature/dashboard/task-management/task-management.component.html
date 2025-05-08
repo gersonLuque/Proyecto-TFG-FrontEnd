@@ -1,18 +1,21 @@
 <div class="fondo">
   <div class="container-fluid px-4">
 
-    <!-- Encabezado con botón -->
-    <app-add-header-list
-      titleList="Tareas del curso"
-      btnAddText="Crear tarea"
-      routing="create-task">
-    </app-add-header-list>
+    @let currentUser = user$ | async;
 
+    <!-- Encabezado con botón -->
+    @if (currentUser?.rol === 'TEACHER'){
+      <app-add-header-list
+        titleList="Tareas del curso"
+        btnAddText="Crear tarea"
+        routing="create-task">
+      </app-add-header-list>
+    }
+      
     <!-- Inicio de las tarjetas -->
     <div class="row g-4">
       <p-confirm-dialog />
-
-      @let currentUser = user$ | async;
+      
       @let tasksByCourseId = tasks$ | async;
       @for (task of tasksByCourseId; track task.taskId) {
         <div class="col-12 col-md-6">
