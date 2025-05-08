@@ -4,13 +4,14 @@
     @let currentUser = user$ | async;
 
     <!-- Encabezado con botón -->
-    @if (currentUser?.rol === 'TEACHER'){
+  
       <app-add-header-list
         titleList="Tareas del curso"
         btnAddText="Crear tarea"
-        routing="create-task">
+        routing="create-task"
+        [rol] = "currentUser?.rol">
       </app-add-header-list>
-    }
+    
       
     <!-- Inicio de las tarjetas -->
     <div class="row g-4">

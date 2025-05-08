@@ -4,12 +4,11 @@
 
     @let currentUser = currentUser$ | async;
 
-    @if (currentUser?.rol === 'TEACHER') {
     <app-add-header-list
       titleList="Lista de cursos"
-      btnAddText="Crear curso">
+      btnAddText="Crear curso"
+      [rol] = "currentUser?.rol">
     </app-add-header-list>
-  }
 
     <!-- Contenedor de tarjetas de cursos -->
     <div class="row">
@@ -24,7 +23,7 @@
                 @if (currentUser?.rol === 'TEACHER') {
                   <app-pop-up [items]="items"></app-pop-up>
                 }
-              
+                
               </div>
               <div class="d-flex gap-2 mt-3">
                 <button [routerLink]="['task-management', course.courseId]" class="btn btn-light border">
