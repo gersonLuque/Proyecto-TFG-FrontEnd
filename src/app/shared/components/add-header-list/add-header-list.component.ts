@@ -13,4 +13,11 @@ export class AddHeaderListComponent {
   @Input() titleList: string = 'Título';
   @Input() btnAddText?: string = 'Crear';
   @Input() routing: string = '';
+  @Input() actionFn?: () => void;
+
+  onButtonClick() {
+    if (this.actionFn) {
+      this.actionFn();
+    }
+  }
 }
