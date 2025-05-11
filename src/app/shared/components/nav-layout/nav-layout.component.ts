@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';  // Importa Router
 import { FooterComponent } from '../footer/footer/footer.component';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '@core/services/auth.service';
@@ -29,7 +29,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule
   ],
   templateUrl: './nav-layout.component.html',
-  styleUrls: ['./nav-layout.component.css'] // Asegúrate de que sea 'styleUrls' y no 'styleUrl'
+  styleUrls: ['./nav-layout.component.css']
 })
 export class NavLayoutComponent implements OnInit {
 
@@ -41,7 +41,8 @@ export class NavLayoutComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router 
   ) {
     this.currentUser$ = this.authService.user$;
   }
@@ -87,4 +88,5 @@ export class NavLayoutComponent implements OnInit {
         this.toastService.showError(`Error : ${errorMessage}`);
       });
   }
+
 }

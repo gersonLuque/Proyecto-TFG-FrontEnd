@@ -8,6 +8,14 @@
     background-color: whitesmoke;
     margin: 0 auto;
   }
+
+  /* Ajustar el tamaño de la imagen del usuario */
+.user-icon {
+    width: 40px; /* Ajusta el tamaño de la imagen */
+    height: 40px; /* Mantiene la proporción de la imagen */
+    object-fit: contain; /* Mantiene la proporción de la imagen sin recortarla */
+}
+
   
   /* Separación visual del header list */
   app-add-header-list {
