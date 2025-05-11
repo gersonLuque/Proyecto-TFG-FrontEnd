@@ -7,6 +7,7 @@ import {Tooltip} from 'primeng/tooltip';
 import {RouterLink} from '@angular/router';
 import { StarComponent } from "../../../../shared/components/star/star.component";
 import { BcodeComponent } from "../../../../shared/components/button-code/bcode/bcode.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-show-solutions-list',
@@ -15,7 +16,8 @@ import { BcodeComponent } from "../../../../shared/components/button-code/bcode/
     Tooltip,
     RouterLink,
     StarComponent,
-    BcodeComponent
+    BcodeComponent,
+    CommonModule
 ],
   templateUrl: './show-solutions-list.component.html',
   styleUrl: './show-solutions-list.component.css'
@@ -54,4 +56,13 @@ export class ShowSolutionsListComponent implements OnInit {
         return 'assets/icons/archivo.png'; // Ruta del ícono por defecto
     }
   }
+  
+  trackBySolutionId(index: number, solution: SolutionDto): number {
+  return solution.solutionId; // Esto devuelve el ID de la solución, que es único.
+}
+
+trackByFileId(index: number, file: any): string {
+  return file.fileId; // Esto devuelve el ID único del archivo.
+}
+
 }

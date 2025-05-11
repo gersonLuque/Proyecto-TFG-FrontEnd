@@ -1,34 +1,38 @@
 <div class="container mt-5">
   <h1 class="mb-4">Soluciones</h1>
 
-  @let solutions = solutions$ | async;
-  @for (solution of solutions; track solution.solutionId) {
-    <div class="solution-item">
-      <div class="solution-header">
-        <h3>{{ solution?.userBasicDto.completeName }}</h3>
-        
-        <div class="d-flex align-items-center gap-3">
+  <ng-container *ngIf="solutions$ | async as solutions">
+    <div *ngFor="let solution of solutions; trackBy: trackBySolutionId">
+      <div class="solution-item">
+        <div class="solution-header d-flex justify-content-between align-items-center mb-3">
           
-          <app-bcode [routerLink]="[solution.solutionId]"></app-bcode>
-          <app-star></app-star>
+          <!-- Imagen por rol del usuario -->
+          <div class="d-flex align-items-center gap-3">
+            <!-- Imagen del usuario según el rol -->
+            <ng-container *ngIf="solution?.userBasicDto?.rol === 'STUDENT'">
+              <img src="/assets/icons/estudiante.png" class="user-icon" alt="Estudiante">
+            </ng-container>
+            <ng-container *ngIf="solution?.userBasicDto?.rol === 'TEACHER'">
+              <img src="/assets/icons/profesor.png" class="user-icon" alt="Profesor">
+            </ng-container>
+
+            <!-- Nombre del usuario -->
+            <h3 class="mb-0">{{ solution?.userBasicDto.completeName }}</h3>
+          </div>
+
+          <!-- Acciones -->
+          <div class="d-flex align-items-center gap-3">
+            <app-bcode [routerLink]="[solution.solutionId]"></app-bcode>
+            <app-star></app-star>
+          </div>
         </div>
-      </div>
 
-      <div class="solution-content">
-        <div class="row">
-          @for (file of solution?.fileSolutions; track file.fileId) {
-            <div
-              class="col-12 col-md-6 col-lg-4 cursor-pointer mb-2"
-              [pTooltip]="file?.fileName"
-              tooltipPosition="top"
-              [tooltipDisabled]="true">
-
-
+        <div class="solution-content">
+          <div class="row">
+            <div *ngFor="let file of solution?.fileSolutions; trackBy: trackByFileId" class="col-12 col-md-6 col-lg-4 cursor-pointer mb-2"
+              [pTooltip]="file?.fileName" tooltipPosition="top" [tooltipDisabled]="true">
               <div class="file-card">
-                <img 
-                  [src]="getFileIcon(file?.fileName)" 
-                  style="width: 20px; height: 20px; object-fit: cover; border-radius: 4px;"
-                  alt="Icono archivo">
+                <img [src]="getFileIcon(file?.fileName)" style="width: 20px; height: 20px; object-fit: cover; border-radius: 4px;" alt="Icono archivo">
                 <div class="file-name text-truncate">
                   <i class="far fa-file-code me-2"></i>{{ file?.fileName }}
                 </div>
@@ -39,9 +43,9 @@
                 </div>
               </div>
             </div>
-          }
+          </div>
         </div>
       </div>
     </div>
-  }
+  </ng-container>
 </div>
