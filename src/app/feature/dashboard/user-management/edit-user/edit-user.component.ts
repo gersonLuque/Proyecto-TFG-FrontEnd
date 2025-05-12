@@ -3,16 +3,19 @@ import {UserService} from '@core/services/user.service';
 import {lastValueFrom, Observable, pipe, Subscription, tap} from 'rxjs';
 import {UserResponsedDto} from '@core/dto/userResponsedDto';
 import {AsyncPipe} from '@angular/common';
-import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Course} from '@core/dto/courseDto';
 import {CourseService} from '@core/services/course.service';
+import {Message} from "primeng/message";
+import {ToastService} from '@core/services/toast.service';
 
 @Component({
   selector: 'app-edit-user',
-  imports: [
-    AsyncPipe,
-    ReactiveFormsModule
-  ],
+    imports: [
+        AsyncPipe,
+        ReactiveFormsModule,
+        Message
+    ],
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.css'
 })
@@ -30,12 +33,13 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   constructor(private userService:UserService,
               private fb:FormBuilder,
-              private courseService:CourseService) {
+              private courseService:CourseService,
+              private toastService:ToastService) {
   }
 
   ngOnInit() {
     this.editUserForm = this.fb.group({
-      completeName: [''],
+      completeName: ['',Validators.required],
       courses: this.fb.array([])
     })
     this.user$ = this.userService.getUserById(this.id())
@@ -97,6 +101,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
     const user = this.editUserForm.value;
     user.userId = this.id();
     await lastValueFrom(this.userService.updateUser(user));
-    console.log("usuario actualizado");
+    this.toastService.showSuccess(`El usuario ${user?.completeName} se ha editado correctamente`)
   }
 }

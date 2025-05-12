@@ -1,46 +1,71 @@
 <div class="container mt-5">
   <h1 class="mb-4">Soluciones</h1>
 
+
+  @let currentUser = user$ | async;
   @let solutions = solutions$ | async;
   @for (solution of solutions; track solution.solutionId) {
-    <div class="solution-item">
-      <div class="solution-header">
-        <h3>{{ solution?.userBasicDto.completeName }}</h3>
+    @if (solution?.fileSolutions.length > 0) {
 
-        <div class="d-flex align-items-center gap-3">
+      <div class="solution-item">
+        <div class="solution-header">
+          @if (solution?.anonymous && currentUser?.rol === 'STUDENT') {
+            <h3 class="text-muted">Anónimo</h3>
+          } @else {
+            <h3 class="text-muted">{{ solution?.userBasicDto?.completeName }}</h3>
+          }
 
-          <app-bcode [routerLink]="[solution.solutionId]"></app-bcode>
-          <app-star></app-star>
+          <div class="d-flex align-items-center gap-3">
+
+            <app-bcode [routerLink]="[solution.solutionId]"></app-bcode>
+
+            @if (currentUser?.rol === 'STUDENT'){
+              <span pTooltip="Solo el profesor puede colocar una estrella" tooltipPosition="top">
+               <app-star
+                 [solutionId]="solution?.solutionId"
+                 [star]="solution?.star"
+                 [rol]="currentUser?.rol"
+               ></app-star>
+            </span>
+            } @else {
+              <app-star
+                [solutionId]="solution?.solutionId"
+                [star]="solution?.star"
+                [rol]="currentUser?.rol"
+              ></app-star>
+            }
+
+          </div>
         </div>
-      </div>
 
-      <div class="solution-content">
-        <div class="row">
-          @for (file of solution?.fileSolutions; track file.fileId) {
-            <div
-              class="col-12 col-md-6 col-lg-4  mb-2"
-              [pTooltip]="file?.fileName"
-              tooltipPosition="top"
-              [tooltipDisabled]="true">
+        <div class="solution-content">
+          <div class="row">
+            @for (file of solution?.fileSolutions; track file.fileId) {
+              <div
+                class="col-12 col-md-6 col-lg-4  mb-2"
+                [pTooltip]="file?.fileName"
+                tooltipPosition="top"
+                [tooltipDisabled]="true">
 
-              <div class="file-card">
-                <img
-                  [src]="getFileIcon(file?.fileName)"
-                  style="width: 20px; height: 20px; object-fit: cover; border-radius: 4px;"
-                  alt="Icono archivo">
-                <div class="file-name text-truncate">
-                  <i class="far fa-file-code me-2"></i>{{ file?.fileName }}
-                </div>
-                <div class="file-actions">
-                  <a (click)="downloadFile(file?.prefix, file?.fileName)" class="btn rounded btn-sm cursor-pointer">
-                    <i class="bi bi-download"></i>
-                  </a>
+                <div class="file-card">
+                  <img
+                    [src]="getFileIcon(file?.fileName)"
+                    style="width: 20px; height: 20px; object-fit: cover; border-radius: 4px;"
+                    alt="Icono archivo">
+                  <div class="file-name text-truncate">
+                    <i class="far fa-file-code me-2"></i>{{ file?.fileName }}
+                  </div>
+                  <div class="file-actions">
+                    <a (click)="downloadFile(file?.prefix, file?.fileName)" class="btn rounded btn-sm cursor-pointer">
+                      <i class="bi bi-download"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          }
+            }
+          </div>
         </div>
       </div>
-    </div>
+    }
   }
 </div>

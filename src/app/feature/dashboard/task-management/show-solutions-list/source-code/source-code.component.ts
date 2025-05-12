@@ -7,6 +7,8 @@ import {AsyncPipe} from '@angular/common';
 import {HighlightJsDirective} from 'ngx-highlight-js';
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {StarComponent} from "../../../../../shared/components/star/star.component";
+import {UserJwtDto} from '@core/dto/userJwtDto';
+import {AuthService} from '@core/services/auth.service';
 
 @Component({
   selector: 'app-source-code',
@@ -27,12 +29,14 @@ import {StarComponent} from "../../../../../shared/components/star/star.componen
 export default class SourceCodeComponent implements OnInit {
   solutionId = input.required<number>();
   solution$:Observable<SolutionDto>
+  user$:Observable<UserJwtDto>;
   code:string = "import"
 
-  constructor(private solutionService: SolutionService) {}
+  constructor(private solutionService: SolutionService,private authService:AuthService) {}
 
   ngOnInit() {
-    this.solution$ = this.solutionService.getSolutionWithContent(this.solutionId())
+    this.solution$ = this.solutionService.getSolutionWithContent(this.solutionId());
+    this.user$ = this.authService.user$;
   }
 
   formatCode(code: string): string {

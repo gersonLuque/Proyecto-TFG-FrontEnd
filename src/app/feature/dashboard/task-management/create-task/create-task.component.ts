@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {TaskService} from '@core/services/task.service';
 import {lastValueFrom} from 'rxjs';
 import {ToastService} from '@core/services/toast.service';
@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {AppUploadFilesComponent} from '../../../../shared/components/app-upload-files/app-upload-files.component';
 import {TaskDetailsComponent} from '../../../../shared/components/task-form/task-details/task-details.component';
+import {Message} from 'primeng/message';
 
 
 @Component({
@@ -17,6 +18,7 @@ import {TaskDetailsComponent} from '../../../../shared/components/task-form/task
     ProgressSpinner,
     AppUploadFilesComponent,
     TaskDetailsComponent,
+    Message,
   ],
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.css'
@@ -36,10 +38,10 @@ export default class CreateTaskComponent {
               private router: Router) {
 
     this.taskCreateForm = this.fb.group({
-      title: [''],
-      description: [''],
-      endDate: [new Date()],
-      endTime: [this.time()],
+      title: ['',Validators.required],
+      description: ['',Validators.required],
+      endDate: [new Date(),Validators.required],
+      endTime: [this.time(),Validators.required],
       visible: [false]
     })
   }

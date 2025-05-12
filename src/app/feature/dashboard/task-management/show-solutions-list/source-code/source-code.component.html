@@ -1,3 +1,4 @@
+@let currentUser = user$ | async;
 @let solution = solution$ | async;
 @let selectedTab = solution?.fileSolutions?.[0]?.fileId;
 
@@ -28,10 +29,12 @@
             </div>
           </p-tabpanel>
         }
+        @if (currentUser?.rol === 'TEACHER') {
           <div class="sticky-name d-flex justify-content-center align-items-center">
               <span class="fs-5">{{solution?.userBasicDto?.completeName}}</span>
-              <app-star [sizeStar]="'44px'"></app-star>
+              <app-star  [solutionId]="solution?.solutionId" [star]="solution?.star" [sizeStar]="'44px'"></app-star>
           </div>
+        }
       </p-tabpanels>
     </p-tabs>
   </div>

@@ -25,8 +25,8 @@ export class CourseService {
     return this.http.get<TaskDto[]>(`${apiUrl}/courses/${courseId}/tasks?userId=${userId}`);
   }
 
-  createCourse (course: Course): Observable<Course> {
-    return this.http.post<Course>(`${apiUrl}/courses`, course);
+  createCourse (course: Course,userId:number): Observable<Course> {
+    return this.http.post<Course>(`${apiUrl}/courses?userId=${userId}`, course);
   }
 
   editCourse (course: Course): Observable<Course> {

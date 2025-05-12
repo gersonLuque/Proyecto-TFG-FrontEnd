@@ -9,6 +9,8 @@ import {StarComponent} from "../../../../shared/components/star/star.component";
 import {BcodeComponent} from "../../../../shared/components/button-code/bcode/bcode.component";
 import {saveAs} from 'file-saver';
 import {StorageService} from '@core/services/storage.service';
+import {UserJwtDto} from '@core/dto/userJwtDto';
+import {AuthService} from '@core/services/auth.service';
 
 @Component({
   selector: 'app-show-solutions-list',
@@ -28,10 +30,14 @@ export class ShowSolutionsListComponent implements OnInit {
 
   solutions$: Observable<SolutionDto[]>
 
-  constructor(private solutionService: SolutionService, private storageService: StorageService) {
+  user$:Observable<UserJwtDto>;
+
+
+  constructor(private solutionService: SolutionService, private storageService: StorageService,private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.user$ = this.authService.user$;
     this.solutions$ = this.solutionService.getSolutionsByTaskId(this.taskId());
   }
 

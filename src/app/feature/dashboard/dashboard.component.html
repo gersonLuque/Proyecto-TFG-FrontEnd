@@ -2,11 +2,15 @@
 <div class="fondo">
   <div class="container">
 
+    @let user = currentUser$ | async;
+
     <app-add-header-list
       titleList="Lista de cursos"
       btnAddText="Crear curso"
       [actionFn]="activarCreateCourseDialog">
     </app-add-header-list>
+    <p-confirm-dialog />
+
 
     <!-- Contenedor de tarjetas de cursos -->
     <div class="row">
@@ -67,8 +71,8 @@
       </div>
 
       <div class="grid mb-3">
-        <div class="col-4">
-          <label class="font-semibold block">Nombre del curso</label>
+        <div class="col-6">
+          <label class="font-semibold ">Nombre del curso</label>
         </div>
         <div class="col-8">
           <input formControlName="name" class="w-full" type="text" autocomplete="off"/>
@@ -77,7 +81,7 @@
 
       <div class="flex justify-content-end gap-2">
         <p-button label="Cancel" styleClass="p-button-secondary" (click)="createCourseDialog = false"></p-button>
-        <p-button (onClick)="createCourse()" label="Save"></p-button>
+        <p-button (onClick)="createCourse(user?.userId)" label="Save"></p-button>
       </div>
     </div>
   </form>

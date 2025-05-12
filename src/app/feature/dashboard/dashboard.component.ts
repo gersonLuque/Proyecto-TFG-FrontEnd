@@ -14,6 +14,7 @@ import {MenuItem} from 'primeng/api';
 import {ConfirmService} from '@core/services/confirm.service';
 import {ToastService} from '@core/services/toast.service';
 import {Button} from 'primeng/button';
+import {ConfirmDialog} from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +28,7 @@ import {Button} from 'primeng/button';
     PopUpComponent,
     FormsModule,
     Button,
+    ConfirmDialog,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -85,11 +87,7 @@ export class DashboardComponent implements OnInit {
     activarCreateCourseDialog = () => {
       this.createCourseDialog = true;
     }
-    showConfirmDelete(course
-  :
-    Course
-  )
-    {
+    showConfirmDelete(course:Course){
       this.confirmService.showDeleteDialog(`¿Estas seguro de eliminar el curso ${course.name}?`, async () => {
         await lastValueFrom(this.courseService.deleteCourseById(course.courseId));
         this.toastService.showSuccess(`Curso ${course.name} eliminada correctamente`);
@@ -113,12 +111,13 @@ export class DashboardComponent implements OnInit {
       )
     }
 
-    async createCourse()
+    async createCourse(userId: number)
     {
       const course = this.createCourseForm.value;
       try {
-        await lastValueFrom(this.courseService.createCourse(course));
+        await lastValueFrom(this.courseService.createCourse(course, userId));
         this.toastService.showSuccess(`Curso ${course.name} creado correctamente`);
+        this.createCourseDialog = false;
         this.updateCoursesList();
       } catch (error) {
         this.toastService.showError('Error al crear el curso');

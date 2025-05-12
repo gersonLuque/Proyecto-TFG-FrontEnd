@@ -1,6 +1,6 @@
 import {Component, input, OnDestroy, OnInit} from '@angular/core';
 import {AppUploadFilesComponent} from '../../../../shared/components/app-upload-files/app-upload-files.component';
-import {FormBuilder, FormGroup, FormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, Validators} from '@angular/forms';
 import {ProgressSpinner} from 'primeng/progressspinner';
 import {TaskDetailsComponent} from '../../../../shared/components/task-form/task-details/task-details.component';
 import {TaskDto} from '@core/dto/taskDto';
@@ -10,18 +10,20 @@ import {Panel} from 'primeng/panel';
 import {ToastService} from '@core/services/toast.service';
 import {Router} from '@angular/router';
 import {FileListComponent} from '../../../../shared/components/file-list/file-list.component';
+import {Message} from "primeng/message";
 
 
 @Component({
   selector: 'app-edit-task',
-  imports: [
-    AppUploadFilesComponent,
-    FormsModule,
-    ProgressSpinner,
-    TaskDetailsComponent,
-    Panel,
-    FileListComponent
-  ],
+    imports: [
+        AppUploadFilesComponent,
+        FormsModule,
+        ProgressSpinner,
+        TaskDetailsComponent,
+        Panel,
+        FileListComponent,
+        Message
+    ],
   templateUrl: './edit-task.component.html',
   styleUrl: './edit-task.component.css'
 })
@@ -43,10 +45,10 @@ export default class EditTaskComponent implements OnInit, OnDestroy {
               private toastService: ToastService,
               private router:Router) {
     this.editTaskForm = this.fb.group({
-      title: [''],
-      description: [''],
-      endDate: [null],
-      endTime: [null],
+      title: ['',Validators.required],
+      description: ['',Validators.required],
+      endDate: [null,Validators.required],
+      endTime: [null,Validators.required],
       visible: [false]
     })
   }
