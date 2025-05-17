@@ -79,7 +79,7 @@ export default class CreateSolutionComponent implements OnInit , OnDestroy {
   formCreate(): FormData {
     const solutionData = new FormData();
     solutionData.append('taskId', this.taskId().toString())
-    solutionData.append('userId', String(this.currentUser.userId)) // todo cambiar por el usuario autenticado
+    solutionData.append('userId', String(this.currentUser.userId))
     solutionData.append('anonymous', String(this.isChecked))
 
     if (this.uploadedFiles.length > 0) {

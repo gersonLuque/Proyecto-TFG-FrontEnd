@@ -9,10 +9,11 @@ import {ConfirmService} from '@core/services/confirm.service';
 import {ToastService} from '@core/services/toast.service';
 import {TaskService} from '@core/services/task.service';
 import {ConfirmDialog} from 'primeng/confirmdialog';
-import { PopUpComponent } from "../../../shared/components/pop-up/pop-up/pop-up.component";
+import {PopUpComponent} from "../../../shared/components/pop-up/pop-up/pop-up.component";
 import {MenuItem} from 'primeng/api';
 import {UserJwtDto} from '@core/dto/userJwtDto';
 import {AuthService} from '@core/services/auth.service';
+import {Tooltip} from 'primeng/tooltip';
 
 @Component({
   selector: 'app-task-management',
@@ -22,8 +23,9 @@ import {AuthService} from '@core/services/auth.service';
     AddHeaderListComponent,
     RouterLink,
     ConfirmDialog,
-    PopUpComponent
-],
+    PopUpComponent,
+    Tooltip
+  ],
   templateUrl: './task-management.component.html',
   styleUrl: './task-management.component.css'
 })
@@ -32,44 +34,48 @@ export class TaskManagementComponent implements OnInit {
 
   tasks$: Observable<TaskDto[]>
   menuItems: { [taskId: string]: MenuItem[] } = {};
-  user$:Observable<UserJwtDto>;
+  user$: Observable<UserJwtDto>;
+  userIdCurrent: number;
 
   constructor(private courseService: CourseService,
               private confirmService: ConfirmService,
               private taskService: TaskService,
               private toastService: ToastService,
-              private router:Router,
-              private route:ActivatedRoute,
+              private router: Router,
+              private route: ActivatedRoute,
               private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.tasks$ = this.courseService.getTasksByCourseId(this.id(), 1).pipe(
+    this.authService.user$.subscribe(user => {
+      this.userIdCurrent = user.userId
+    })
+    this.tasks$ = this.courseService.getTasksByCourseId(this.id(), this.userIdCurrent).pipe(
       tap(tasks => {
         this.menuItems = {}; // Limpiar datos anteriores
         tasks.forEach(task => {
           this.menuItems[task.taskId] = this.getitems(task);
         })
-      })
-    )
-
+      }))
+    console.log(this.authService.user$)
     this.user$ = this.authService.user$;
   }
+
   showConfirmDelete(task: TaskDto) {
     this.confirmService.showDeleteDialog(`¿Estas seguro de eliminar la tarea ${task.title}?`, async () => {
       await lastValueFrom(this.taskService.deleteTask(task.taskId));
       this.toastService.showSuccess(`Tarea ${task.title} eliminada correctamente`);
-      this.tasks$ = this.courseService.getTasksByCourseId(this.id(), 1) // todo
+      this.tasks$ = this.courseService.getTasksByCourseId(this.id(), this.userIdCurrent)
     });
   }
 
-  getitems(task:TaskDto): MenuItem[] {
+  getitems(task: TaskDto): MenuItem[] {
     return [
       {
         label: 'Editar Tarea',
         icon: 'bi bi-pencil-square',
         command: () => {
-          this.router.navigate(['edit-task', task.taskId], { relativeTo: this.route });
+          this.router.navigate(['edit-task', task.taskId], {relativeTo: this.route});
         }
       },
       {
@@ -82,5 +88,15 @@ export class TaskManagementComponent implements OnInit {
     ];
   }
 
+  isPastEndDate(endDate: string, endTime: string): boolean {
+    const now = new Date();
 
+    const [year, month, day] = endDate.split('-').map(Number);
+
+    const [hours, minutes, seconds] = endTime.split(':').map(Number);
+
+    const endDateTime = new Date(year, month - 1, day, hours, minutes, seconds);
+
+    return now > endDateTime;
+  }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Course} from '@core/dto/courseDto';
 import {CourseService} from '@core/services/course.service';
 import {AsyncPipe} from '@angular/common';
@@ -8,17 +8,18 @@ import {Toast, ToastModule} from 'primeng/toast';
 import {createUserDto} from '@core/dto/createUserDto';
 import {ToastService} from '@core/services/toast.service';
 import {UserService} from '@core/services/user.service';
+import {Message} from "primeng/message";
 
 
 @Component({
   selector: 'app-create-user',
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    AsyncPipe,
-    Toast,
-    ToastModule
-  ],
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        AsyncPipe,
+        ToastModule,
+        Message
+    ],
   templateUrl: './create-user.component.html',
   styleUrl: './create-user.component.css'
 })
@@ -34,10 +35,10 @@ export class CreateUserComponent implements OnInit {
               private toastService: ToastService) {
 
     this.createUserForm = this.fb.group({
-      username: [''],
-      completeName: [''],
-      password: [''],
-      rol: [''],
+      username: ['',Validators.required],
+      completeName: ['',Validators.required],
+      password: ['',Validators.required],
+      rol: ['',Validators.required],
       courses: this.fb.array([])
     })
   }

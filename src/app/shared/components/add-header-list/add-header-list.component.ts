@@ -10,7 +10,18 @@ import {RouterLink} from '@angular/router';
   styleUrl: './add-header-list.component.css'
 })
 export class AddHeaderListComponent {
+
+  
+
   @Input() titleList: string = 'Título';
   @Input() btnAddText?: string = 'Crear';
   @Input() routing: string = '';
+  @Input() rol: string = '';
+  @Input() actionFn?: () => void;
+
+  onButtonClick() {
+    if (this.actionFn) {
+      this.actionFn();
+    }
+  }
 }

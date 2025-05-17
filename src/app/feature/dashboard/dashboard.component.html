@@ -3,11 +3,15 @@
 <div class="fondo">
   <div class="container">
     <div class="rf">
+    @let currentUser = currentUser$ | async;
     <app-add-header-list
       titleList="Lista de cursos"
-      btnAddText="Crear curso">
+      btnAddText="Crear curso"
+      [rol] = "currentUser?.rol">
+      [actionFn]="activarCreateCourseDialog">
     </app-add-header-list>
     </div>
+    <p-confirm-dialog />
 
     <!-- Contenedor de tarjetas de cursos -->
     <div class="row">
@@ -18,7 +22,9 @@
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <span class="course-title fs-4">{{ course.name }}</span>
-                <app-pop-up [items]="items"></app-pop-up>
+                @if (currentUser?.rol === 'TEACHER') {
+                  <app-pop-up [items]="menuItems[course.courseId]" class="pop-up-position"></app-pop-up>
+                }
               </div>
               <div class="d-flex gap-2 mt-3">
                 <button [routerLink]="['task-management', course.courseId]" class="btn btn-light border">
@@ -33,4 +39,54 @@
 
   </div>
   <router-outlet></router-outlet>
+</div>
+<div *ngIf="editCourseDialog" class="dialog-container">
+  <div class="dialog-backdrop"></div>
+
+  <form [formGroup]="editCourseForm">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <h2>Editar curso</h2>
+      </div>
+
+      <div class="grid mb-3">
+        <div class="col-4">
+          <label class="font-semibold block">Nuevo nombre</label>
+        </div>
+        <div class="col-8">
+          <input formControlName="name" class="w-full" type="text" autocomplete="off"/>
+        </div>
+      </div>
+
+      <div class="flex justify-content-end gap-2">
+        <p-button label="Cancel" styleClass="p-button-secondary" (click)="editCourseDialog = false"></p-button>
+        <p-button label="Save" (click)="editCourse()"></p-button>
+      </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="createCourseDialog" class="dialog-container">
+  <div class="dialog-backdrop"></div>
+
+  <form [formGroup]="createCourseForm">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <h2>Crear curso</h2>
+      </div>
+
+      <div class="grid mb-3">
+        <div class="col-6">
+          <label class="font-semibold ">Nombre del curso</label>
+        </div>
+        <div class="col-8">
+          <input formControlName="name" class="w-full" type="text" autocomplete="off"/>
+        </div>
+      </div>
+
+      <div class="flex justify-content-end gap-2">
+        <p-button label="Cancel" styleClass="p-button-secondary" (click)="createCourseDialog = false"></p-button>
+        <p-button (onClick)="createCourse(user?.userId)" label="Save"></p-button>
+      </div>
+    </div>
+  </form>
 </div>

@@ -1,10 +1,12 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h1>{{ titleList }}</h1>
-  <button class="btn btn-dark" [routerLink]="routing || null">
+  @if (rol === 'TEACHER') {
+  <button class="btn btn-dark" [routerLink]="routing || null" (click)="onButtonClick()" >
     <i class="bi bi-plus-lg me-2"></i>
     {{ btnAddText }}
   </button>
+  }
 </div>
 
 <hr class="soft-divider">
