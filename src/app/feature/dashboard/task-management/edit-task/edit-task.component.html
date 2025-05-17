@@ -38,7 +38,8 @@
         <button [disabled]="editTaskForm.invalid" type="submit" class="btn btn-dark w-100 py-2 mt-4" (click)="sendData()">
           Actualizar tarea
           @if (isLoading) {
-            <p-progress-spinner ariaLabel="loading" [style]="{ width: '20px', height: '20px' }"/>
+            <div class="spinner-border text-success spinner-border-sm" role="status">
+            </div>
           }
         </button>
       </form>

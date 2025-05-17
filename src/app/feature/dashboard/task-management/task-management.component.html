@@ -4,15 +4,15 @@
     @let currentUser = user$ | async;
 
     <!-- Encabezado con botón -->
-  
+
       <app-add-header-list
         titleList="Tareas del curso"
         btnAddText="Crear tarea"
         routing="create-task"
         [rol] = "currentUser?.rol">
       </app-add-header-list>
-    
-      
+
+
     <!-- Inicio de las tarjetas -->
     <div class="row g-4">
       <p-confirm-dialog/>
@@ -55,7 +55,7 @@
                   <!--                  <input type="text" pInputText pTooltip="Enter your username" tooltipPosition="top" placeholder="Top" />-->
                   @let btnDisabled = currentUser?.rol === 'STUDENT' && !isPastEndDate(task?.endDate, task?.endTime);
                   @if (btnDisabled) {
-                    <span pTooltip="falta" tooltipPosition="top">
+                    <span pTooltip="El plazo de entrega aún no ha finalizado" tooltipPosition="top">
                       <button
                         [routerLink]="['show-solutions', task.taskId]"
                         class="btn btn-dark"
