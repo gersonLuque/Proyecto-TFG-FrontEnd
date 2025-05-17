@@ -17,6 +17,14 @@ html, body {
   overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es más grande que la pantalla */
 }
 
+.user-icon {
+  width: 30px; /* Tamaño del icono */
+  height: 30px; /* Tamaño del icono */
+  object-fit: cover;
+  border-radius: 50%; /* Redondear la imagen */
+}
+
+
 /* Título principal */
 h1 {
   font-size: 2rem;

@@ -5,6 +5,7 @@ import {SolutionDto} from '@core/dto/solutionDto';
 import {AsyncPipe} from '@angular/common';
 import {Tooltip} from 'primeng/tooltip';
 import {RouterLink} from '@angular/router';
+import { CommonModule } from '@angular/common';
 import {StarComponent} from "../../../../shared/components/star/star.component";
 import {BcodeComponent} from "../../../../shared/components/button-code/bcode/bcode.component";
 import {saveAs} from 'file-saver';
@@ -19,6 +20,8 @@ import {AuthService} from '@core/services/auth.service';
     Tooltip,
     RouterLink,
     StarComponent,
+    BcodeComponent,
+    CommonModule,
     BcodeComponent
   ],
   templateUrl: './show-solutions-list.component.html',
@@ -63,6 +66,14 @@ export class ShowSolutionsListComponent implements OnInit {
         return 'assets/icons/archivo.png'; // Ruta del ícono por defecto
     }
   }
+  
+  trackBySolutionId(index: number, solution: SolutionDto): number {
+  return solution.solutionId; // Esto devuelve el ID de la solución, que es único.
+}
+
+trackByFileId(index: number, file: any): string {
+  return file.fileId; // Esto devuelve el ID único del archivo.
+}
 
   async downloadFile(prefix: string, filename: string) {
     const key = `${prefix}/${filename}`;

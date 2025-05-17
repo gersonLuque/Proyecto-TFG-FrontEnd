@@ -2,6 +2,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  padding: 0; /* Elimina cualquier margen o relleno extra */
   display: flex;
   flex-direction: column;
 }
@@ -9,8 +10,9 @@ html, body {
 /* Contenedor principal para que el footer se quede al final */
 .main-content {
   flex: 1;
-  padding-bottom: 20px; /* Espaciado adicional entre el contenido y el footer */
   background-color: whitesmoke;
+  margin-bottom: 0; /* Elimina el espacio debajo del contenido */
+  padding-bottom: 0; /* Elimina el relleno debajo del contenido */
 }
 
 /* Footer sigue igual */
@@ -21,7 +23,8 @@ html, body {
   padding: 12px 24px;
   font-size: 14px;
   border-top: 1px solid #333;
-  margin-top: 20px; /* Espaciado adicional por encima del footer */
+  margin-top: 0; /* Elimina el margen superior */
+  margin-bottom: 0; /* Asegura que no haya margen inferior */
 }
 
 .footer-container {

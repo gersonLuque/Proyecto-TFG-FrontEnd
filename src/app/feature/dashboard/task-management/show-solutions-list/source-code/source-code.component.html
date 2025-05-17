@@ -1,3 +1,4 @@
+<div class="white-separator"></div>
 @let currentUser = user$ | async;
 @let solution = solution$ | async;
 @let selectedTab = solution?.fileSolutions?.[0]?.fileId;
@@ -23,9 +24,9 @@
           @let content = formatCode(files?.content);
           <p-tabpanel [value]="files.fileId">
             <div class="ms-3">
-          <textarea highlight-js [lang]="files?.type">
-            {{content}}
-          </textarea>
+              <textarea highlight-js [lang]="files?.type">
+                {{content}}
+              </textarea>
             </div>
           </p-tabpanel>
         }

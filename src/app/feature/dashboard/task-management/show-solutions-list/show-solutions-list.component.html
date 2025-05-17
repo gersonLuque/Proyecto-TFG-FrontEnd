@@ -1,23 +1,31 @@
 <div class="container mt-5">
   <h1 class="mb-4">Soluciones</h1>
-
-
-  @let currentUser = user$ | async;
-  @let solutions = solutions$ | async;
-  @for (solution of solutions; track solution.solutionId) {
-    @if (solution?.fileSolutions.length > 0) {
-
+ @let currentUser = user$ | async;
+  <ng-container *ngIf="solutions$ | async as solutions">
+    <div *ngFor="let solution of solutions; trackBy: trackBySolutionId">
       <div class="solution-item">
-        <div class="solution-header">
-          @if (solution?.anonymous && currentUser?.rol === 'STUDENT') {
+        <div class="solution-header d-flex justify-content-between align-items-center mb-3">
+          
+          <!-- Imagen por rol del usuario -->
+          <div class="d-flex align-items-center gap-3">
+            <!-- Imagen del usuario según el rol -->
+            <ng-container *ngIf="solution?.userBasicDto?.rol === 'STUDENT'">
+              <img src="/assets/icons/estudiante.png" class="user-icon" alt="Estudiante">
+            </ng-container>
+            <ng-container *ngIf="solution?.userBasicDto?.rol === 'TEACHER'">
+              <img src="/assets/icons/profesor.png" class="user-icon" alt="Profesor">
+            </ng-container>
+
+            @if (solution?.anonymous && currentUser?.rol === 'STUDENT') {
             <h3 class="text-muted">Anónimo</h3>
           } @else {
             <h3 class="text-muted">{{ solution?.userBasicDto?.completeName }}</h3>
           }
+          </div>
 
+          <!-- Acciones -->
           <div class="d-flex align-items-center gap-3">
-
-            <app-bcode [routerLink]="[solution.solutionId]"></app-bcode>
+          <app-bcode [routerLink]="[solution.solutionId]"></app-bcode>
 
             @if (currentUser?.rol === 'STUDENT'){
               <span pTooltip="Solo el profesor puede colocar una estrella" tooltipPosition="top">
@@ -34,11 +42,11 @@
                 [rol]="currentUser?.rol"
               ></app-star>
             }
-
           </div>
         </div>
 
         <div class="solution-content">
+                <div class="solution-content">
           <div class="row">
             @for (file of solution?.fileSolutions; track file.fileId) {
               <div
@@ -66,6 +74,6 @@
           </div>
         </div>
       </div>
-    }
-  }
+    </div>
+  </ng-container>
 </div>

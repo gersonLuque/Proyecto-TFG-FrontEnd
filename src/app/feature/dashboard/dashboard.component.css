@@ -16,6 +16,10 @@ html, body {
   overflow-y: auto; /* Permite el desplazamiento cuando haya más contenido */
 }
 
+.rf {
+  padding-right: 1.80%;
+}
+
 /* Contenedor general */
 .container {
   width: 100%;

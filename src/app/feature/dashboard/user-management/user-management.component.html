@@ -1,46 +1,53 @@
-<!--/home/dashboard/user-management-->
+<div class="fondo">
+  <div class="container mt-4">
+    <app-add-header-list
+      titleList="Lista de usuarios"
+      btnAddText="Crear usuario"
+      routing="create-user">
+    </app-add-header-list>
 
-<div class = "fondo">
-<div class="container mt-4">
-  <app-add-header-list
-    titleList="Lista de usuarios"
-    btnAddText="Crear usuario"
-    routing="create-user">
-  </app-add-header-list>
+    <div class="row">
+      <div class="col-12 mb-3">
+        <!-- inicio de la card-->
+        <p-toast />
+        <p-confirm-dialog />
+        <ng-container *ngIf="users$ | async as users">
+          <div *ngFor="let user of users; trackBy: trackByUserId">
+            <div class="card mb-2 out border-1">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center gap-3">
+                    <!-- Imagen por rol -->
+                    <ng-container *ngIf="user?.rol === 'STUDENT'">
+                      <img src="/assets/icons/estudiante.png" class="user-icon" alt="Estudiante">
+                    </ng-container>
+                    <ng-container *ngIf="user?.rol === 'TEACHER'">
+                      <img src="/assets/icons/profesor.png" class="user-icon" alt="Profesor">
+                    </ng-container>
 
-  <div class="row">
-    <div class="col-12 mb-3">
-      <!--      inicio de la card-->
-      <p-toast />
-      <p-confirm-dialog />
-      @for (user of (users$ | async); track user.userId) {
-
-        <div class="card mb-2 out border-1">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <h5 class="card-title mb-1">{{user.completeName}}</h5>
-                <p class="card-text text-muted mb-0">{{user.username}}</p>
-                <span></span>
-              </div>
-              <div>
-                <button [routerLink]="['edit-user',user.userId]" class="btn btn-outline-secondary me-2" >
-                  <i class="pi bi-pen me-2"></i>
-                  Editar
-                </button>
-                <button class="btn btn-danger" (click)="showConfirmDelete(user)">
-                  <i class="bi bi-trash me-2"></i>
-                  Borrar
-                </button>
+                    <!-- Nombre y username del usuario -->
+                    <div>
+                      <h5 class="card-title mb-1">{{ user.completeName }}</h5>
+                      <p class="card-text text-muted mb-0">{{ user.username }}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <button [routerLink]="['edit-user',user.userId]" class="btn btn-outline-secondary me-2">
+                      <i class="pi bi-pen me-2"></i> Editar
+                    </button>
+                    <button class="btn btn-danger" (click)="showConfirmDelete(user)">
+                      <i class="bi bi-trash me-2"></i> Borrar
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      }
-      <!--    fin de la card-->
-
+        </ng-container>
+        <!-- fin de la card-->
+      </div>
     </div>
   </div>
 </div>
-</div>
+
 <router-outlet></router-outlet>
