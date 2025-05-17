@@ -13,10 +13,13 @@
           <app-app-upload-files (uploadedFilesChange)="handleUploadedFiles($event)"></app-app-upload-files>
 
           <!-- Botón de envío -->
-          <button type="submit" class="btn btn-dark w-100 py-2 mt-4" (click)="sendData()">
+          @if (taskCreateForm.invalid){
+            <p-message severity="info">Campos obligatorios: Titulo, descripción, fecha de entrega, hora de entrega </p-message>
+          }
+          <button [disabled]="taskCreateForm.invalid" type="submit" class="btn btn-dark w-100 py-2 mt-4" (click)="sendData()">
             Crear Tarea
             @if (isLoading) {
-              <p-progress-spinner ariaLabel="loading" [style]="{ width: '30px', height: '25px' }" />
+              <p-progress-spinner ariaLabel="loading" [style]="{ width: '20px', height: '20px' }" />
             }
           </button>
         </form>

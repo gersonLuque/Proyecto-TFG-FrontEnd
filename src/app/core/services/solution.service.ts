@@ -33,4 +33,9 @@ export class SolutionService {
   getSolutionsByTaskId(taskId: number):Observable<SolutionDto[]> {
     return this.http.get<SolutionDto[]>(`${apiUrl}/tasks/${taskId}/solutions`)
   }
+
+  updateStar(solutionId: number, star: boolean): Observable<SolutionDto> {
+    return this.http.put<SolutionDto>(`${apiUrl}/solutions/${solutionId}?star=${star}`, {});
+  }
+
 }

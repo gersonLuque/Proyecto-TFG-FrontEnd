@@ -15,43 +15,70 @@
       
     <!-- Inicio de las tarjetas -->
     <div class="row g-4">
-      <p-confirm-dialog />
-      
+      <p-confirm-dialog/>
       @let tasksByCourseId = tasks$ | async;
       @for (task of tasksByCourseId; track task.taskId) {
-        <div class="col-12 col-md-6">
-          <div class="card mb-0 position-relative">
 
-            <!-- Aplicamos la clase pop-up-position al componente app-pop-up -->
-            @if (currentUser?.rol === 'TEACHER'){
-              <app-pop-up [items]="menuItems[task.taskId]" class="pop-up-position"></app-pop-up>
-            }
+        @let currentUser = user$ | async;
+        @if (currentUser?.rol === 'STUDENT' && !task?.visible) {
 
-            <!-- Contenido de la tarjeta -->
-            <div class="card-body">
-              <h2 class="card-title">{{ task.title }}</h2>
+        } @else {
+          <div class="col-12 col-md-6">
+            <div class="card mb-0 position-relative">
 
-              <p class="card-text text-muted">
-                {{ task.description.length > 100 ? (task.description | slice:0:100) + '...' : task.description }}
-              </p>
+              <!-- Aplicamos la clase pop-up-position al componente app-pop-up -->
+              @if (currentUser?.rol === 'TEACHER') {
+                <app-pop-up [items]="menuItems[task.taskId]" class="pop-up-position"></app-pop-up>
+              }
 
-              <div class="d-flex align-items-center mb-3">
-                <i class="bi bi-calendar me-2"></i>
-                <span>Fecha de entrega: {{ task.endDate }}</span>
+              <div class="card-body">
+                <h2 class="card-title">{{ task.title }}</h2>
+
+                <p class="card-text text-muted">
+                  {{ task.description.length > 100 ? (task.description | slice:0:100) + '...' : task.description }}
+                </p>
+
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-calendar me-2"></i>
+                  <span>Fecha de entrega: {{ task.endDate }}</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <i class="bi bi-clock me-2"></i>
+                  <span>Hora de entrega: {{ task?.endTime }}</span>
+                </div>
+
+                <div class="d-flex justify-content-end mt-3">
+                  <button [routerLink]="['create-solution', task.taskId]" class="btn btn-outline-dark me-2">
+                    Gestionar solución
+                  </button>
+
+                  <!--                  <input type="text" pInputText pTooltip="Enter your username" tooltipPosition="top" placeholder="Top" />-->
+                  @let btnDisabled = currentUser?.rol === 'STUDENT' && !isPastEndDate(task?.endDate, task?.endTime);
+                  @if (btnDisabled) {
+                    <span pTooltip="falta" tooltipPosition="top">
+                      <button
+                        [routerLink]="['show-solutions', task.taskId]"
+                        class="btn btn-dark"
+                        [disabled]="true">
+                        Ver soluciones
+                      </button>
+                    </span>
+                  } @else {
+                    <button
+                      [routerLink]="['show-solutions', task.taskId]"
+                      class="btn btn-dark">
+                      Ver soluciones
+                    </button>
+                  }
+
+
+
+                </div>
               </div>
 
-              <div class="d-flex justify-content-end mt-3">
-                <button [routerLink]="['create-solution', task.taskId]" class="btn btn-outline-dark me-2">
-                  Gestionar solución
-                </button>
-                <button [routerLink]="['show-solutions', task.taskId]" class="btn btn-dark">
-                  Ver soluciones
-                </button>
-              </div>
             </div>
-
           </div>
-        </div>
+        }
       }
     </div>
     <!-- Fin de las tarjetas -->

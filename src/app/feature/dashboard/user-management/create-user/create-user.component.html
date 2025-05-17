@@ -92,19 +92,19 @@
             </div>
 
             <!-- Submit button -->
-            <p-toast position="top-center"/>
+
+            @if (createUserForm.invalid){
+              <p-message  severity="info">Campos obligatorios: Nombre de usuario, nombre completo, contraseña, rol </p-message>
+            }
             <button
+              [disabled]="createUserForm.invalid"
               type="submit"
-              class="btn btn-dark w-100"
+              class="btn mt-2 btn-dark w-100"
               (click)="submit()"
             >
               Enviar
             </button>
 
-            <!-- Terms and conditions -->
-            <p class="text-muted small mt-3">
-              Al enviar este formulario, aceptas nuestros términos y condiciones.
-            </p>
           </form>
         </div>
       </div>

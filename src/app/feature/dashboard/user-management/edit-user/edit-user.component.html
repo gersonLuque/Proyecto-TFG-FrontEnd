@@ -3,8 +3,7 @@
   <div class="container py-5 flex-grow-1 d-flex justify-content-center align-items-start">
     <div class="card shadow rounded w-100" style="max-width: 600px;">
       <div class="card-body">
-        <h2 class="card-title mb-4">Formulario creación de usuario</h2>
-        <p class="text-muted mb-4">Por favor, completa todos los campos</p>
+        <h2 class="card-title mb-4">Edición de usuario</h2>
 
         <form [formGroup]="editUserForm">
           @let user = user$ | async;
@@ -88,19 +87,19 @@
             </div>
           </div>
 
+          @if (editUserForm.invalid){
+            <p-message  severity="info">Campos obligatorios: Nombre completo </p-message>
+          }
           <!-- Submit -->
           <button
+            [disabled]="editUserForm.invalid"
             type="submit"
-            class="btn btn-dark w-100"
+            class="btn mt-2 btn-dark w-100"
             (click)="actualizar()"
           >
             Enviar
           </button>
 
-          <!-- Terms -->
-          <p class="text-muted small mt-3">
-            Al enviar este formulario, aceptas nuestros términos y condiciones.
-          </p>
         </form>
       </div>
     </div>

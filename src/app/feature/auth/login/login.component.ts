@@ -9,6 +9,7 @@ import {FloatLabel} from 'primeng/floatlabel';
 import {Password} from 'primeng/password';
 import { PasswordModule } from 'primeng/password';
 import { InputContraComponent } from 'app/shared/components/inputs/input-login/input-contra/input-contra/input-contra.component';
+import {ToastService} from '@core/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ import { InputContraComponent } from 'app/shared/components/inputs/input-login/i
 export class LoginComponent {
   public loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder,private toastService:ToastService, private authService: AuthService) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -28,9 +29,12 @@ export class LoginComponent {
   }
 
   public async logIn() {
-    if (this.loginForm.valid) {
+    try {
       const dtoLogin: LoginRequestDto = { ...this.loginForm.value };
       await lastValueFrom(this.authService.login(dtoLogin));
+    }catch (error){
+      this.toastService.showError("Usuario o contraseña incorrectos");
     }
+
   }
 }
