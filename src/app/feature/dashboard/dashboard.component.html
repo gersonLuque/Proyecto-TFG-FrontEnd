@@ -2,11 +2,12 @@
 <div class="fondo">
   <div class="container">
 
-    @let user = currentUser$ | async;
+    @let currentUser = currentUser$ | async;
 
     <app-add-header-list
       titleList="Lista de cursos"
       btnAddText="Crear curso"
+      [rol] = "currentUser?.rol">
       [actionFn]="activarCreateCourseDialog">
     </app-add-header-list>
     <p-confirm-dialog />
@@ -21,7 +22,9 @@
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <span class="course-title fs-4">{{ course.name }}</span>
-                <app-pop-up [items]="menuItems[course.courseId]" class="pop-up-position"></app-pop-up>
+                @if (currentUser?.rol === 'TEACHER') {
+                  <app-pop-up [items]="menuItems[course.courseId]" class="pop-up-position"></app-pop-up>
+                }
               </div>
               <div class="d-flex gap-2 mt-3">
                 <button [routerLink]="['task-management', course.courseId]" class="btn btn-light border">
